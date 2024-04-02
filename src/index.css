@@ -1,0 +1,31 @@
+/*------------------------ GLOBAL --------------------------*/
+
+body {
+  width: 100%;
+  /* background-image: url(./assets/homepage-background.png) */
+}
+
+nav {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+section {
+  width: 100%;
+  border: 3px black solid;
+  margin-bottom: 20px;
+}
+
+/*------------------------ WELCOME --------------------------*/
+
+.welcome-section {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  transform: scale(1);
+}
+

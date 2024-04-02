@@ -1,8 +1,9 @@
 import React from 'react';
+import Homepage from './components/Homepage.jsx'
 
 function App() {
   return (
-    <div> Pool of Work
+    <div> <Homepage />
     </div>
   )
 }
