@@ -3,7 +3,7 @@ import React from 'react';
 
 const Writing = () => {
   return (
-    <div>Writing</div>
+    <div id="writing">Writing</div>
   );
 }
 

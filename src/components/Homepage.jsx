@@ -14,15 +14,15 @@ const Homepage = () => {
       <nav>
       <NavBar />
       </nav>
-      <section className="welcome-section">
-        <Container className="welcome-container col-10 d-flex align-items-center justify-content-center">
+      <section id="welcome" className="welcome-section">
+        <Container className="welcome-container d-flex align-items-center justify-content-center">
           Pool of Work
         </Container>
       </section>
-      <section> <About /></section>
+      {/* <section> <About /></section> */}
       <section> <Writing /> </section>
       <section> <Dance /></section>
-      <section> <Contact /></section>
+      <section> <About /></section>
     </div>
   );
 }

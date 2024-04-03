@@ -5,6 +5,19 @@ body {
   /* background-image: url(./assets/homepage-background.png) */
 }
 
+
+
+section {
+  width: 100%;
+  border: 3px black solid;
+  margin-bottom: 20px;
+  height: 50vh;
+}
+
+section:last-of-type {
+  height: 20vh;
+}
+/*------------------------ NAVBAR --------------------------*/
 nav {
   position: fixed;
   z-index: 1;
@@ -14,18 +27,24 @@ nav {
   flex-direction: row;
 }
 
-section {
-  width: 100%;
-  border: 3px black solid;
-  margin-bottom: 20px;
+.nav-item {
+  padding: 100px;
 }
-
+.nav-home {
+  margin-right: auto;
+}
 /*------------------------ WELCOME --------------------------*/
 
 .welcome-section {
   display: flex;
   justify-content: center;
   height: 100vh;
-  transform: scale(1);
+  /* transform: scale(1); */
 }
 
+
+
+/*------------------------ ABOUT --------------------------*/
+.about-section {
+  height: 20vh;
+}
