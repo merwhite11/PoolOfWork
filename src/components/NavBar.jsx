@@ -6,15 +6,15 @@ const NavBar = () => {
 
 
   return (
-    <Navbar className="nav-bar" data-bs-theme="light">
+    <Navbar className="nav-bar py-0" data-bs-theme="light">
     <Container>
       <Nav>
         <Navbar.Brand href="#welcome">Home</Navbar.Brand>
         </Nav>
         <Nav>
-        <Nav.Link className="nav-bar" href="#writing">Writing</Nav.Link>
-        <Nav.Link className="nav-bar" href="#dance">Dance</Nav.Link>
-        <Nav.Link className="nav-bar" href="#about">About</Nav.Link>
+        <Nav.Link className="ml-3" href="#writing">Writing</Nav.Link>
+        <Nav.Link className="ml-3 mr-3" href="#dance">Dance</Nav.Link>
+        <Nav.Link className="ml-3" href="#about">About</Nav.Link>
       </Nav>
     </Container>
   </Navbar>

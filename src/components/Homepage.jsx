@@ -11,10 +11,10 @@ import Contact from './Contact.jsx';
 const Homepage = () => {
   return (
     <div>
-      <nav>
-      <NavBar />
-      </nav>
       <section id="welcome" className="welcome-section">
+        <nav>
+          <NavBar />
+        </nav>
         <Container className="welcome-container d-flex align-items-center justify-content-center">
           Pool of Work
         </Container>

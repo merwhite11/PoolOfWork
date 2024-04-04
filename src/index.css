@@ -1,16 +1,19 @@
 /*------------------------ GLOBAL --------------------------*/
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   width: 100%;
-  /* background-image: url(./assets/homepage-background.png) */
+  margin: 0px;
+  padding: 0px;
 }
 
 
 
 section {
   width: 100%;
-  border: 3px black solid;
-  margin-bottom: 20px;
+  /* border: 3px black solid; */
+  /* margin-bottom: 20px; */
   height: 50vh;
 }
 
@@ -20,29 +23,44 @@ section:last-of-type {
 /*------------------------ NAVBAR --------------------------*/
 nav {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
+  padding: 20px;
+  /* font-size: x-large; */
 }
 
-.nav-item {
-  padding: 100px;
+.nav-link {
+  margin-left: 10px;
 }
-.nav-home {
-  margin-right: auto;
-}
+
 /*------------------------ WELCOME --------------------------*/
+.welcome-section {
+  background-image: url(./assets/home-bg-bw.png);
+  background-attachment: scroll;
+  background-position: 0% 10%;
+  background-size: cover;
+  width: 100%;
+  margin-top: 0;
+}
 
 .welcome-section {
   display: flex;
   justify-content: center;
   height: 100vh;
-  /* transform: scale(1); */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+
+
+  transform: scale(1);
 }
 
-
+.welcome-container {
+  padding: 0px;
+}
 
 /*------------------------ ABOUT --------------------------*/
 .about-section {
