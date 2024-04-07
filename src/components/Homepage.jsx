@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 
 import NavBar from './NavBar.jsx';
+import CardCarousel from './Carousel.jsx'
 import About from './About.jsx';
 import Writing from './Writing.jsx';
 import Dance from './Dance.jsx';
@@ -20,7 +21,7 @@ const Homepage = () => {
         </Container>
       </section>
       {/* <section> <About /></section> */}
-      <section> <Writing /> </section>
+      <section> <CardCarousel /> </section>
       <section> <Dance /></section>
       <section> <About /></section>
     </div>

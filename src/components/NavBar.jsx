@@ -7,14 +7,14 @@ const NavBar = () => {
 
   return (
     <Navbar className="nav-bar py-0" data-bs-theme="light">
-    <Container>
+    <Container className="nav-content">
       <Nav>
-        <Navbar.Brand href="#welcome">Home</Navbar.Brand>
+        <Navbar.Brand className="nav-brand" href="#welcome">Meredith White</Navbar.Brand>
         </Nav>
         <Nav>
-        <Nav.Link className="ml-3" href="#writing">Writing</Nav.Link>
-        <Nav.Link className="ml-3 mr-3" href="#dance">Dance</Nav.Link>
-        <Nav.Link className="ml-3" href="#about">About</Nav.Link>
+        <Nav.Link className="nav-link" href="#writing">Writing</Nav.Link>
+        <Nav.Link className="nav-link" href="#dance">Dance</Nav.Link>
+        <Nav.Link className="nav-link" href="#about">About</Nav.Link>
       </Nav>
     </Container>
   </Navbar>
