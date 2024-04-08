@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
 
 import NavBar from './NavBar.jsx';
-import CardCarousel from './Carousel.jsx'
-import About from './About.jsx';
 import Writing from './Writing.jsx';
 import Dance from './Dance.jsx';
-import Contact from './Contact.jsx';
-
+import About from './About.jsx';
 
 const Homepage = () => {
+
+  // const [clickedLink, setClickedLink] = useState('');
+
+  // const updateNavLink = (href) => {
+  //   setClickedLink(href)
+  // }
+
   return (
     <div>
       <section id="welcome" className="welcome-section">
@@ -20,8 +24,7 @@ const Homepage = () => {
           Pool of Work
         </Container>
       </section>
-      {/* <section> <About /></section> */}
-      <section> <CardCarousel /> </section>
+      <section> <Writing /> </section>
       <section> <Dance /></section>
       <section> <About /></section>
     </div>

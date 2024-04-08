@@ -1,10 +1,14 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
+import BookList from './BookList.jsx'
 
+const Dance = () => {
 
-const About = () => {
   return (
-    <div id="about">about</div>
+    <Container id='about' className="subsection">
+      <Container className="title">About</Container>
+    </Container>
   );
-}
+};
 
-export default About;
+export default Dance;
