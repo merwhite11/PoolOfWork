@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 
 const BookTile = () => {
   return(
-
     <Card className="book-tile">
       <Card.Img variant="top" src="../assets/BookCovers/GVDCover.jpg" />
         <Card.Body>

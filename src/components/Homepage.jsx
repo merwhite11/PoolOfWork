@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Col, Container } from 'react-bootstrap';
 
 import NavBar from './NavBar.jsx';
 import Writing from './Writing.jsx';
@@ -15,6 +15,7 @@ const Homepage = () => {
   // }
 
   return (
+
     <div>
       <section id="welcome" className="welcome-section">
         <nav>

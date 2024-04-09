@@ -4,7 +4,7 @@ import BookTile from './BookTile.jsx'
 
 const BookList = () => {
   return (
-    <Container className="carousel-container col-12">
+    <Container className="carousel-container">
         <BookTile/>
         <BookTile/>
         <BookTile/>
