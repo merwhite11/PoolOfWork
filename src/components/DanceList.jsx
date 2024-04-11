@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Container, Carousel } from 'react-bootstrap';
 import DanceTile from './DanceTile.jsx';
 
 
 const DanceList = () => {
+
   var closer = "LJ-MTCDq0Zg?si=jf6KsUp6th0ozj04";
   var malamente = "Bc_uHVpIUD4?si=5J1EB9VbgqA0UXvo";
   var gravity = "opm9kHGv1iA?si=RQPDMHNZNoqcSmQU";
@@ -17,30 +18,44 @@ const DanceList = () => {
   var sucker = "EQC1BvdmSGM?si=7XrGVWF2X4WNQ-1b";
   var june = "UZpsfi2GKcc?si=lrfrRv4FxLI-AZAC";
   var sisterboy = "QMjknbOkObU?si=qHAkYFRKHLvt6UyY";
+
   const videoIds = [closer, malamente, gravity, comer, seethrough, bikefreak, seventeen, sunrise, pool, cooloff, sucker, june, sisterboy]
 
-  const chunkSize = 4;
+  const chunkSize = 3;
   const videoChunks = [];
   for(let i = 0; i < videoIds.length; i += chunkSize) {
     videoChunks.push(videoIds.slice(i, i + chunkSize))
   }
-  console.log(videoChunks)
+
+  const [index, setIndex] = useState(0);
+
+  const handlePrev = () => {
+    if(index > 0) {
+      setIndex(index - 1)
+    }
+  }
+
+  const handleNext = () => {
+    if(index < videoChunks.length - 1) {
+      setIndex(index + 1)
+    }
+  }
 
   return (
-    <Container>
-      <Carousel indicators={false} prevIcon={<span className="carousel-control-prev-icon" />} nextIcon={<span className="carousel-control-next-icon" />}>
-      {videoChunks.map((chunk, index) => (
-          <Carousel.Item key={index}>
-            <div className="d-flex justify-content-around">
-            {chunk.map((vid, innerIndex) => (
-            <DanceTile key={innerIndex} videoId={vid} />
-            ))}
-            </div>
-          </Carousel.Item>
-        ))}
-      </Carousel>
+    <Container className="dance-list">
+
+      {videoIds.map((vid, index) => (
+            <DanceTile key={index} videoId={vid} />
+      ))}
+
+      <button className="carousel-control-prev" onClick={handlePrev}>
+        <span className="carousel-control-prev-icon" />
+      </button>
+      <button className="carousel-control-next" onClick={handleNext}>
+        <span className="carousel-control-next-icon" />
+      </button>
     </Container>
-  )
-}
+    )
+  }
 
 export default DanceList;

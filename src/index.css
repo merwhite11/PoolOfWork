@@ -93,7 +93,7 @@ nav {
 }
 
 
-/*------------------------ CAROUSEL --------------------------*/
+/*------------------------ BOOKSHELF --------------------------*/
 .carousel-container {
   display: flex;
   flex-direction: row;
@@ -101,13 +101,28 @@ nav {
   gap: 40px;
 }
 
-/*------------------------ BOOK TITLE --------------------------*/
-
 .book-tile {
   height: 350px !important;
-  width: calc(100%/3) !important;
+  width: 30vw !important;
   min-width: 300px !important;
 }
+
+/*------------------------ DANCE FLOOR --------------------------*/
+.dance-list {
+  display: flex;
+  flex-direction: row;
+}
+.dance-tile {
+  width: 500px !important;
+  padding: 10px;
+}
+.video-thumbnail{
+  width: 30vw;
+  height: 40vh;
+  /* object-fit: 'cover'; */
+
+}
+
 /*------------------------ ABOUT --------------------------*/
 .about-section {
   height: 20vh;
@@ -147,6 +162,10 @@ nav {
     width: 80% !important;
     margin-bottom: 20px;
   }
+  /* .dance-list {
+    flex-direction: column;
+    text-align: center;
+  } */
 }
 
 @media screen and (max-width: 425px) {
