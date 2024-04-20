@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import BookList from './BookList.jsx'
 
-const Dance = () => {
+const About = () => {
 
   return (
     <Container id='about' className="subsection">
@@ -11,4 +11,4 @@ const Dance = () => {
   );
 };
 
-export default Dance;
+export default About;
