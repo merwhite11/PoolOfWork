@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Container } from 'react-bootstrap';
+import { Col, Row, Container } from 'react-bootstrap';
 
 import NavBar from './NavBar.jsx';
 import Writing from './Writing.jsx';
@@ -17,7 +17,12 @@ const Homepage = () => {
   return (
 
     <div>
-      <section id="welcome" className="welcome-section">
+      <Container>
+        <Row className="justify-content-center">
+          <Col className="col-12">WELCOME SECTION</Col>
+        </Row>
+      </Container>
+      {/* <section id="welcome" className="welcome-section">
         <nav>
           <NavBar />
         </nav>
@@ -27,7 +32,7 @@ const Homepage = () => {
       </section>
       <section> <Writing /> </section>
       <section> <Dance /></section>
-      <section> <About /></section>
+      <section> <About /></section> */}
     </div>
   );
 }
