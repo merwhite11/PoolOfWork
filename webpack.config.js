@@ -2,7 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 const webpack = require('webpack');
 
-
+console.log(process.env.NODE_ENV);
 module.exports = {
   //need to have an entry point for scss main
   // entry: path.join(__dirname, "src", "index.js"),
@@ -28,11 +28,18 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
+        // use: [
+        //   // fallback to style-loader in development
+              //but NODE_ENV is undefined so it will always use MiniCSS
+        //   process.env.NODE_ENV === "development"
+        //     ? "style-loader"
+        //     : MiniCssExtractPlugin.loader,
+        //   "css-loader",
+        //   "sass-loader",
+        // ],
         use: [
-          // fallback to style-loader in development
-          process.env.NODE_ENV === "development"
-            ? "style-loader"
-            : MiniCssExtractPlugin.loader,
+          // don't we want the file to extract in dev & prod?
+          MiniCssExtractPlugin.loader,
           "css-loader",
           "sass-loader",
         ],
