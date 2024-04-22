@@ -1,9 +1,13 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 const webpack = require('webpack');
 
 
 module.exports = {
-  entry: path.join(__dirname, "src", "index.js"),
+  //need to have an entry point for scss main
+  // entry: path.join(__dirname, "src", "index.js"),
+
+  entry: __dirname + "/src/index.js",
   output: {
     path: path.join(__dirname, '/public'),
     filename: 'bundle.js',
@@ -23,8 +27,15 @@ module.exports = {
         }
       },
       {
-       test: /\.s[ac]ss$/i,
-       use: ["style-loader", "css-loader", "sass-loader"]
+        test: /\.s[ac]ss$/i,
+        use: [
+          // fallback to style-loader in development
+          process.env.NODE_ENV === "development"
+            ? "style-loader"
+            : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.(png|jp(e*)g|svg|gif|pdf)$/,
@@ -50,8 +61,16 @@ module.exports = {
         PUBLIC_URL: JSON.stringify('/'),
       }
     }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      // chunkFilename: "[id].css",
+    }),
   ],
   devServer: {
-    historyApiFallback: true,
+      historyApiFallback: true
+      // contentBase: path.resolve(__dirname, './public'),
+      // hot: true
     }
 };

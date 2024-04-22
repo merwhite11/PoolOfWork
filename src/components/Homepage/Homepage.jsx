@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
-
-import NavBar from './NavBar.jsx';
-import Writing from './Writing.jsx';
-import Dance from './Dance.jsx';
-import About from './About.jsx';
+import './Homepage.scss';
+// import NavBar from '../NavBar.jsx';
+// import Writing from './Writing.jsx';
+// import Dance from './Dance.jsx';
+// import About from './About.jsx';
 
 const Homepage = () => {
 
@@ -15,14 +15,12 @@ const Homepage = () => {
   // }
 
   return (
-
-    <div>
-      <Container>
-        <Row className="justify-content-center">
-          <Col className="col-12">WELCOME SECTION</Col>
+      <Container className="homepage-container">
+        <Row className="homepage-row d-flex align-itemsjustify-content-center">
+          <Col className="col-6 align-self-center text-center">WELCOME SECTION</Col>
         </Row>
       </Container>
-      {/* <section id="welcome" className="welcome-section">
+      /* <section id="welcome" className="welcome-section">
         <nav>
           <NavBar />
         </nav>
@@ -32,8 +30,7 @@ const Homepage = () => {
       </section>
       <section> <Writing /> </section>
       <section> <Dance /></section>
-      <section> <About /></section> */}
-    </div>
+      <section> <About /></section> */
   );
 }
 
