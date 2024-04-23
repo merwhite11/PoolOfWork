@@ -40,8 +40,8 @@ module.exports = {
         // ],
         use: [
           // don't we want the file to extract in dev & prod?
-          "style-loader",
-          // MiniCssExtractPlugin.loader,
+          // "style-loader",
+          MiniCssExtractPlugin.loader,
           "css-loader",
           "sass-loader",
         ],
