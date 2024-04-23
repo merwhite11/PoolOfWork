@@ -5,3 +5,9 @@ homepage-row {
   height: 50vh;
   border: 3px pink solid;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Estonia&family=Gruppo&family=Nunito:ital,wght@1,900&family=Questrial&display=swap');
+$body-bg: #EFF4F6;
+$custom-font-family: 'Gruppo', sans-serif;
+$font-family-base: $custom-font-family;
+@import "/node_modules/bootstrap/scss/bootstrap";

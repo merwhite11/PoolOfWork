@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 const path = require('path');
 const webpack = require('webpack');
 
@@ -7,7 +8,7 @@ module.exports = {
   //need to have an entry point for scss main
   // entry: path.join(__dirname, "src", "index.js"),
 
-  entry: __dirname + "/src/index.js",
+  entry: [__dirname + "/src/index.js", __dirname + "/src/scss/main.scss"],
   output: {
     path: path.join(__dirname, '/public'),
     filename: 'bundle.js',
@@ -39,7 +40,8 @@ module.exports = {
         // ],
         use: [
           // don't we want the file to extract in dev & prod?
-          MiniCssExtractPlugin.loader,
+          "style-loader",
+          // MiniCssExtractPlugin.loader,
           "css-loader",
           "sass-loader",
         ],
@@ -63,6 +65,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'), // Path to your HTML template file
+      filename: 'index.html', // Output filename for the generated HTML file
+      // Other options for customizing the generated HTML file
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         PUBLIC_URL: JSON.stringify('/'),

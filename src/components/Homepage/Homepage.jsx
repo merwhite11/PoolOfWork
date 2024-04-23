@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
 import './Homepage.scss';
+import '../../scss/main.scss'
 // import NavBar from '../NavBar.jsx';
 // import Writing from './Writing.jsx';
 // import Dance from './Dance.jsx';
