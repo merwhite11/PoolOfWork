@@ -3,8 +3,7 @@ import Homepage from './components/Homepage/Homepage.jsx'
 
 function App() {
   return (
-    <div> <Homepage />
-    </div>
+    <div> <Homepage /> </div>
   )
 }
 

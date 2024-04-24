@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Col, Row, Container } from 'react-bootstrap';
+import { Col, Row, Container, Header } from 'react-bootstrap';
 import './Homepage.scss';
-import '../../scss/main.scss'
+// import '../../scss/main.scss'
 // import NavBar from '../NavBar.jsx';
 // import Writing from './Writing.jsx';
 // import Dance from './Dance.jsx';
@@ -16,10 +16,23 @@ const Homepage = () => {
   // }
 
   return (
-      <Container className="homepage-container">
-        <Row className="homepage-row d-flex align-itemsjustify-content-center">
-          <Col className="col-6 align-self-center text-center">WELCOME SECTION</Col>
+    //hompage class here
+      <Container className="d-flex text-center">
+        <div className="homepage d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header className="masthead mb-auto">
+            <div>
+            <h3 className="float-md-start mb-0 mt-3">Meredith White</h3>
+            <nav className="nav nav__masthead justify-content-center float-md-end">
+              <a className="nav__link fw-bold py-1 px-0 active">Writing</a>
+              <a className="nav__link fw-bold py-1 px-0">Dance</a>
+              <a className="nav__link fw-bold py-1 px-0">About</a>
+            </nav>
+            </div>
+        </header>
+        <Row className="homepage-row align-itemsjustify-content-center">
+          <Col className="col-6 align-self-center text-center">Pool of Work</Col>
         </Row>
+        </div>
       </Container>
       /* <section id="welcome" className="welcome-section">
         <nav>

@@ -4,11 +4,12 @@ const path = require('path');
 const webpack = require('webpack');
 
 console.log(process.env.NODE_ENV);
+
 module.exports = {
   //need to have an entry point for scss main
   // entry: path.join(__dirname, "src", "index.js"),
 
-  entry: [__dirname + "/src/index.js", __dirname + "/src/scss/main.scss"],
+  entry: __dirname + "/src/index.js",
   output: {
     path: path.join(__dirname, '/public'),
     filename: 'bundle.js',
@@ -31,7 +32,7 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         // use: [
         //   // fallback to style-loader in development
-              //but NODE_ENV is undefined so it will always use MiniCSS
+        //       but NODE_ENV is undefined so it will always use MiniCSS
         //   process.env.NODE_ENV === "development"
         //     ? "style-loader"
         //     : MiniCssExtractPlugin.loader,
