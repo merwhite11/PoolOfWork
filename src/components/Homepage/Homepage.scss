@@ -21,7 +21,7 @@ $background-image-url: url('../../assets/cover_bg.png');
   &__navbar {
     font-size: 1.5em;
     // border-bottom: .20rem solid black;
-    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .2);
+    text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
   }
   &__navbar-link {
     color: whitesmoke;
@@ -31,6 +31,8 @@ $background-image-url: url('../../assets/cover_bg.png');
   &:focus {
     border-bottom-color: black;
     font-weight: 700;
+    color: aqua;
+    text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
   }
   }
   &__header-container {
@@ -40,7 +42,6 @@ $background-image-url: url('../../assets/cover_bg.png');
 
   }
   &__header {
-    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
     font-size: 4em;
     position: absolute;
     top: 50%;
