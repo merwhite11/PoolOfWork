@@ -32,7 +32,7 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         // use: [
         //   // fallback to style-loader in development
-        //       but NODE_ENV is undefined so it will always use MiniCSS
+        //       //but NODE_ENV is undefined so it will always use MiniCSS
         //   process.env.NODE_ENV === "development"
         //     ? "style-loader"
         //     : MiniCssExtractPlugin.loader,
@@ -84,8 +84,8 @@ module.exports = {
     }),
   ],
   devServer: {
-      historyApiFallback: true
+      historyApiFallback: true,
       // contentBase: path.resolve(__dirname, './public'),
-      // hot: true
+      hot: true
     }
 };

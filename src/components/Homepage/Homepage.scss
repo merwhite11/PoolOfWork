@@ -1,12 +1,70 @@
 // @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Estonia&family=Gruppo&family=Nunito:ital,wght@1,900&family=Questrial&display=swap');
+$background-image-url: url('../../assets/cover_bg.png');
 
-.homepage {
+.cover {
+  background-image: $background-image-url;
+  // background-attachment: fixed;
+  background-size: cover;
+  background-position: 40% 3%;
+  background-repeat: no-repeat;
+  // height: 100vh;
+  // background-position: center;
+  position: relative;
+  // position: fixed;
+  // top: 20%;
+  // right: 30%;
+  color: whitesmoke;
+  &__container {
+    height: 100vh;
+    max-width: 60em;
+  }
+  &__navbar {
+    font-size: 1.5em;
+    // border-bottom: .20rem solid black;
+    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .2);
+  }
+  &__navbar-link {
+    color: whitesmoke;
+    margin-left: 1rem;
+    text-decoration: none;
+  &:hover,
+  &:focus {
+    border-bottom-color: black;
+    font-weight: 700;
+  }
+  }
+  &__header-container {
+    height: 100vh;
+    position: relative;
+
+
+  }
+  &__header {
+    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+    font-size: 4em;
+    position: absolute;
+    top: 50%;
+
+    left: 50%;
+    transform: translate(-50%, -60%)
+  }
+}
+
+@media (min-width: 768px) {
+  .cover {
+    background-position: 0% 3% 0% 80%;
+  }
+}
+
+/*
+.cover-container {
   height: 100vh;
-  // max-width: 42em;
+  max-width: 60em;
 }
 .masthead {
   font-size: large;
   border-bottom: .20rem solid black;
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .2);
 }
 .nav {
     &__link {
@@ -30,28 +88,9 @@
   padding: 0 1.5rem;
 }
 
-// .nav__masthead .nav__link {
-//   color: black;
-//   border-bottom: .5rem solid transparent;
-// }
-
-// .nav__masthead .nav__link:hover,
-// .nav__masthead .nav__link:focus {
-//   border-bottom-color: rgba(255, 255, 255, .25);
-// }
-
-// .nav-masthead .nav-link + .nav-link {
-//   margin-left: 1rem;
-// }
-
-// .nav-masthead .active {
-//   color: #fff;
-//   border-bottom-color: #fff;
-// }
+.inner {
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 
 
-
-// $body-bg: #EFF4F6;
-// $custom-font-family: 'Gruppo', sans-serif;
-// $font-family-base: $custom-font-family;
-// @import "/node_modules/bootstrap/scss/bootstrap";
+}
+*/
