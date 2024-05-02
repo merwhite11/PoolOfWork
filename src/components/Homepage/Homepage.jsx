@@ -19,7 +19,7 @@ const Homepage = () => {
     <div className="outer">
 
     <section className="cover text-center">
-      <div className="cover__container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <div className="cover__container d-flex w-100 p-3 mx-auto flex-column">
         <header className="cover__navbar mb-auto">
           <div className="mt-md-3">
             <h3 className="float-md-start mb-0">Meredith White</h3>

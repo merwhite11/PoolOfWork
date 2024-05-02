@@ -9,7 +9,7 @@ $background-image-url: url('../../assets/cover_bg.png');
   background-repeat: no-repeat;
   // height: 100vh;
   // background-position: center;
-  position: relative;
+  //position: relative;
   // position: fixed;
   // top: 20%;
   // right: 30%;
@@ -53,45 +53,7 @@ $background-image-url: url('../../assets/cover_bg.png');
 
 @media (min-width: 768px) {
   .cover {
-    background-position: 0% 3% 0% 80%;
+    background-position: 40% 80% 0% 0%;
   }
 }
 
-/*
-.cover-container {
-  height: 100vh;
-  max-width: 60em;
-}
-.masthead {
-  font-size: large;
-  border-bottom: .20rem solid black;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .2);
-}
-.nav {
-    &__link {
-      // font-size: 1rem;
-      color: black;
-      margin-left: 1rem;
-      text-decoration: none;
-    };
-    &:hover,
-    &:focus {
-      border-bottom-color: black;
-      font-weight: 700;
-    }
-  }
-
-.title {
-  font-size: 40px;
-}
-
-.cover {
-  padding: 0 1.5rem;
-}
-
-.inner {
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-
-
-}
-*/
