@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Container, Header } from "react-bootstrap";
 import "./Homepage.scss";
+import Writing from '../Writing/Writing.jsx';
 // import '../../scss/main.scss'
 // import NavBar from '../NavBar.jsx';
 // import Writing from './Writing.jsx';
@@ -35,6 +36,7 @@ const Homepage = () => {
         </main>
       </div>
     </section>
+    <Writing></Writing>
     </div>
   );
 };

@@ -1,0 +1,6 @@
+.outer {
+  background-color: aliceblue;
+  &__row {
+    border: 3px aqua solid;
+  }
+}
