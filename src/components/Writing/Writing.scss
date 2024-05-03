@@ -1,6 +1,13 @@
 .outer {
   background-color: aliceblue;
   &__row {
-    border: 3px aqua solid;
+    // border: 3px aqua solid;
+  }
+}
+
+.book-card{
+  height: 100%
+  &__img {
+    border-radius: 15px;;
   }
 }
