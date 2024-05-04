@@ -12,7 +12,6 @@ const Writing = () => {
       <Container>
         <h1>Writing</h1>
         <Row className="outer__row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
           <Col className="h-100">
             <Card className="book-card shadow-sm">
               <Card.Img

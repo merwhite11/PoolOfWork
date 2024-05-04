@@ -6,8 +6,22 @@
 }
 
 .book-card{
-  height: 100%
   &__img {
-    border-radius: 15px;;
+    width: calc(100vw - 5px);
+    @media(min-width: 426px) {
+      width: auto;
+      max-width: 200px;
+      height: auto;
+      max-height: 250px;
+      margin: auto;
+
+    }
+  }
+}
+@media (min-width: 426px){
+
+  .bobby-pic{
+    height: 242px;
+    background-color: white;
   }
 }
