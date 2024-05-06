@@ -7,16 +7,12 @@
 
 .book-card{
   &__img {
-    // width: calc(100vw - 5px);
-    // @media(min-width: 425px) {
-    //   width: 200px;
-    //   max-width: 200px;
-    //   height: 250px;
-    //   max-height: 250px;
-    //   margin: auto;
     width: 100%;
     max-width: 200px;
     height: auto;
     margin: auto;
     }
+  &__body {
+    min-height: 0;
+  }
   }
