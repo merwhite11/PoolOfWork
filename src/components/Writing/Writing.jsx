@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "./Writing.scss";
 import GVDCover from "../../assets/BookCovers/GVDCover.jpg";
 import BlinkingCover from '../../assets/BookCovers/BlinkingCover.jpg';
-import BobbyAndShilohCover from '../../assets/BookCovers/BobbyAndShiloh.jpg';
+import BobbyAndShilohCover from '../../assets/BookCovers/BobbyCover.jpg';
 // import BookList from './BookList.jsx'
 
 const Writing = () => {

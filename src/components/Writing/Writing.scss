@@ -7,21 +7,16 @@
 
 .book-card{
   &__img {
-    width: calc(100vw - 5px);
-    @media(min-width: 426px) {
-      width: auto;
-      max-width: 200px;
-      height: auto;
-      max-height: 250px;
-      margin: auto;
-
+    // width: calc(100vw - 5px);
+    // @media(min-width: 425px) {
+    //   width: 200px;
+    //   max-width: 200px;
+    //   height: 250px;
+    //   max-height: 250px;
+    //   margin: auto;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin: auto;
     }
   }
-}
-@media (min-width: 426px){
-
-  .bobby-pic{
-    height: 242px;
-    background-color: white;
-  }
-}
