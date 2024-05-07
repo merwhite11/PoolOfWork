@@ -67,7 +67,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public', 'index.html'), // Path to your HTML template file
+      template: path.resolve(__dirname, 'src', 'index.html'), // Path to your HTML template file
       filename: 'index.html', // Output filename for the generated HTML file
       // Other options for customizing the generated HTML file
     }),

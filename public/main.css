@@ -10,7 +10,7 @@
   background-size: cover;
   background-position: 40% 3%;
   background-repeat: no-repeat;
-  color: whitesmoke;
+  color: grey;
 }
 .cover__container {
   height: 100vh;
@@ -51,8 +51,32 @@
 .outer {
   background-color: aliceblue;
 }
-.outer__row {
-  border: 3px aqua solid;
+@media (min-width: 1200px) {
+  .book-card {
+    max-height: 260px;
+  }
+}
+.book-card__img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: auto;
+}
+.book-card__body {
+  min-height: 0;
+  overflow-y: auto;
+}
+.book-card__text {
+  overflow: scroll;
+}
+.book-card__button-box {
+  justify-content: between;
+  width: 160px;
+}
+@media (min-width: 1200px) {
+  .book-card__button-box {
+    justify-content: center;
+  }
 }
 /*!*****************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss (1) ***!
