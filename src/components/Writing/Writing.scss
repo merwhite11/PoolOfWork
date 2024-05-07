@@ -6,6 +6,9 @@
 }
 
 .book-card{
+  @media (min-width: 1200px) {
+    max-height: 250px;
+  }
   &__img {
     width: 100%;
     max-width: 200px;
@@ -14,5 +17,12 @@
     }
   &__body {
     min-height: 0;
+    overflow-y: auto;
+  }
+  &__text {
+    overflow: scroll;
+  }
+  &__button-box {
+    width: 160px;
   }
   }

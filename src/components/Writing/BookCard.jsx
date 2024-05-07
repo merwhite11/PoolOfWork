@@ -1,17 +1,26 @@
 import React from 'react';
 import {Col, Card, Button} from 'react-bootstrap';
+import {useMediaQuery} from 'react-responsive';
 import './Writing.scss';
 
 function BookCard({ cover, summary, path, title }) {
+  const isLargeScreen = useMediaQuery({minWidth: 1200})
 
     return (
       <Col xs={10} md={4} lg={4} className="d-flex h-100 justify-content-center" >
       <Card className="book-card w-100 flex-xl-row mb-4 box-shadow">
         <Card.Img className="book-card__img p-2" src={cover} loading="eager"></Card.Img>
         <Card.Body className="book-card__body d-flex flex-column align-items-center text-center">
-        {/* <Card.Title>The Grapevine Diaries</Card.Title> */}
-        <Card.Text className="mb-auto">This is my card test</Card.Text>
+        {isLargeScreen && (
+          <div>
+            <Card.Title className="text-start">{title}</Card.Title>
+            <Card.Text className="book-card__text text-start mb-auto">{summary}</Card.Text>
+          </div>
+        )}
+        <div className="book-card__button-box d-flex justify-content-between">
+        {!isLargeScreen && <Button className="btn btn-light">About</Button>}
         <Button className="btn btn-light">Read</Button>
+        </div>
         </Card.Body>
       </Card>
     </Col>
