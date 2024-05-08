@@ -1,0 +1,6 @@
+.carousel {
+  height: calc(100vh - 100px)
+  &__item {
+    height: 400px;
+  }
+}

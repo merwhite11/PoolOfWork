@@ -7,7 +7,7 @@
 
 .book-card{
   @media (min-width: 1200px) {
-    max-height: 260px;
+    max-height: 250px;
   }
   &__img {
     width: 100%;
@@ -15,18 +15,26 @@
     height: auto;
     margin: auto;
     }
+  &__title {
+    font-weight: 800 !important;
+    &:hover,
+    &:focus {
+      text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
+    }
+  }
   &__body {
     min-height: 0;
     overflow-y: auto;
   }
-  &__text {
-    overflow: scroll;
-  }
   &__button-box {
-    justify-content: between;
+    justify-content: space-between;
     width: 160px;
     @media (min-width: 1200px) {
       justify-content: center;
+      margin-top: 3px;
     }
+  &__button {
+    border: aqua !important;
+  }
   }
   }

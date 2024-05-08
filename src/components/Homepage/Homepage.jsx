@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Col, Row, Container, Header } from "react-bootstrap";
 import "./Homepage.scss";
-import Writing from '../Writing/Writing_2.jsx';
+import Writing from '../Writing/Writing.jsx';
+import Dance from '../Dance/Dance.jsx';
 // import '../../scss/main.scss'
 // import NavBar from '../NavBar.jsx';
 // import Writing from './Writing.jsx';
@@ -37,6 +38,7 @@ const Homepage = () => {
       </div>
     </section>
     <Writing></Writing>
+    <Dance></Dance>
     </div>
   );
 };

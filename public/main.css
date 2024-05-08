@@ -10,7 +10,7 @@
   background-size: cover;
   background-position: 40% 3%;
   background-repeat: no-repeat;
-  color: grey;
+  color: whitesmoke;
 }
 .cover__container {
   height: 100vh;
@@ -53,7 +53,7 @@
 }
 @media (min-width: 1200px) {
   .book-card {
-    max-height: 260px;
+    max-height: 250px;
   }
 }
 .book-card__img {
@@ -70,13 +70,17 @@
   overflow: scroll;
 }
 .book-card__button-box {
-  justify-content: between;
+  justify-content: space-between;
   width: 160px;
 }
 @media (min-width: 1200px) {
   .book-card__button-box {
     justify-content: center;
+    margin-top: 3px;
   }
+}
+.book-card__button-box__button {
+  border: aqua !important;
 }
 /*!*****************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss (1) ***!
