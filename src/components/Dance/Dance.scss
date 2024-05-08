@@ -1,6 +1,44 @@
 .carousel {
-  height: calc(100vh - 100px)
-  &__item {
-    height: 400px;
+  &__inner {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    @media (min-width: 768px) {
+      display: flex;
+    }
   }
-}
+  &__item {
+    margin: 0;
+    @media (min-width: 768px) {
+      margin-right: 0;
+      flex: 0 0 33%;
+      display: block;
+    }
+    }
+
+  &__card {
+    margin: 0 .5em;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  }
+  &__control-prev,
+  &__control-next {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    // background-color: rgba(216,243,233,0.5);
+    border-radius: 50%;
+    width: 6vh;
+    height: 6vh;
+    margin: 3em;
+  }
+
+  &__control-prev {
+    left: 0;
+  }
+
+  &__control-next {
+    right: 0;
+  }
+  }
+
+

@@ -37,8 +37,10 @@ const Homepage = () => {
         </main>
       </div>
     </section>
+    <section className="content">
     <Writing></Writing>
     <Dance></Dance>
+    </section>
     </div>
   );
 };

@@ -7,14 +7,12 @@ import "./Writing.scss";
 
 const Writing = () => {
   return (
-    <div className="outer py-3">
-      <Container>
+      <Container className="writing-container" >
         <h1 className="d-flex justify-content-center justify-content-md-start">Writing</h1>
         <Row className="d-flex justify-content-center">
           <BookList/>
         </Row>
       </Container>
-    </div>
   );
 };
 

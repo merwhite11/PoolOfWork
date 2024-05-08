@@ -1,10 +1,8 @@
-.outer {
-  background-color: aliceblue;
-  &__row {
-    // border: 3px aqua solid;
-  }
-}
 
+.writing-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 .book-card{
   @media (min-width: 1200px) {
     max-height: 250px;

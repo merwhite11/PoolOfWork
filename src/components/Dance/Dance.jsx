@@ -1,6 +1,6 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import './Dance.scss';
+import React, { useRef, useEffect, useState } from "react";
+import { Container, Row, Col, Carousel } from "react-bootstrap";
+import "./Dance.scss";
 
 const Dance = () => {
   var closer = "LJ-MTCDq0Zg?si=jf6KsUp6th0ozj04";
@@ -9,64 +9,116 @@ const Dance = () => {
   var comer = "1E-QcAMJn2o?si=3NgXgUg0SK_g5ssQ";
 
   var youtubeRoot = "https://www.youtube.com/embed/";
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const carouselRef = useRef(null);
+  const carouselItemRef = useRef(null);
+  const [carouselWidth, setCarouselWidth] = useState(0);
+  const [carouselItemWidth, setCarouselItemWidth] = useState(0)
+
+  const handlePrevClick = () => {
+    console.log("Previous clicked");
+    if (scrollPosition > 0) {
+      const newScrollPosition = scrollPosition - carouselItemWidth; // Calculate new scroll position
+      setScrollPosition(newScrollPosition); // Update scroll position in state
+      carouselRef.current.scrollTo({
+        left: newScrollPosition, // Use the updated scroll position
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const handleNextClick = () => {
+    console.log("Next clicked");
+    if (scrollPosition < carouselWidth - carouselItemWidth * 4) {
+      const newScrollPosition = scrollPosition + carouselItemWidth; // Calculate new scroll position
+      setScrollPosition(newScrollPosition); // Update scroll position in state
+      carouselRef.current.scrollTo({
+        left: newScrollPosition, // Use the updated scroll position
+        behavior: "smooth"
+      });
+    }
+  };
+
+  useEffect(() => {
+    if(carouselRef.current) {
+      setCarouselWidth(carouselRef.current.offsetWidth)
+    };
+  }, [])
+
+  useEffect(() => {
+    if(carouselItemRef.current) {
+      setCarouselItemWidth(carouselItemRef.current.offsetWidth)
+    }
+  }, [])
+
   return (
-    <div className="outer py-3">
-      <Row className="carousel-inner mx-5 d-flex flex-row gap-3">
-        <Col>
-          <div className="embed-responsive embed-responsive-16by9 h-100">
-            <iframe
-              className="embed-responsive-item"
-              src={youtubeRoot + closer}
-              allowfullscreen
-            ></iframe>
+    <div
+      id="carouselExampleControls"
+      class="carousel slide position-relative"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel__inner" ref={carouselRef}>
+        <div class="carousel__item active" ref={carouselItemRef}>
+          <div className="carousel__card">
+            <video class="img-fluid d-block w-100">
+              <source
+                src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
-        </Col>
-        <Col className="">
-          <div className="embed-responsive embed-responsive-16by9 w-100">
-            <iframe
-              className="embed-responsive-item"
-              src={youtubeRoot + malamente}
-              allowfullscreen
-            ></iframe>
+        </div>
+        <div class="carousel__item active" ref={carouselItemRef}>
+          <div className="carousel__card">
+            <video class="img-fluid d-block w-100">
+              <source
+                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
-        </Col>
-        <Col className="">
-          <div className="embed-responsive embed-responsive-16by9 w-100">
-            <iframe
-              className="embed-responsive-item"
-              src={youtubeRoot + gravity}
-              allowfullscreen
-            ></iframe>
+        </div>
+        <div class="carousel__item active" ref={carouselItemRef}>
+          <div className="carousel__card">
+            <video class="img-fluid d-block w-100">
+              <source
+                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
-        </Col>
-        <Col className="">
-          <div className="embed-responsive embed-responsive-16by9 w-100">
-            <iframe
-              className="embed-responsive-item"
-              src={youtubeRoot + comer}
-              allowfullscreen
-            ></iframe>
+        </div>
+        <div class="carousel__item active" ref={carouselItemRef}>
+          <div className="carousel__card">
+            <video class="img-fluid d-block w-100">
+              <source
+                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
-        </Col>
-      </Row>
-      <a
-        className="carousel-control-prev"
-        href="#carouselExampleControls"
-        role="button"
-        data-slide="prev"
+        </div>
+        <div class="carousel__item" ref={carouselItemRef}>
+          <div className="carousel__card">
+            <video class="img-fluid d-block w-100">
+              <source
+                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+      </div>
+      {/* <button
+        className="carousel__control-prev"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
       >
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="sr-only">Previous</span>
-      </a>
-      <a
-        className="carousel-control-next"
-        href="#carouselExampleControls"
-        role="button"
-        data-slide="next"
-      >
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="sr-only">Next</span>
-      </a>
+      </button> */}
+        <span className="carousel__control-prev carousel-control-prev-icon" aria-hidden="true" onClick={handlePrevClick}></span>
+        <span class="carousel__control-next carousel-control-next-icon" aria-hidden="true" onClick={handleNextClick}></span>
     </div>
   );
 };
