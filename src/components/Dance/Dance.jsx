@@ -18,8 +18,10 @@ const Dance = () => {
 
   const handlePrevClick = () => {
     console.log("Previous clicked");
+    console.log('scrollPosition', scrollPosition)
     if (scrollPosition > 0) {
       const newScrollPosition = scrollPosition - carouselItemWidth; // Calculate new scroll position
+      console.log(newScrollPosition)
       setScrollPosition(newScrollPosition); // Update scroll position in state
       carouselRef.current.scrollTo({
         left: newScrollPosition, // Use the updated scroll position
@@ -30,7 +32,9 @@ const Dance = () => {
 
   const handleNextClick = () => {
     console.log("Next clicked");
-    if (scrollPosition < carouselWidth - carouselItemWidth * 4) {
+    console.log('carouselWidth', carouselWidth)
+    console.log('carouselItemWidth', carouselItemWidth)
+    if (scrollPosition < carouselWidth - carouselItemWidth) {
       const newScrollPosition = scrollPosition + carouselItemWidth; // Calculate new scroll position
       setScrollPosition(newScrollPosition); // Update scroll position in state
       carouselRef.current.scrollTo({
@@ -38,6 +42,7 @@ const Dance = () => {
         behavior: "smooth"
       });
     }
+    console.log('scrollPosition', scrollPosition)
   };
 
   useEffect(() => {
@@ -117,8 +122,8 @@ const Dance = () => {
         data-bs-slide="prev"
       >
       </button> */}
-        <span className="carousel__control-prev carousel-control-prev-icon" aria-hidden="true" onClick={handlePrevClick}></span>
-        <span class="carousel__control-next carousel-control-next-icon" aria-hidden="true" onClick={handleNextClick}></span>
+        {scrollPosition > 0 && <span className="carousel__control-prev carousel-control-prev-icon" aria-hidden="true" onClick={handlePrevClick}></span>}
+        {scrollPosition <=460 && <span class="carousel__control-next carousel-control-next-icon" aria-hidden="true" onClick={handleNextClick}></span>}
     </div>
   );
 };

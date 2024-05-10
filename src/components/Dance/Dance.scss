@@ -3,6 +3,7 @@
     padding: 1em;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
     @media (min-width: 768px) {
       display: flex;
     }
