@@ -10,6 +10,7 @@
   }
   &__item {
     margin: 0;
+    flex: 0 0 100%;
     @media (min-width: 768px) {
       margin-right: 0;
       flex: 0 0 33%;
@@ -26,11 +27,12 @@
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
-    // background-color: rgba(216,243,233,0.5);
-    border-radius: 50%;
-    width: 6vh;
-    height: 6vh;
-    margin: 3em;
+    background-color: rgba(0,255,255, 0.5);
+    border-radius: 10px;
+    // width: 6vh;
+    // height: 6vh;
+    padding: 5px;
+
   }
 
   &__control-prev {

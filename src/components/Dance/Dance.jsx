@@ -34,14 +34,14 @@ const Dance = () => {
     console.log("Next clicked");
     console.log('carouselWidth', carouselWidth)
     console.log('carouselItemWidth', carouselItemWidth)
-    if (scrollPosition < carouselWidth - carouselItemWidth) {
+    // if (scrollPosition < carouselWidth - carouselItemWidth) {
       const newScrollPosition = scrollPosition + carouselItemWidth; // Calculate new scroll position
       setScrollPosition(newScrollPosition); // Update scroll position in state
       carouselRef.current.scrollTo({
         left: newScrollPosition, // Use the updated scroll position
         behavior: "smooth"
       });
-    }
+    // }
     console.log('scrollPosition', scrollPosition)
   };
 
@@ -58,8 +58,9 @@ const Dance = () => {
   }, [])
 
   return (
+    <Container>
+       <h1 className="d-flex justify-content-center justify-content-md-start">Dance</h1>
     <div
-      id="carouselExampleControls"
       class="carousel slide position-relative"
       data-bs-ride="carousel"
     >
@@ -68,13 +69,13 @@ const Dance = () => {
           <div className="carousel__card">
             <video class="img-fluid d-block w-100">
               <source
-                src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4"
+                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
                 type="video/mp4"
               />
             </video>
           </div>
         </div>
-        <div class="carousel__item active" ref={carouselItemRef}>
+        <div class="carousel__item" ref={carouselItemRef}>
           <div className="carousel__card">
             <video class="img-fluid d-block w-100">
               <source
@@ -84,7 +85,7 @@ const Dance = () => {
             </video>
           </div>
         </div>
-        <div class="carousel__item active" ref={carouselItemRef}>
+        <div class="carousel__item" ref={carouselItemRef}>
           <div className="carousel__card">
             <video class="img-fluid d-block w-100">
               <source
@@ -94,7 +95,7 @@ const Dance = () => {
             </video>
           </div>
         </div>
-        <div class="carousel__item active" ref={carouselItemRef}>
+        <div class="carousel__item" ref={carouselItemRef}>
           <div className="carousel__card">
             <video class="img-fluid d-block w-100">
               <source
@@ -122,9 +123,10 @@ const Dance = () => {
         data-bs-slide="prev"
       >
       </button> */}
-        {scrollPosition > 0 && <span className="carousel__control-prev carousel-control-prev-icon" aria-hidden="true" onClick={handlePrevClick}></span>}
-        {scrollPosition <=460 && <span class="carousel__control-next carousel-control-next-icon" aria-hidden="true" onClick={handleNextClick}></span>}
+        <div className="carousel__control-prev carousel-control-prev-icon" aria-hidden="true" onClick={handlePrevClick}></div>
+        <div class="carousel__control-next carousel-control-next-icon" aria-hidden="true" onClick={handleNextClick}></div>
     </div>
+    </Container>
   );
 };
 
