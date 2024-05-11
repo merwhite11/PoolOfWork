@@ -6,6 +6,9 @@ $custom-nav-font-size: 1.5em;
 $custom-h1-font-size: 3em;
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
+.slick-slide > div {
+  margin: 0 10px;
+}
 // body {
 //   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 //   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);

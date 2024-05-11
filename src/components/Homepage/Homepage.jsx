@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Col, Row, Container, Header } from "react-bootstrap";
 import "./Homepage.scss";
 import Writing from '../Writing/Writing.jsx';
-import Dance from '../Dance/Dance.jsx';
+// import Dance from '../Dance/Dance.jsx';
+import Dance from '../Dance/Dance2.jsx'
 // import '../../scss/main.scss'
 // import NavBar from '../NavBar.jsx';
 // import Writing from './Writing.jsx';

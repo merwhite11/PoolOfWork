@@ -45,12 +45,17 @@
     font-size: 4em;
   }
 }
+
+.content {
+  background-color: aliceblue;
+}
 /*!******************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Writing/Writing.scss ***!
   \******************************************************************************************************************************/
-.outer {
-  background-color: aliceblue;
+.writing-container {
+  padding-top: 2em;
 }
+
 @media (min-width: 1200px) {
   .book-card {
     max-height: 250px;
@@ -62,12 +67,15 @@
   height: auto;
   margin: auto;
 }
+.book-card__title {
+  font-weight: 800 !important;
+}
+.book-card__title:hover, .book-card__title:focus {
+  text-shadow: 0 0.05rem 0.1rem rgba(25, 15, 77, 0.799);
+}
 .book-card__body {
   min-height: 0;
   overflow-y: auto;
-}
-.book-card__text {
-  overflow: scroll;
 }
 .book-card__button-box {
   justify-content: space-between;
@@ -81,6 +89,41 @@
 }
 .book-card__button-box__button {
   border: aqua !important;
+}
+/*!**************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Dance/Dance.scss ***!
+  \**************************************************************************************************************************/
+.carousel__inner {
+  padding: 1em;
+}
+.carousel__item {
+  margin: 0;
+  flex: 0 0 100%;
+}
+@media (min-width: 768px) {
+  .carousel__item {
+    margin-right: 0;
+    flex: 0 0 33%;
+    display: block;
+  }
+}
+.carousel__card {
+  margin: 0 0.5em;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+}
+.carousel__control-prev, .carousel__control-next {
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  background-color: rgba(0, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 5px;
+}
+.carousel__control-prev {
+  left: 0;
+}
+.carousel__control-next {
+  right: 0;
 }
 /*!*****************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss (1) ***!
@@ -11930,4 +11973,7 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.slick-slide > div {
+  margin: 0 10px;
 }

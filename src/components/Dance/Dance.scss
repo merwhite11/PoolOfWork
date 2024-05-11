@@ -1,12 +1,14 @@
+
 .carousel {
   &__inner {
     padding: 1em;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    @media (min-width: 768px) {
-      display: flex;
-    }
+    // display: flex;
+    // flex-direction: row;
+    // overflow: hidden;
+    // background-color: aqua;
+    // @media (min-width: 768px) {
+    //   display: flex;
+    // }
   }
   &__item {
     margin: 0;

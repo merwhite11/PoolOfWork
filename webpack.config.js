@@ -30,6 +30,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
         // use: [
         //   // fallback to style-loader in development
         //       //but NODE_ENV is undefined so it will always use MiniCSS
@@ -46,6 +47,10 @@ module.exports = {
           "css-loader",
           "sass-loader",
         ],
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|jp(e*)g|svg|gif|pdf)$/,
