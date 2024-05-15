@@ -35,15 +35,15 @@ const Homepage = () => {
           </div>
         </header>
         <main role="main" className="cover__header-container d-flex align-items-center justify-content-center">
-          <h1 className="cover__header">Pool of Work</h1>
+          <h1 className="display-1 cover__header">Pool of Work</h1>
         </main>
       </div>
     </section>
-    <section className="content">
-    {/* <Writing></Writing>
-    <Dance></Dance> */}
-    <About></About>
+    <section className="content d-flex my-5 flex-column">
+    <Writing></Writing>
+    <Dance></Dance>
     </section>
+    <About></About>
     </div>
   );
 };

@@ -1,5 +1,8 @@
 // @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Estonia&family=Gruppo&family=Nunito:ital,wght@1,900&family=Questrial&display=swap');
 $background-image-url: url('../../assets/cover_bg.png');
+.outer {
+  background-color: aliceblue;
+}
 .cover {
   background-image: $background-image-url;
   background-size: cover;
@@ -19,12 +22,13 @@ $background-image-url: url('../../assets/cover_bg.png');
     color: whitesmoke;
     margin-left: 1rem;
     text-decoration: none;
-  &:hover,
-  &:focus {
-    border-bottom-color: black;
-    font-weight: 700;
-    color: aqua;
-    text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
+    &:hover,
+    &:focus {
+      border-bottom-color: black;
+      font-weight: 700;
+      color: aqua;
+      text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
+      filter: drop-shadow(0 .05rem .5rem rgba(226, 233, 234, 0.61));
   }
   }
   &__header-container {

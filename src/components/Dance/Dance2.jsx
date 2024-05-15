@@ -47,7 +47,7 @@ const Dance = () => {
   };
   return (
     <Container className="carousel justify-content-center align-items-center">
-       <h1 className="d-flex px-10 justify-content-center justify-content-md-start">Dance</h1>
+       <h1 className="display-3 d-flex px-10 justify-content-center justify-content-md-start">Dance</h1>
     <div className="slider-container carousel__inner">
       <Slider {...settings}>
         {vids.map((vid) => (

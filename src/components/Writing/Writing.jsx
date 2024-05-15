@@ -8,7 +8,7 @@ import "./Writing.scss";
 const Writing = () => {
   return (
       <Container className="writing-container" >
-        <h1 className="d-flex justify-content-center justify-content-md-start">Writing</h1>
+        <h1 className="display-3 d-flex justify-content-center justify-content-md-start">Writing</h1>
         <Row className="d-flex justify-content-center">
           <BookList/>
         </Row>
