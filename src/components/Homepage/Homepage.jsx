@@ -3,7 +3,7 @@ import { Col, Row, Container, Header } from "react-bootstrap";
 import "./Homepage.scss";
 import Writing from '../Writing/Writing.jsx';
 // import Dance from '../Dance/Dance.jsx';
-import Dance from '../Dance/Dance2.jsx'
+import Dance from '../Dance/Dance.jsx'
 import About from '../About/About.jsx'
 // import '../../scss/main.scss'
 // import NavBar from '../NavBar.jsx';
@@ -26,11 +26,11 @@ const Homepage = () => {
       <div className="cover__container d-flex w-100 p-3 mx-auto flex-column">
         <header className="cover__navbar mb-auto">
           <div className="mt-md-3">
-            <h3 className="float-md-start mb-0">Meredith White</h3>
+            <h3 className="float-md-start mb-0" href="welcome">Meredith White</h3>
             <nav className="justify-content-center float-md-end">
-              <a className="cover__navbar-link fw-bold py-1 px-0">Writing</a>
-              <a className="cover__navbar-link fw-bold py-1 px-0">Dance</a>
-              <a className="cover__navbar-link fw-bold py-1 px-0">About</a>
+              <a className="cover__navbar-link fw-bold py-1 px-0" href="#writing">Writing</a>
+              <a className="cover__navbar-link fw-bold py-1 px-0" href="#dance">Dance</a>
+              <a className="cover__navbar-link fw-bold py-1 px-0" href="#about">About</a>
             </nav>
           </div>
         </header>
