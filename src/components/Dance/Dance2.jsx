@@ -46,7 +46,7 @@ const Dance = () => {
     slidesToScroll: 1,
   };
   return (
-    <Container className="carousel">
+    <Container className="carousel justify-content-center align-items-center">
        <h1 className="d-flex px-10 justify-content-center justify-content-md-start">Dance</h1>
     <div className="slider-container carousel__inner">
       <Slider {...settings}>

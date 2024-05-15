@@ -58,7 +58,7 @@ const Dance = () => {
   }, [])
 
   return (
-    <Container>
+    <Container className="content-container">
        <h1 className="d-flex justify-content-center justify-content-md-start">Dance</h1>
     <div
       class="carousel slide position-relative"

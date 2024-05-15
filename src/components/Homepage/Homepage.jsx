@@ -4,6 +4,7 @@ import "./Homepage.scss";
 import Writing from '../Writing/Writing.jsx';
 // import Dance from '../Dance/Dance.jsx';
 import Dance from '../Dance/Dance2.jsx'
+import About from '../About/About.jsx'
 // import '../../scss/main.scss'
 // import NavBar from '../NavBar.jsx';
 // import Writing from './Writing.jsx';
@@ -39,8 +40,9 @@ const Homepage = () => {
       </div>
     </section>
     <section className="content">
-    <Writing></Writing>
-    <Dance></Dance>
+    {/* <Writing></Writing>
+    <Dance></Dance> */}
+    <About></About>
     </section>
     </div>
   );

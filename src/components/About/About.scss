@@ -1,0 +1,39 @@
+$about-image-url: url('../../assets/PoolOfWork_About_Ink.png');
+.about {
+
+  &__container {
+    background-image: $about-image-url;
+    background-size: cover;
+    background-position: 20% 30%;
+    background-repeat: no-repeat;
+    color: whitesmoke;
+    height: 50vh;
+    margin-top: 2em;
+    // border-radius: 2em;
+}
+&__text {
+  font-weight: 700;
+  @media (min-width: 768px) {
+    font-size: 1.5em;
+  }
+}
+&__social {
+  gap: 1em;
+}
+}
+
+// .indent {
+
+//   &__1 {s
+//     margin-left: 0.5em;
+//   }
+//   &__2 {
+//     margin-left: 15em;
+//   }
+//   &__3 {
+//     margin-left: 30em;
+//   }
+//   &__4 {
+//     margin-left: 45em;
+//   }
+// }
