@@ -12,7 +12,9 @@ const BookList = () => {
 
   const books = [
   [GVDCover, gvdSumm, 'grapevinediaries', 'The Grapevine Diaries'],
-  [BlinkingCover, blinkingSumm, 'cuento', 'Story Twice Told // Cuento Dos Veces Contado'], [BobbyCover, bobbySum, 'bobby', 'Bobby & Shiloh Save The Night']]
+  [BlinkingCover, blinkingSumm, 'cuento', 'Story Twice Told // Cuento Dos Veces Contado'],
+  [BobbyCover, bobbySum, 'bobbyandshiloh', 'Bobby & Shiloh Save The Night']
+]
 
   return books.map((book) => <BookCard
   cover={book[0]}

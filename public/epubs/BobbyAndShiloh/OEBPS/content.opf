@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<package xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="id">
+  <metadata>
+    <dc:rights>Public domain in the USA.</dc:rights>
+    <!-- <dc:identifier id="id">http://www.gutenberg.org/11</dc:identifier> -->
+    <dc:creator id="author_0">Meredith White</dc:creator>
+    <!-- <meta property="file-as" refines="#author_0">Carroll, Lewis</meta> -->
+    <!-- <meta property="role" refines="#author_0" scheme="marc:relators">aut</meta> -->
+    <dc:title>Bobby And Shiloh Save The Night</dc:title>
+    <dc:language>en</dc:language>
+    <dc:subject>Fiction</dc:subject>
+    <dc:subject>Short Short Story</dc:subject>
+    <dc:date>2023-12-27</dc:date>
+    <meta property="dcterms:modified">2023-10-01T07:32:26Z</meta>
+    <!-- <dc:source>https://www.gutenberg.org/files/11/11-h/11-h.htm</dc:source> -->
+    <!-- <meta name="cover" content="id-3687803259850171647"/> -->
+  </metadata>
+  <manifest>
+    <item href="../../css/pgepub.css" id="item1" media-type="text/css"/>
+    <item href="../../css/pgepub.css" id="item2" media-type="text/css"/>
+    <item href="../../css/pgepub.css" id="item3" media-type="text/css"/>
+    <item href="./Text/Cover.xhtml" id="cover" media-type="application/xhtml+xml"/>
+    <item href="./Text/Story.xhtml" id="story" media-type="application/xhtml+xml"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+    <spine toc="ncx">
+    <itemref idref="cover"/>
+    <itemref idref="story"/>
+  </spine>
+</package>
+</package>
