@@ -1,0 +1,244 @@
+/* unvisited link */
+a:link {
+    color: inherit;
+}
+
+/* visited link */
+a:visited {
+    color: inherit;
+}
+
+/* mouse over link */
+a:hover {
+    color: inherit;
+}
+
+/* selected link */
+a:active {
+    color: inherit;
+}
+
+a{
+	text-decoration: none;
+}
+h1{
+	padding-left: 0;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0;
+	margin-bottom: 2.120%;
+	padding-bottom: 0;
+	font-style: normal;
+	font-weight: 300;
+	font-stretch: normal;
+	font-size: 300.000%;
+	font-family: "Helvetica Neue";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: center;
+	text-indent: 0;
+	line-height: 1.188em;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+p{
+	margin: 0px;
+}
+sub{
+	vertical-align: -10%;
+	font-size: 67%;
+}
+sup{
+	vertical-align: 33%;
+	font-size: 67%;
+}
+@font-face{
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 92.309%;
+	font-family: "Calibri", "Carlito";
+	src: url(../fonts/Calibri.ttf) format(truetype);
+}
+.s1{
+	background: transparent;
+}
+.tc1{
+	vertical-align: middle;
+	padding: 0 0;
+	border: 0.25px solid #000000;
+	background: transparent;
+	white-space: pre;
+	text-align: left;
+}
+.tc2{
+	vertical-align: middle;
+	padding: 0 0;
+	border: 0.25px solid #000000;
+	background: #EFEFEF;
+	white-space: pre;
+	text-align: left;
+}
+.tc3{
+	vertical-align: middle;
+	border: 0.25px solid #000000;
+	background: #EFEFEF;
+	white-space: pre-wrap;
+	text-align: left;
+}
+.p1{
+	padding-left: 0;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 68.750%;
+	font-family: "Helvetica Neue";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0;
+	line-height: 1.3em;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+.p2{
+	font-size: 108.331%;
+	font-family: "Bookerly";
+	line-height: 1.3em;
+}
+.p3{
+	font-size: 108.331%;
+	font-family: "Bookerly";
+	text-align: center;
+	line-height: 1.154em;
+}
+.p4{
+	font-size: 100.000%;
+	font-family: "Calibri", "Carlito";
+	line-height: 1.6em;
+}
+.p5{
+	padding-left: 0.303%;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0.303%;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 62.500%;
+	font-family: "Helvetica Neue";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0;
+	line-height: 1.200em;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+.p6{
+	font-size: 75.000%;
+	font-family: "Calibri", "Carlito";
+	line-height: 1.167em;
+}
+.p7{
+	padding-right: 56.379%;
+	font-size: 108.331%;
+	font-family: "Bookerly";
+	line-height: 1.154em;
+}
+.p8{
+	font-size: 100.000%;
+	font-family: "Bookerly";
+	line-height: 1.125em;
+}
+.p9{
+	padding-left: 0;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0;
+	margin-bottom: 2.120%;
+	padding-bottom: 0;
+	font-style: normal;
+	font-weight: 300;
+	font-stretch: normal;
+	font-size: 300.000%;
+	font-family: "Helvetica Neue";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: center;
+	text-indent: 0;
+	line-height: 1.188em;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+.c1{
+	background: transparent;
+}
+.c2{
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 92.309%;
+	font-family: "Calibri", "Carlito";
+}
+.c3{
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 100.000%;
+	font-family: "Calibri", "Carlito";
+}
+.c4{
+	font-size: 83.332%;
+}
+.c5{
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-family: "Calibri", "Carlito";
+}
+.body {
+	width: 100%;
+}
+.underline {
+	text-decoration: underline;
+}
+.orientation-opposed .underline {
+	text-decoration: overline;
+}
+.strikethrough {
+	text-decoration: line-through;
+}
+.underline-strikethrough {
+	text-decoration: underline line-through;
+}
+.orientation-opposed .underline-strikethrough {
+	text-decoration: overline line-through;
+}

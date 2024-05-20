@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 const path = require('path');
 const webpack = require('webpack');
 
@@ -9,7 +10,7 @@ module.exports = {
 
   entry: __dirname + "/src/index.js",
   output: {
-    path: path.join(__dirname, '/public'),
+    path: path.join(__dirname, '/build'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -61,7 +62,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: '/src/docs'
+              outputPath: 'epubs'
             },
           }
         ],
@@ -80,15 +81,17 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
       filename: "[name].css",
-      // chunkFilename: "[id].css",
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {from: 'public/epubs', to: 'epubs'}
+      ]
+    })
   ],
   devServer: {
       historyApiFallback: true,
-      // contentBase: path.resolve(__dirname, './public'),
+      // contentBase: path.resolve(__dirname, 'build'),
       hot: true
     }
 };

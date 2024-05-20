@@ -1,0 +1,331 @@
+/* unvisited link */
+a:link {
+    color: inherit;
+}
+
+/* visited link */
+a:visited {
+    color: inherit;
+}
+
+/* mouse over link */
+a:hover {
+    color: inherit;
+}
+
+/* selected link */
+a:active {
+    color: inherit;
+}
+
+a{
+	text-decoration: none;
+}
+p{
+	margin: 0px;
+}
+sub{
+	vertical-align: -10%;
+	font-size: 67%;
+}
+sup{
+	vertical-align: 33%;
+	font-size: 67%;
+}
+.p1{
+	padding-left: 0;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 100.000%;
+	font-family: "Calibri", "Carlito";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0;
+	line-height: 1.250em;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+.p2{
+	font-weight: 700;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	line-height: 1.125em;
+}
+.p3{
+	font-weight: 700;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	text-align: center;
+	line-height: 1.125em;
+}
+.p4{
+	font-weight: 700;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	text-align: center;
+}
+.p5{
+	font-size: 133.333%;
+	font-family: "Garamond";
+	text-align: center;
+}
+.p6{
+	font-weight: 700;
+	font-size: 133.333%;
+	text-align: center;
+}
+.p7{
+	padding-left: 0;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 100.000%;
+	font-family: "Calibri", "Carlito";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0;
+	line-height: 1.250em;
+	break-after: page;
+	page-break-after: always;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+.p8{
+	font-weight: 700;
+	font-size: 266.667%;
+	font-family: "Garamond";
+	text-align: center;
+}
+.p9{
+	padding-left: 0;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0;
+	line-height: 1.250em;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+.p10{
+	padding-left: 0;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0;
+	line-height: 1.250em;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+.p11{
+	font-size: 133.333%;
+	font-family: "Garamond";
+	line-height: 1.125em;
+}
+.p12{
+	font-style: italic;
+	font-weight: 700;
+	font-size: 266.667%;
+	font-family: "Garamond";
+	text-align: center;
+}
+.p13{
+	font-style: italic;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	line-height: 1.125em;
+}
+.p14{
+	padding-left: 0;
+	margin-top: 0;
+	padding-top: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	color: #000000;
+	letter-spacing: 0.000em;
+	font-variant: normal;
+	text-transform: none;
+	text-align: left;
+	text-indent: 0;
+	line-height: 1.250em;
+	hyphens: none;
+	-webkit-hyphens: none;
+	-webkit-text-stroke-color: initial;
+	-webkit-text-stroke-width: initial;
+	text-shadow: none;
+}
+.p15{
+	font-style: italic;
+	font-weight: 700;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	line-height: 1.125em;
+}
+.p16{
+	padding-left: 7.692%;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	text-indent: -7.692%;
+	line-height: 1.125em;
+}
+.p17{
+	padding-left: 7.692%;
+	font-weight: 700;
+	font-size: 133.333%;
+	font-family: "Garamond";
+	text-indent: -7.692%;
+}
+.p18{
+	text-align: center;
+}
+.c1{
+	background: transparent;
+}
+.c2{
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+	font-family: "Garamond";
+}
+.c3{
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+	font-size: 133.333%;
+	font-family: "Garamond";
+}
+.c4{
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 133.333%;
+	font-family: "Garamond";
+}
+.c5{
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+	font-family: "Calibri", "Carlito";
+}
+.c6{
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+	font-size: 266.667%;
+	font-family: "Garamond";
+}
+.c7{
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-family: "Garamond";
+}
+.c8{
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 133.333%;
+	font-family: "Garamond";
+}
+.c9{
+	font-style: italic;
+	font-weight: 700;
+	font-stretch: normal;
+	font-size: 266.667%;
+	font-family: "Garamond";
+}
+.c10{
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+	font-size: 133.333%;
+	font-family: "Garamond";
+}
+.c11{
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: normal;
+	font-family: "Garamond";
+}
+.c12{
+	font-style: italic;
+	font-weight: 700;
+	font-stretch: normal;
+	font-family: "Garamond";
+}
+.body {
+	width: 100%;
+}
+.underline {
+	text-decoration: underline;
+}
+.orientation-opposed .underline {
+	text-decoration: overline;
+}
+.strikethrough {
+	text-decoration: line-through;
+}
+.underline-strikethrough {
+	text-decoration: underline line-through;
+}
+.orientation-opposed .underline-strikethrough {
+	text-decoration: overline line-through;
+}

@@ -2,9 +2,13 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss ***!
   \*************************************************************************************************************/
 @import url(https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Estonia&family=Gruppo&family=Nunito:ital,wght@1,900&family=Questrial&display=swap);
-/*!********************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Homepage/Homepage.scss ***!
-  \********************************************************************************************************************************/
+/*!***************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/pages/Homepage/Homepage.scss ***!
+  \***************************************************************************************************************************/
+.outer {
+  background-color: aliceblue;
+}
+
 .cover {
   background-image: url(/aaed4b295a978dfff2dc.png);
   background-size: cover;
@@ -28,8 +32,9 @@
 .cover__navbar-link:hover, .cover__navbar-link:focus {
   border-bottom-color: black;
   font-weight: 700;
-  color: aqua;
+  color: #96e7e8;
   text-shadow: 0 0.05rem 0.1rem rgba(25, 15, 77, 0.799);
+  filter: drop-shadow(0 0.05rem 0.5rem rgba(226, 233, 234, 0.61));
 }
 .cover__header-container {
   height: 100vh;
@@ -52,10 +57,6 @@
 /*!******************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Writing/Writing.scss ***!
   \******************************************************************************************************************************/
-.writing-container {
-  padding-top: 2em;
-}
-
 @media (min-width: 1200px) {
   .book-card {
     max-height: 250px;
@@ -124,6 +125,40 @@
 }
 .carousel__control-next {
   right: 0;
+}
+/*!**************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/About/About.scss ***!
+  \**************************************************************************************************************************/
+.about {
+  background-image: url(/4cd592140dbe41594e10.png);
+  background-size: cover;
+  background-position: 15% 30%;
+  background-repeat: no-repeat;
+}
+.about__container {
+  color: whitesmoke;
+  padding: 3em;
+  margin-top: 3em;
+}
+.about__text {
+  font-weight: 700;
+  text-shadow: 0 0.05rem 0.1rem rgb(25, 15, 77);
+}
+@media (min-width: 424px) {
+  .about__text {
+    font-size: 1.25em;
+  }
+}
+@media (min-width: 500px) {
+  .about__text {
+    font-size: 1.5em;
+  }
+}
+.about__social-links {
+  gap: 3em;
+}
+.about__icon:hover, .about__icon:focus {
+  filter: drop-shadow(0 0.05rem 0.5rem rgba(226, 233, 234, 0.61));
 }
 /*!*****************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss (1) ***!

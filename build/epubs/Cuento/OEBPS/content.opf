@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<package xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="id">
+  <metadata>
+    <dc:rights>Public domain in the USA.</dc:rights>
+    <dc:creator id="author_0">Meredith White</dc:creator>
+    <dc:title>Bobby And Shiloh Save The Night</dc:title>
+    <dc:language>en</dc:language>
+    <dc:subject>Fiction</dc:subject>
+    <dc:subject>Short Short Story</dc:subject>
+    <dc:date>2023-12-27</dc:date>
+    <meta property="dcterms:modified">2023-10-01T07:32:26Z</meta>
+  </metadata>
+  <manifest>
+    <item href="../../css/pgepub.css" id="item1" media-type="text/css"/>
+    <item href="../../css/pgepub.css" id="item2" media-type="text/css"/>
+    <item href="../../css/pgepub.css" id="item3" media-type="text/css"/>
+    <item href="./Text/Cover.xhtml" id="cover" media-type="application/xhtml+xml"/>
+    <item href="./Text/TitlePage.xhtml" id="title-page" media-type="application/xhtml+xml"/>
+    <item href="./Text/Story.xhtml" id="story" media-type="application/xhtml+xml"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+    <spine toc="ncx">
+    <itemref idref="cover"/>
+    <itemref idref="title-page"/>
+    <itemref idref="story"/>
+  </spine>
+</package>
+</package>

@@ -12,7 +12,7 @@ import "./About.scss";
 
 const About = () => {
   return (
-    <section id="about" className="about">
+    <section id="about-section" className="about">
       <Container className="about__container">
         <h1 className="display-2 d-flex flex-column justify-content-center text-center text-md-start">
           About
