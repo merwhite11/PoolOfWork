@@ -1,8 +1,8 @@
 import React from 'react';
 import BookCard from './BookCard.jsx';
-import GVDCover from "../../assets/BookCovers/GVDCover.jpg";
-import BlinkingCover from "../../assets/BookCovers/BlinkingCover.jpg";
-import BobbyCover from "../../assets/BookCovers/BobbyCover.jpg";
+import GVDCover from "../../assets/BookCovers/GVDCoverResized.jpg";
+import BlinkingCover from "../../assets/BookCovers/CuentoCover.jpg";
+import BobbyCover from "../../assets/BookCovers/BobbyCoverResized.jpg";
 
 
 const BookList = () => {
