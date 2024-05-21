@@ -4,9 +4,14 @@
     {
       "src": "build/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "build/epubs/**",
+      "use": "@vercel/static"
     }
   ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "index.html" }
+  "routes": [
+    { "src": "/(.*)", "dest": "index.html" },
+    { "src": "/epubs/(.*)", "dest": "/build/epubs/$1" }
   ]
 }
