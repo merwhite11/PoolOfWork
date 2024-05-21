@@ -2,13 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ReactReader } from 'react-reader';
 // import { PiDotsThreeOutline, PiDotsThreeOutlineFill } from "react-icons/pi";
 import useLocalStorageState from 'use-local-storage-state';
+import urljoin from 'url-join';
 // import Modal from './Modal.jsx';
 // import AppNavbar from '../AppNavbar.jsx'
 
 
 const Reader = ({ doc, title }) => {
 
-  const epubUrl = process.env.PUBLIC_URL + `epubs/${doc}`;
+  const epubUrl = urljoin(process.env.PUBLIC_URL, 'epubs', doc)
   const renditionRef = useRef(null)
   const [rend, setRend] = useState(null)
   const [bookProgress, setBookProgress] = useLocalStorageState('book-progress', {});
