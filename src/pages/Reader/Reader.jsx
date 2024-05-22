@@ -8,13 +8,14 @@ import urljoin from 'url-join';
 
 
 const Reader = ({ doc, title }) => {
-
-  // const epubUrl = urljoin(process.env.PUBLIC_URL, 'epubs', doc)
-  const epubUrl = `process.env.PUBLIC_URL/epubs/${doc}`
+  const publicUrl = (process.env.PUBLIC_URL || '')
+  const epubUrl = urljoin(publicUrl, 'epubs', doc)
+  // const epubUrl = `process.env.PUBLIC_URL/epubs/${doc}`
   const renditionRef = useRef(null)
   const [rend, setRend] = useState(null)
   const [bookProgress, setBookProgress] = useLocalStorageState('book-progress', {});
   const [location, setLocation] = useState(null);
+  console.log('publicurl', publicUrl)
   console.log('process.env', process.env.PUBLIC_URL)
   console.log('EPUBURL', epubUrl)
   console.log('Title', title)

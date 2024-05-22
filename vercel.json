@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "build/epubs/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "build/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/epubs/(.*)", "dest": "/build/epubs/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
