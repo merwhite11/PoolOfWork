@@ -8,7 +8,7 @@ import urljoin from 'url-join';
 
 
 const Reader = ({ doc, title }) => {
-  const publicUrl = (process.env.PUBLIC_URL || '')
+  const publicUrl = (process.env.PUBLIC_URL || '').replace(/\/$/, '');
   const epubUrl = urljoin(publicUrl, 'epubs', doc)
   // const epubUrl = `process.env.PUBLIC_URL/epubs/${doc}`
   const renditionRef = useRef(null)
