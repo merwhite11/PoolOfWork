@@ -10,7 +10,7 @@
 }
 
 .cover {
-  background-image: url(/aaed4b295a978dfff2dc.png);
+  background-image: url(aaed4b295a978dfff2dc.png);
   background-size: cover;
   background-position: 40% 3%;
   background-repeat: no-repeat;
@@ -130,7 +130,7 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/About/About.scss ***!
   \**************************************************************************************************************************/
 .about {
-  background-image: url(/4cd592140dbe41594e10.png);
+  background-image: url(4cd592140dbe41594e10.png);
   background-size: cover;
   background-position: 15% 30%;
   background-repeat: no-repeat;
