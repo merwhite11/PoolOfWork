@@ -8,12 +8,14 @@ import urljoin from 'url-join';
 
 
 const Reader = ({ doc, title }) => {
-  const isVercelEnv = process.env.VERCEL_ENV !== undefined;
-  const publicUrl = isVercelEnv
-    ? (process.env.PUBLIC_URL || '').replace(/\/$/, '')
-    : (process.env.LOCAL_PUBLIC_URL || '');
+  // const isVercelEnv = process.env.VERCEL_ENV !== undefined;
+  // const publicUrl = isVercelEnv
+  //   ? (process.env.PUBLIC_URL || '').replace(/\/$/, '')
+  //   : (process.env.REACT_APP_PUBLIC_URL || '');
+  const publicUrl = process.env.PUBLIC_URL
   console.log('publicurl', publicUrl)
-  const epubUrl = urljoin(publicUrl, '/epubs', doc)
+  console.log('DOC', doc)
+  const epubUrl = urljoin(publicUrl, 'epubs', doc)
   console.log('EPUBURL', epubUrl)
   // const epubUrl = `process.env.PUBLIC_URL/epubs/${doc}`
   const renditionRef = useRef(null)

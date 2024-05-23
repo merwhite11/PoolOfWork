@@ -28,7 +28,7 @@ const Homepage = () => {
     </section>
     <section className="content d-flex my-5 flex-column">
     <Writing></Writing>
-    <Dance></Dance>
+    {/* <Dance></Dance> */}
     </section>
     <About></About>
     </div>
