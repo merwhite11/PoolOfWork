@@ -10,7 +10,7 @@ import urljoin from 'url-join';
 const Reader = ({ doc, title }) => {
   const isVercelEnv = process.env.VERCEL_ENV !== undefined;
   const publicUrl = isVercelEnv
-    ? (process.env.PUBCLIC_URL || '').replace(/\/$/, '')
+    ? (process.env.PUBLIC_URL || '').replace(/\/$/, '')
     : (process.env.LOCAL_PUBLIC_URL || '');
   console.log('publicurl', publicUrl)
   const epubUrl = urljoin(publicUrl, '/epubs', doc)
