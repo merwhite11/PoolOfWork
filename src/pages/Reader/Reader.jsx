@@ -8,16 +8,18 @@ import urljoin from 'url-join';
 
 
 const Reader = ({ doc, title }) => {
-  const publicUrl = (process.env.PUBLIC_URL || '').replace(/\/$/, '');
-  const epubUrl = urljoin(publicUrl, 'epubs', doc)
+  const isVercelEnv = process.env.VERCEL_ENV !== undefined;
+  const publicUrl = isVercelEnv
+    ? (process.env.PUBCLIC_URL || '').replace(/\/$/, '')
+    : (process.env.LOCAL_PUBLIC_URL || '');
+  console.log('publicurl', publicUrl)
+  const epubUrl = urljoin(publicUrl, '/epubs', doc)
+  console.log('EPUBURL', epubUrl)
   // const epubUrl = `process.env.PUBLIC_URL/epubs/${doc}`
   const renditionRef = useRef(null)
   const [rend, setRend] = useState(null)
   const [bookProgress, setBookProgress] = useLocalStorageState('book-progress', {});
   const [location, setLocation] = useState(null);
-  console.log('publicurl', publicUrl)
-  console.log('process.env', process.env.PUBLIC_URL)
-  console.log('EPUBURL', epubUrl)
   console.log('Title', title)
   const handleLocationChanged = (loc) => {
     setBookProgress({
