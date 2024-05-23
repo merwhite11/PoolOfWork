@@ -85,7 +85,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        {from: path.resolve(__dirname, 'src/assets/Epubs'), to: 'Epubs'}
+        {from: path.resolve(__dirname, 'src/assets/epubs'), to: 'epubs'}
       ]
     })
   ],
