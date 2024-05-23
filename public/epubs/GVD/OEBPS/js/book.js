@@ -1,3 +1,0 @@
-function Body_onLoad() {
-}
-

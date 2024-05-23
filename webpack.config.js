@@ -55,18 +55,18 @@ module.exports = {
         test: /\.(png|jp(e*)g|svg|gif|pdf)$/,
         type: "asset/resource",
       },
-      {
-        test: /\.epub$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'epubs'
-            },
-          }
-        ],
-      },
+      // {
+      //   test: /\.epub$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
+      //         name: '[name].[ext]',
+      //         outputPath: 'epubs'
+      //       },
+      //     }
+      //   ],
+      // },
     ]
   },
   plugins: [
@@ -85,7 +85,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        {from: 'public/epubs', to: 'epubs'}
+        {from: path.resolve(__dirname, 'src/assets/Epubs'), to: 'Epubs'}
       ]
     })
   ],
