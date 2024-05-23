@@ -15,7 +15,7 @@ const Reader = ({ doc, title }) => {
   const publicUrl = process.env.PUBLIC_URL
   console.log('publicurl', publicUrl)
   console.log('DOC', doc)
-  const epubUrl = urljoin(publicUrl, 'epubs', doc)
+  const epubUrl = urljoin(publicUrl, 'Epubs', doc)
   console.log('EPUBURL', epubUrl)
   // const epubUrl = `process.env.PUBLIC_URL/epubs/${doc}`
   const renditionRef = useRef(null)
