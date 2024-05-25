@@ -13,24 +13,6 @@ const App = () => (
           <ReaderWrapper />
         }
       />
-      {/* <Route
-        path="/cuento"
-        element={
-          <Reader
-            doc={"unzipped_Cuento/META-INF"}
-            title={"Story Twice Told // Cuento Dos Veces Contado"}
-          />
-        }
-      />
-      <Route
-        path="/bobby"
-        element={
-          <Reader
-            doc={"unzipped_BobbyAndShiloh/META-INF"}
-            title={"Bobby And Shiloh Save The Night"}
-          />
-        }
-      /> */}
     </Routes>
   </Router>
 );
