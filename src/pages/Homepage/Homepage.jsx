@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Col, Row, Container, Header } from "react-bootstrap";
 import "./Homepage.scss";
 import NavBar from '../../components/NavBar/NavBar.jsx';
@@ -8,17 +9,24 @@ import About from '../../components/About/About.jsx'
 
 
 const Homepage = () => {
-  // const [clickedLink, setClickedLink] = useState('');
+  const location = useLocation();
 
-  // const updateNavLink = (href) => {
-  //   setClickedLink(href)
-  // }
+  useEffect(() => {
+    if (location.state && location.state.targetSection) {
+      const sectionId = location.state.targetSection;
+      const sectionElement = document.getElementById(sectionId);
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
 
   return (
     //hompage class here
     <div className="outer">
 
-    <section className="cover text-center">
+    <section id="welcome-section" className="cover text-center">
       <div className="cover__container d-flex w-100 p-3 mx-auto flex-column">
         <NavBar/>
         <main role="main" className="cover__header-container d-flex align-items-center justify-content-center">

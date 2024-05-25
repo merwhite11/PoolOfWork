@@ -4,7 +4,7 @@ import { ReactReader } from 'react-reader';
 import useLocalStorageState from 'use-local-storage-state';
 import urljoin from 'url-join';
 // import Modal from './Modal.jsx';
-// import AppNavbar from '../AppNavbar.jsx'
+import NavBar from '../../components/NavBar/NavBar.jsx'
 
 
 const Reader = ({ doc, title }) => {
@@ -34,8 +34,10 @@ const Reader = ({ doc, title }) => {
 
     <div className="container background"
      >
-      <div className="row">
-
+      {/* <div className="row"> */}
+      <div className="col-md-6 d-flex justify-content-end align-items-center">
+          <NavBar />
+        </div>
         <div className="col-md-12 aspect-ratio aspect-ratio-3x4 overflow-hidden d-flex justify-content-center align-items-center">
           <div className="reader-container"
              style={{
@@ -65,7 +67,7 @@ const Reader = ({ doc, title }) => {
             />
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div >
   )
 };
