@@ -35,8 +35,8 @@ const Reader = ({ doc, title }) => {
     <div className="container background"
      >
       {/* <div className="row"> */}
-      <div className="col-md-6 d-flex justify-content-end align-items-center">
           <NavBar />
+      <div className="col-md-6 d-flex justify-content-end align-items-center">
         </div>
         <div className="col-md-12 aspect-ratio aspect-ratio-3x4 overflow-hidden d-flex justify-content-center align-items-center">
           <div className="reader-container"

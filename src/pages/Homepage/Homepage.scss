@@ -13,24 +13,24 @@ $background-image-url: url('../../assets/cover_bg.png');
     height: 100vh;
     max-width: 60em;
   }
-  &__navbar {
-    font-size: 1.5em;
-    // border-bottom: .20rem solid black;
-    text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
-  }
-  &__navbar-link {
-    color: whitesmoke;
-    margin-left: 1rem;
-    text-decoration: none;
-    &:hover,
-    &:focus {
-      border-bottom-color: black;
-      font-weight: 700;
-      color: #96e7e8;
-      text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
-      filter: drop-shadow(0 .05rem .5rem rgba(226, 233, 234, 0.61));
-  }
-  }
+  // &__navbar {
+  //   font-size: 1.5em;
+  //   // border-bottom: .20rem solid black;
+  //   text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
+  // }
+  // &__navbar-link {
+  //   color: whitesmoke;
+  //   margin-left: 1rem;
+  //   text-decoration: none;
+  //   &:hover,
+  //   &:focus {
+  //     border-bottom-color: black;
+  //     font-weight: 700;
+  //     color: #96e7e8;
+  //     text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
+  //     filter: drop-shadow(0 .05rem .5rem rgba(226, 233, 234, 0.61));
+  //   }
+  // }
   &__header-container {
     height: 100vh;
     position: relative;

@@ -10,6 +10,7 @@ import About from '../../components/About/About.jsx'
 
 const Homepage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.state && location.state.targetSection) {
@@ -19,8 +20,7 @@ const Homepage = () => {
         sectionElement.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  }, [location]);
-
+  }, [location.state, location.pathname])
 
   return (
     //hompage class here
