@@ -5,6 +5,15 @@ $font-family-base: $custom-font-family;
 $custom-nav-font-size: 1.5em;
 $custom-h1-font-size: 3em;
 @import "../../node_modules/bootstrap/scss/bootstrap";
+$btn-close-sm-width: 0.25em;
+$btn-close-sm-height: $btn-close-sm-width;
+
+.btn-close-sm {
+  @extend .btn-close;
+  width: $btn-close-sm-width;
+  height: $btn-close-sm-height;
+  float: inline-end;
+}
 
 .slick-slide > div {
   margin: 0 10px;
