@@ -8,21 +8,15 @@ import NavBar from '../../components/NavBar/NavBar.jsx'
 
 
 const Reader = ({ doc, title }) => {
-  // const isVercelEnv = process.env.VERCEL_ENV !== undefined;
-  // const publicUrl = isVercelEnv
-  //   ? (process.env.PUBLIC_URL || '').replace(/\/$/, '')
-  //   : (process.env.REACT_APP_PUBLIC_URL || '');
+
   const publicUrl = process.env.PUBLIC_URL
-  console.log('publicurl', publicUrl)
-  console.log('DOC', doc)
   const epubUrl = urljoin(publicUrl, 'Epubs', doc)
-  console.log('EPUBURL', epubUrl)
-  // const epubUrl = `process.env.PUBLIC_URL/epubs/${doc}`
   const renditionRef = useRef(null)
   const [rend, setRend] = useState(null)
   const [bookProgress, setBookProgress] = useLocalStorageState('book-progress', {});
   const [location, setLocation] = useState(null);
-  console.log('Title', title)
+
+
   const handleLocationChanged = (loc) => {
     setBookProgress({
       ...bookProgress,
@@ -48,10 +42,8 @@ const Reader = ({ doc, title }) => {
             < ReactReader
               title={title}
               url={epubUrl}
-              // location = {bookProgress ? bookProgress[title] : bookProgress}
-              location={location}
-              locationChanged={(loc) => { setLocation(loc) }}
-              // locationChanged={handleLocationChanged}
+              location = {bookProgress ? bookProgress[title] : bookProgress}
+              locationChanged={handleLocationChanged}
               getRendition={(rendition) => {
                 renditionRef.current = rendition;
                 setRend(rendition)
