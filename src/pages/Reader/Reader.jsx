@@ -7,6 +7,7 @@ import urljoin from "url-join";
 import Modal from "../../components/Modal/Modal.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import Dropdown from "../../components/Dropdown/Dropdown.jsx";
+import "./Reader.scss";
 
 const Reader = ({ doc, title }) => {
   //epub
@@ -26,15 +27,22 @@ const Reader = ({ doc, title }) => {
   //hamburger menu
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const dropdownRef = useRef(null);
 
   //hamburger
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setMenuOpen(false);
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
+      setIsSmallScreen(window.innerWidth < 1024);
     };
 
     window.addEventListener("resize", handleResize);
@@ -50,6 +58,19 @@ const Reader = ({ doc, title }) => {
       setMenuOpen(false);
     }
   }, [location.pathname]);
+
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
 
   //epub
   useEffect(() => {
@@ -125,7 +146,7 @@ const Reader = ({ doc, title }) => {
   return (
     <div className="container background">
       <div className="row">
-        <div className="col-md-6 d-flex justify-content-start align-items-center">
+        <div className="col-4 col-md-6 d-flex justify-content-start align-items-center">
           {dots}
           <Modal
             modalOpen={modalOpen}
@@ -144,11 +165,15 @@ const Reader = ({ doc, title }) => {
           </div>
         )}
         {isSmallScreen && !menuOpen && (
-          <button className="col-4 justify-content-end" onClick={toggleMenu}>
+          <div className="hamburger-container ms-auto" onClick={toggleMenu}>
             <RxHamburgerMenu />
-          </button>
+          </div>
         )}
-        {isSmallScreen && menuOpen && <Dropdown />}
+        {isSmallScreen && menuOpen && (
+          <div className="dropdown-container ms-auto" ref={dropdownRef}>
+        <Dropdown />
+        </div>
+      )}
         <div className="col-md-12 aspect-ratio aspect-ratio-3x4 overflow-hidden d-flex justify-content-center align-items-center">
           <div
             className="reader-container"
