@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "./NavBar.scss";
@@ -6,6 +6,7 @@ import "./NavBar.scss";
 const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
 
   const handleNavigation = (event, targetSection) => {
     event.preventDefault();
@@ -26,8 +27,11 @@ const NavBar = () => {
             </h3>
           )}
           <nav
-            className={`d-flex flex-row align-items-center ${location.pathname === "/" ? "ms-md-auto" : "ms-auto"}`}
+            className={`d-flex flex-row align-items-center ${
+              location.pathname === "/" ? "ms-md-auto" : "ms-auto"
+            }`}
           >
+
             {location.pathname !== "/" && (
               <a
                 className="navbar__link fw-bold py-1 px-0"
@@ -59,6 +63,8 @@ const NavBar = () => {
               About
             </a>
           </nav>
+
+
         </div>
       </div>
     </header>

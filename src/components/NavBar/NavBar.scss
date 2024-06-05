@@ -3,7 +3,6 @@
   color: whitesmoke;
   // border-bottom: .20rem solid black;
   text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
-
   &__link {
     color: whitesmoke;
     margin-left: 1rem;
@@ -15,6 +14,31 @@
       color: #96e7e8;
       text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
       filter: drop-shadow(0 .05rem .5rem rgba(226, 233, 234, 0.61));
+      box-shadow: 0 -5px 0px #fff inset
+    }
+  }
+}
+
+.dropdown__menu {
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  &.show {
+    display: flex;
+  }
+  &__item {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    &:hover {
+      background-color: #96e7e8;
     }
   }
 }

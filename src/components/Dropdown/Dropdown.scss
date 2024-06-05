@@ -1,0 +1,22 @@
+.dropdown__menu {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 10px;
+  &__item {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    margin: 5px 0;
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+}
