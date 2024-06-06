@@ -4,13 +4,20 @@ import { Col, Row, Container, Header } from "react-bootstrap";
 import "./Homepage.scss";
 import NavBar from '../../components/NavBar/NavBar.jsx';
 import Writing from '../../components/Writing/Writing.jsx';
-import Dance from '../../components/Dance/Dance.jsx'
+import Dance from '../../components/Dance/Dance.jsx';
+import VideoPlayer from '../../components/Dance/DanceTest.jsx';
 import About from '../../components/About/About.jsx'
+
 
 
 const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  //video
+
+  const src = "https://d2jgbsygfslqso.cloudfront.net/cool-off-challenge.mp4"
+  const poster = "../../assets/BookCovers/BobbyCoverResized.jpg"
 
   useEffect(() => {
     if (location.state && location.state.targetSection) {
@@ -37,6 +44,7 @@ const Homepage = () => {
     <section className="content d-flex my-5 flex-column">
     <Writing></Writing>
     {/* <Dance></Dance> */}
+    <VideoPlayer src={src} poster={poster}/>
     </section>
     <About></About>
     </div>
