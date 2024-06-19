@@ -44,7 +44,7 @@ const About = () => {
           <SocialIcon
             bgColor="#96e7e8"
             className="about__icon"
-            url="mailto:meredith.white91@gmail.com?subject=Contact%20Subject"
+            url="mailto:meredith.white91@gmail.com"
           />
         </div>
       </Container>

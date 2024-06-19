@@ -23,7 +23,7 @@
       <navLabel>
         <text>Glossary</text>
       </navLabel>
-      <content src="./Text/Glossary.xhtml#pgepubid00003"/>
+      <content src="./Text/glossary.xhtml#pgepubid00003"/>
     </navPoint>
 
     <navPoint id="navpoint-4" playOrder="12">
