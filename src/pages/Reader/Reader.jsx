@@ -178,7 +178,7 @@ const Reader = ({ doc, title }) => {
           <div
             className="reader-container"
             style={{
-              height: "100vh",
+              height: "90vh",
               width: "100vw",
             }}
           >

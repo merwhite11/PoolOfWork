@@ -22,7 +22,7 @@ const VideoPlayer = ({ src, poster }) => {
         ref={videoRef}
         controls
         poster={poster}
-        style={{ width: '100%', height: 'auto' }}
+        style={{ width: '50%', height: 'auto' }}
         preload="none"
       >
         <source src={src} type="video/mp4" />

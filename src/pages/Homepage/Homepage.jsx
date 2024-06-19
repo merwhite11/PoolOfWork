@@ -14,13 +14,10 @@ const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  //video
-
-  const src = "https://d2jgbsygfslqso.cloudfront.net/cool-off-challenge.mp4"
-  const poster = "../../assets/BookCovers/BobbyCoverResized.jpg"
 
   useEffect(() => {
     if (location.state && location.state.targetSection) {
+      console.log('location.state', location.state)
       const sectionId = location.state.targetSection;
       const sectionElement = document.getElementById(sectionId);
       if (sectionElement) {
@@ -43,8 +40,7 @@ const Homepage = () => {
     </section>
     <section className="content d-flex my-5 flex-column">
     <Writing></Writing>
-    {/* <Dance></Dance> */}
-    <VideoPlayer src={src} poster={poster}/>
+    <Dance></Dance>
     </section>
     <About></About>
     </div>

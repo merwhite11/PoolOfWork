@@ -3,18 +3,19 @@ import { Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import Reader from "../../pages/Reader/Reader.jsx";
+import AboutModal from "../AboutModal/AboutModal.jsx";
 import "./Writing.scss";
 
 function BookCard({ cover, summary, path, title }) {
   const isLargeScreen = useMediaQuery({ minWidth: 1200 });
   const [showReader, setShowReader] = useState(false);
   const [epubPath, setEpubPath] = useState("");
+  const [aboutModalOpen, setAboutModalOpen] = useState(false);
 
-  const handleClick = (e) => {
-    console.log("Clicked");
-    setEpubPath(path);
-    setShowReader(true);
-  };
+const toggleAboutModal = (title) => {
+  console.log('title!', title)
+  setAboutModalOpen(!aboutModalOpen);
+}
 
   return (
     <Col xs={10} md={4} lg={4} className="d-flex h-100 justify-content-center">
@@ -37,12 +38,21 @@ function BookCard({ cover, summary, path, title }) {
           )}
           <div className="book-card__button-box d-flex">
             {!isLargeScreen && (
-              <Button className="book-card__button btn btn-light">About</Button>
+              <div>
+              <Button className="book-card__button btn btn-light"
+              onClick={(e) => toggleAboutModal()}
+              >About</Button>
+              <AboutModal
+              aboutModalOpen={aboutModalOpen}
+              toggleAboutModal={toggleAboutModal}
+              title={title}
+              summary={summary}
+              ></AboutModal>
+              </div>
             )}
             <Link to={`/reader/${path}`}>
               <Button
                 className="book-card__button btn btn-light"
-                // onClick={(e) => handleClick(path)}
               >
                 Read
               </Button>
