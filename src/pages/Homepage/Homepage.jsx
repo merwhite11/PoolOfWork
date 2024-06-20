@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Col, Row, Container, Header } from "react-bootstrap";
 import "./Homepage.scss";
@@ -13,18 +13,40 @@ import About from '../../components/About/About.jsx'
 const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const isInitialMount = useRef(true)
 
   useEffect(() => {
+    console.log('INITIAL MOUNT', isInitialMount.current)
+    if(isInitialMount.current) {
+      console.log('SHOULD GO HERE ON REFRESH', isInitialMount)
+      if (!location.state || location.state.targetSection !== 'welcome-section') {
+        navigate('/', {
+          state: {targetSection: 'welcome-section'},
+          replace: true
+          });
+          }
+          // isInitialMount.current = false;
+          // const sectionElement = document.getElementById('welcome-section');
+          // if (sectionElement) {
+          //   sectionElement.scrollIntoView({ behavior: 'smooth' });
+          //   }
+      }
+      console.log('refreshed to:', location.state.targetSection)
+    }, [navigate, location.state]);
+
+  useEffect(() => {
+    isInitialMount.current = false;
     if (location.state && location.state.targetSection) {
-      console.log('location.state', location.state)
       const sectionId = location.state.targetSection;
+      console.log('navigate Here:', sectionId)
+      console.log('location.state', location.state, location.pathname);
       const sectionElement = document.getElementById(sectionId);
       if (sectionElement) {
         sectionElement.scrollIntoView({ behavior: 'smooth' });
       }
-    }
-  }, [location.state, location.pathname])
+      }
+    }, [location.state, location.pathname]);
+  console.log('location.state', location.state)
 
   return (
     //hompage class here

@@ -72,6 +72,7 @@ const Dance = () => {
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
   };
+  console.log('COMPONENT RENDERED')
   return (
     <Container id="dance-section" className="carousel justify-content-center align-items-center">
        <h1 className="display-3 d-flex px-10 justify-content-center justify-content-md-start">Dance</h1>
@@ -84,7 +85,7 @@ const Dance = () => {
           </video> */}
           <div className="video-container">
             <LazyLoad height={200} offset={100} once>
-                <iframe
+                {/* <video
                   className="w-100"
                   // src={`https://www.youtube.com/embed/${vid}??modestbranding=1&;showinfo=0&;autohide=1&;rel=0`}
                   src={`https://d2jgbsygfslqso.cloudfront.net/${vid}`}
@@ -93,7 +94,11 @@ const Dance = () => {
                   allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   tabIndex="-1"
-                ></iframe>
+                  preload="none"
+                ></video> */}
+                <video controls tabIndex="-1" className="w-100">
+                    <source src={`https://d2jgbsygfslqso.cloudfront.net/${vid}`} type="video/mp4" />
+                </video>
               </LazyLoad>
           </div>
         </div>
