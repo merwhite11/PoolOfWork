@@ -5,6 +5,7 @@ import LazyLoad from "react-lazyload";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Dance.scss";
+import VideoPlayer from './VideoPlayer.jsx';
 
 const Dance = () => {
 
@@ -80,25 +81,9 @@ const Dance = () => {
       <Slider {...settings}>
         {vids.map((vid) => (
         <div key={vid}>
-          {/* <video className="w-100">
-            <source src={vid} type="video/mp4" />
-          </video> */}
           <div className="video-container">
             <LazyLoad height={200} offset={100} once>
-                {/* <video
-                  className="w-100"
-                  // src={`https://www.youtube.com/embed/${vid}??modestbranding=1&;showinfo=0&;autohide=1&;rel=0`}
-                  src={`https://d2jgbsygfslqso.cloudfront.net/${vid}`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  tabIndex="-1"
-                  preload="none"
-                ></video> */}
-                <video controls tabIndex="-1" className="w-100">
-                    <source src={`https://d2jgbsygfslqso.cloudfront.net/${vid}`} type="video/mp4" />
-                </video>
+                 <VideoPlayer videoName={'her-majesty'}/>
               </LazyLoad>
           </div>
         </div>

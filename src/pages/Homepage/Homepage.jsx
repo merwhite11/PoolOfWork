@@ -31,8 +31,8 @@ const Homepage = () => {
           });
           }
       }
-      console.log('refreshed to:', location.state.targetSection)
-    }, [navigate, location.state]);
+      // console.log('refreshed to:', location.state.targetSection)
+    }, [navigate, location]);
 
   useEffect(() => {
     if (location.state && location.state.targetSection && !isInitialMount.current) {
