@@ -61,10 +61,15 @@ const Dance = () => {
   // ]
 
   const vids = [
-    "her-majesty.mp4",
-    "east.mp4",
-    "17.mp4",
-    "cool-off-challenge.mp4"
+    "malamente",
+    "closer",
+    "gravity",
+    "her-majesty",
+    "bike-freak",
+    "east",
+    "see-through",
+    "17",
+    "suckering"
   ]
   var settings = {
     dots: true,
@@ -83,7 +88,7 @@ const Dance = () => {
         <div key={vid}>
           <div className="video-container">
             <LazyLoad height={200} offset={100} once>
-                 <VideoPlayer videoName={'her-majesty'}/>
+                 <VideoPlayer videoName={vid}/>
               </LazyLoad>
           </div>
         </div>
