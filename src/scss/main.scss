@@ -4,6 +4,7 @@ $custom-font-family: 'Gruppo', sans-serif;
 $font-family-base: $custom-font-family;
 $custom-nav-font-size: 1.5em;
 $custom-h1-font-size: 3em;
+$accent-blue: rgba(0,255,255, 0.5);
 @import "../../node_modules/bootstrap/scss/bootstrap";
 $btn-close-sm-width: 0.25em;
 $btn-close-sm-height: $btn-close-sm-width;
@@ -18,6 +19,8 @@ $btn-close-sm-height: $btn-close-sm-width;
 .slick-slide > div {
   margin: 0 10px;
 }
+
+
 // body {
 //   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 //   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);

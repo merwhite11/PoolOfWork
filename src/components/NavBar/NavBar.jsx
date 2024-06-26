@@ -22,6 +22,7 @@ const NavBar = () => {
               className="mb-0 me-md-auto"
               href="#welcome-section"
               onClick={(e) => handleNavigation(e, "welcome-section")}
+              onTouchEnd={(e) => handleNavigation(e, "welcome-section")}
             >
               Meredith White
             </h3>
@@ -37,6 +38,7 @@ const NavBar = () => {
                 className="navbar__link fw-bold py-1 px-0"
                 href="#welcome-section"
                 onClick={(e) => handleNavigation(e, "welcome-section")}
+                onTouchEnd={(e) => handleNavigation(e, "welcome-section")}
               >
                 Home
               </a>
@@ -45,6 +47,7 @@ const NavBar = () => {
               className="navbar__link fw-bold py-1 px-0"
               href="#writing-section"
               onClick={(e) => handleNavigation(e, "writing-section")}
+              onTouchEnd={(e) => handleNavigation(e, "writing-section")}
             >
               Writing
             </a>
@@ -52,6 +55,7 @@ const NavBar = () => {
               className="navbar__link fw-bold py-1 px-0"
               href="#dance-section"
               onClick={(e) => handleNavigation(e, "dance-section")}
+              onTouchEnd={(e) => handleNavigation(e, "dance-section")}
             >
               Dance
             </a>
@@ -59,12 +63,11 @@ const NavBar = () => {
               className="navbar__link fw-bold py-1 px-0"
               href="#about-section"
               onClick={(e) => handleNavigation(e, "about-section")}
+              onTouchEnd={(e) => handleNavigation(e, "about-section")}
             >
               About
             </a>
           </nav>
-
-
         </div>
       </div>
     </header>

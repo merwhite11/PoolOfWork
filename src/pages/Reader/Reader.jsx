@@ -133,6 +133,7 @@ const Reader = ({ doc, title }) => {
       className="mt-2"
       onMouseLeave={() => setIsHovered(false)}
       onClick={toggleModal}
+      onTouchEnd={toggleModal}
     />
   ) : (
     <PiDotsThreeOutline
@@ -140,6 +141,7 @@ const Reader = ({ doc, title }) => {
       className="mt-2"
       onMouseEnter={() => setIsHovered(true)}
       onClick={toggleModal}
+      onTouchEnd={toggleModal}
     />
   );
 

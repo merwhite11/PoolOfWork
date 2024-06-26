@@ -1,73 +1,16 @@
 .carousel {
-  // background-color:	hwb(202 72% 8% / 0.2);
-  // height: 80vh;
-  // border-radius: 2em;
   &__inner {
     padding: 1em;
-    // display: flex;
-    // flex-direction: row;
-    // overflow: hidden;
-    // background-color: aqua;
-    // @media (min-width: 768px) {
-    //   display: flex;
-    // }
   }
-  &__item {
-    margin: 0;
-    flex: 0 0 100%;
-    @media (min-width: 768px) {
-      margin-right: 0;
-      flex: 0 0 33%;
-      display: block;
-    }
-    }
-
-  &__card {
-    margin: 0 .5em;
-    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
-  }
-  &__control-prev,
-  &__control-next {
-    top: 50%;
-    transform: translateY(-50%);
-    position: absolute;
-    background-color: rgba(0,255,255, 0.5);
-    border-radius: 10px;
-    // width: 6vh;
-    // height: 6vh;
-    padding: 5px;
-
-  }
-
-  &__control-prev {
-    left: 0;
-  }
-
-  &__control-next {
-    right: 0;
-  }
-  }
-  .video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-  }
-
-  .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+}
 
   .slick-prev:before, .slick-next:before {
     font-size: 30px !important;
     color: rgba(0,255,255, 0.5) !important;
+  }
 
+  .slick-next {
+    right: -15px !important;
   }
 
 
