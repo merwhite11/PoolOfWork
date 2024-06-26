@@ -4,6 +4,7 @@ import Hls from 'hls.js';
 const VideoPlayer = ({ videoName }) => {
   const videoRef = useRef(null);
   const hlsSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/hls/${videoName}.m3u8`;
+  // const hlsSource = `https://poolofwork-video-output.s3.us-west-1.amazonaws.com/${videoName}/hls/${videoName}.m3u8`;
   const mp4Source = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/mp4/${videoName}.mp4`;
   const thumbnailSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/thumbnails/${videoName}.jpg`
 
@@ -15,7 +16,7 @@ const VideoPlayer = ({ videoName }) => {
       hls.loadSource(hlsSource);
       hls.attachMedia(video);
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = hlsSource;
+      video.src = mp4Source;
     } else {
       video.src = mp4Source;
     }

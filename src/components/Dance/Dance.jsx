@@ -70,7 +70,6 @@ const Dance = () => {
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
   };
-  console.log('COMPONENT RENDERED')
   return (
     <Container id="dance-section" className="carousel justify-content-center align-items-center">
        <h1 className="display-3 d-flex px-10 justify-content-center justify-content-md-start">Dance</h1>
