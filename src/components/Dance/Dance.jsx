@@ -13,8 +13,10 @@ const Dance = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 500) {
         setSlidesToShow(1);
+      } else if (window.innerWidth < 769) {
+        setSlidesToShow(2);
       } else {
         setSlidesToShow(3);
       }
@@ -32,17 +34,6 @@ const Dance = () => {
       setSlidesToShow(3);
     }
   }, [])
-
-  // const vids = [
-  //   "https://d2jgbsygfslqso.cloudfront.net/her-majesty.mp4",
-  //   "https://d2jgbsygfslqso.cloudfront.net/17.mp4",
-  //   "https://d2jgbsygfslqso.cloudfront.net/cool-off-challenge.mp4",
-  //   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-  //   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  //   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-  //   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-  //   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-  // ];
 
   // const vids = [
   //   "LJ-MTCDq0Zg?si=jf6KsUp6th0ozj04",
@@ -64,6 +55,7 @@ const Dance = () => {
     "malamente",
     "closer",
     "gravity",
+    "comer",
     "her-majesty",
     "bike-freak",
     "east",

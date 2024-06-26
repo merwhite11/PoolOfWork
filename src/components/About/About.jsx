@@ -17,7 +17,7 @@ const About = () => {
         <h1 className="display-2 d-flex flex-column justify-content-center text-center text-md-start">
           About
         </h1>
-        <div className="text-center text-xl">
+        <div className="text-center text-xl d-flex col-4 justify-content-center">
           <p className="about__text mt-2">
             Hydrophilic, linguophile living in the 415 <br />
             Writes, if not code, then probably prose <br />
