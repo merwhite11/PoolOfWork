@@ -3,24 +3,22 @@ import Hls from 'hls.js';
 
 const VideoPlayer = ({ videoName }) => {
 
-  console.log('NODE.ENV', process.env.NODE_ENV)
-  console.log('CDNURL', process.env.CDN_URL)
   const videoRef = useRef(null);
+  const hlsRef = useRef(null);
   const cdnUrl = process.env.CDN_URL
-  console.log('cdnUrl', cdnUrl)
   const hlsSource = `${cdnUrl}/${videoName}/hls/${videoName}.m3u8`
-  // const hlsSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/hls/${videoName}.m3u8`;
-  // const hlsSource = `https://poolofwork-video-output.s3.us-west-1.amazonaws.com/${videoName}/hls/${videoName}.m3u8`;
   const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`
-  // const mp4Source = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/mp4/${videoName}.mp4`;
   const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`
-  // const thumbnailSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/thumbnails/${videoName}.jpg`
 
-  useEffect(() => {
+  const initializeVid = () => {
     const video = videoRef.current;
 
     if (Hls.isSupported()) {
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+      }
       const hls = new Hls();
+      hlsRef.current = hls;
       hls.loadSource(hlsSource);
       hls.attachMedia(video);
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
@@ -28,7 +26,22 @@ const VideoPlayer = ({ videoName }) => {
     } else {
       video.src = mp4Source;
     }
+  };
+
+  useEffect(() => {
+    initializeVid();
+    const handleOrientationChange = () => {
+      initializeVid();
+    };
+    window.addEventListener('orientationchange', handleOrientationChange);
+    return () => {
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+      }
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
   }, [hlsSource, mp4Source]);
+
 
   return (
     <div>
