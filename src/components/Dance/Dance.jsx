@@ -35,22 +35,6 @@ const Dance = () => {
     }
   }, [])
 
-  // const vids = [
-  //   "LJ-MTCDq0Zg?si=jf6KsUp6th0ozj04",
-  //   "Bc_uHVpIUD4?si=5J1EB9VbgqA0UXvo",
-  //   "opm9kHGv1iA?si=RQPDMHNZNoqcSmQU",
-  //   "1E-QcAMJn2o?si=3NgXgUg0SK_g5ssQ",
-  //   "2W3vhjb8nnw?si=vueEiFeCRjXKj3wB",
-  //   "GHb2TiEzRjk?si=SVLgiVgEBIueCisR",
-  //   "JSbfwb3WekI?si=UMAfeXj-bU_oT6DY",
-  //   "YVN3v3MdECs?si=9otaLMtOPIwvBmCZ",
-  //   "TqCMGL_4MkM?si=O4cIcvnjbB4prYKf",
-  //   "YND3kxGMk1U?si=F-USf8TCp9WYn1-y",
-  //   "EQC1BvdmSGM?si=7XrGVWF2X4WNQ-1b",
-  //   "UZpsfi2GKcc?si=lrfrRv4FxLI-AZAC",
-  //   "QMjknbOkObU?si=qHAkYFRKHLvt6UyY"
-  // ]
-
   const vids = [
     "malamente",
     "closer",
