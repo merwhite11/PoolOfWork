@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { SocialIcon } from "react-social-icons/component";
+import { FaRegFileAlt } from "react-icons/fa";
 import "react-social-icons/youtube";
 import "react-social-icons/linkedin";
 import "react-social-icons/github";
@@ -11,6 +12,15 @@ import "./About.scss";
 // import BookList from './BookList.jsx'
 
 const About = () => {
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = process.env.PUBLIC_URL + 'Resume/Resume_5.24'; // Path to your PDF file
+    link.download = 'MeredithWhite_Resume.pdf'; // Filename for the downloaded file
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   return (
     <section id="about-section" className="about">
       <Container className="about__container">
@@ -36,11 +46,14 @@ const About = () => {
             className="about__icon"
             url="https://github.com/merwhite11"
           />
-          <SocialIcon
+          {/* <SocialIcon
             bgColor="#96e7e8"
             className="about__icon"
             url="https://www.youtube.com/@meredithwhite11"
-          />
+          /> */}
+          <div className="about__resume-container" onClick={handleDownload}>
+          <FaRegFileAlt size="1.5rem"/>
+          </div>
           <SocialIcon
             bgColor="#96e7e8"
             className="about__icon"

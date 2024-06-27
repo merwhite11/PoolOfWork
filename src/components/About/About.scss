@@ -31,6 +31,15 @@ $about-image-url: url('../../assets/PoolOfWork_About_Ink.png');
     filter: drop-shadow(0 .05rem .5rem rgba(226, 233, 234, 0.61));
   }
 }
+&__resume-container {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #96e7e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 }
 
 // .indent {
