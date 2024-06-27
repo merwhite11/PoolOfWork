@@ -225,6 +225,15 @@
 .about__icon:hover, .about__icon:focus {
   filter: drop-shadow(0 0.05rem 0.5rem rgba(226, 233, 234, 0.61));
 }
+.about__resume-container {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #96e7e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /*!*****************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss (1) ***!
   \*****************************************************************************************************************/

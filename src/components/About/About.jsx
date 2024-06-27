@@ -15,7 +15,7 @@ const About = () => {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = process.env.PUBLIC_URL + 'Resume/Resume_5.24'; // Path to your PDF file
+    link.href = process.env.PUBLIC_URL + 'Resume/Resume_5.24.pdf'; // Path to your PDF file
     link.download = 'MeredithWhite_Resume.pdf'; // Filename for the downloaded file
     document.body.appendChild(link);
     link.click();
@@ -51,7 +51,7 @@ const About = () => {
             className="about__icon"
             url="https://www.youtube.com/@meredithwhite11"
           /> */}
-          <div className="about__resume-container" onClick={handleDownload}>
+          <div className="about__resume-container about__icon" onClick={handleDownload}>
           <FaRegFileAlt size="1.5rem"/>
           </div>
           <SocialIcon
