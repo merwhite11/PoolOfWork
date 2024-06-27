@@ -30,9 +30,9 @@ const VideoPlayer = ({ videoName }) => {
 
   useEffect(() => {
     initializeVid();
-    const handleOrientationChange = () => {
-      initializeVid();
-    };
+    const handleOrientationChange = debounce(() => {
+      initializeHls();
+    }, 300);
     window.addEventListener('orientationchange', handleOrientationChange);
     return () => {
       if (hlsRef.current) {
