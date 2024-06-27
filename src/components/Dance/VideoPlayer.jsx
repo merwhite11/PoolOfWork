@@ -3,10 +3,14 @@ import Hls from 'hls.js';
 
 const VideoPlayer = ({ videoName }) => {
   const videoRef = useRef(null);
-  const hlsSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/hls/${videoName}.m3u8`;
+  const cdnUrl = process.env.DEV_CDN_URL;
+  const hlsSource = `${cdnUrl}/${videoName}/hls/${videoName}.m3u8`
+  // const hlsSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/hls/${videoName}.m3u8`;
   // const hlsSource = `https://poolofwork-video-output.s3.us-west-1.amazonaws.com/${videoName}/hls/${videoName}.m3u8`;
-  const mp4Source = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/mp4/${videoName}.mp4`;
-  const thumbnailSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/thumbnails/${videoName}.jpg`
+  const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`
+  // const mp4Source = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/mp4/${videoName}.mp4`;
+  const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`
+  // const thumbnailSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/thumbnails/${videoName}.jpg`
 
   useEffect(() => {
     const video = videoRef.current;
@@ -16,7 +20,7 @@ const VideoPlayer = ({ videoName }) => {
       hls.loadSource(hlsSource);
       hls.attachMedia(video);
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = mp4Source;
+      video.src = hlsSource;
     } else {
       video.src = mp4Source;
     }

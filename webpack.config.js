@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   //need to have an entry point for scss main
@@ -30,18 +31,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
-        // use: [
-        //   // fallback to style-loader in development
-        //       //but NODE_ENV is undefined so it will always use MiniCSS
-        //   process.env.NODE_ENV === "development"
-        //     ? "style-loader"
-        //     : MiniCssExtractPlugin.loader,
-        //   "css-loader",
-        //   "sass-loader",
-        // ],
         use: [
-          // don't we want the file to extract in dev & prod?
-          // "style-loader",
           MiniCssExtractPlugin.loader,
           "css-loader",
           "sass-loader",
@@ -73,12 +63,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'), // Path to your HTML template file
       filename: 'index.html', // Output filename for the generated HTML file
-      // Other options for customizing the generated HTML file
     }),
     new webpack.DefinePlugin({
-      'process.env': {
-        PUBLIC_URL: JSON.stringify('/'),
-      }
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.PUBLIC_URL': JSON.stringify('/'),
+      'process.env.CDN_URL': JSON.stringify(process.env.DEV_CDN_URL)
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
@@ -87,7 +76,8 @@ module.exports = {
       patterns: [
         {from: path.resolve(__dirname, 'src/assets/Epubs'), to: 'Epubs'}
       ]
-    })
+    }),
+    new Dotenv()
   ],
   devServer: {
       historyApiFallback: true,
