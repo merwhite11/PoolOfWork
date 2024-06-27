@@ -3,7 +3,9 @@ import Hls from 'hls.js';
 
 const VideoPlayer = ({ videoName }) => {
   const videoRef = useRef(null);
-  const cdnUrl = process.env.DEV_CDN_URL;
+  const cdnUrl = process.env.NODE_ENV === 'development'
+  ? process.env.DEV_CDN_URL
+  : process.env.PROD_CDN_URL;
   const hlsSource = `${cdnUrl}/${videoName}/hls/${videoName}.m3u8`
   // const hlsSource = `https://d2jgbsygfslqso.cloudfront.net/${videoName}/hls/${videoName}.m3u8`;
   // const hlsSource = `https://poolofwork-video-output.s3.us-west-1.amazonaws.com/${videoName}/hls/${videoName}.m3u8`;
