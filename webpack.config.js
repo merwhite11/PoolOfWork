@@ -67,9 +67,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.PUBLIC_URL': JSON.stringify('/'),
-      'process.env.CDN_URL': JSON.stringify(process.env.NODE_ENV === 'development'
-        ? process.env.DEV_CDN_URL
-        : process.env.PROD_CDN_URL)
+      // 'process.env.CDN_URL': JSON.stringify(process.env.NODE_ENV === 'development'
+      //   ? process.env.DEV_CDN_URL
+      //   : process.env.PROD_CDN_URL)
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
