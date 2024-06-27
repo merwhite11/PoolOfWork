@@ -5,13 +5,13 @@ const VideoPlayer = ({ videoName }) => {
 
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false)
+  // const [isPlaying, setIsPlaying] = useState(false)
   const cdnUrl = process.env.CDN_URL
   const hlsSource = `${cdnUrl}/${videoName}/hls/${videoName}.m3u8`
   const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`
   const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`
 
-  const initializeVid = (autoplay) => {
+  const initializeVid = () => {
     const video = videoRef.current;
 
     if (Hls.isSupported()) {
@@ -22,28 +22,28 @@ const VideoPlayer = ({ videoName }) => {
       hlsRef.current = hls;
       hls.loadSource(hlsSource);
       hls.attachMedia(video);
-      if(autoplay) {
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          video.play();
-          setIsPlaying(true);
-        });
-      }
+      // if(autoplay) {
+      //   hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      //     video.play();
+      //     setIsPlaying(true);
+      //   });
+      // }
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = hlsSource;
-      if (autoplay) {
-        video.addEventListener('loadedmetadata', () => {
-          video.play();
-          setIsPlaying(true);
-        });
-      }
+      // if (autoplay) {
+      //   video.addEventListener('loadedmetadata', () => {
+      //     video.play();
+      //     setIsPlaying(true);
+      //   });
+      // }
     } else {
       video.src = mp4Source;
-      if (autoplay) {
-        video.addEventListener('loadedmetadata', () => {
-          video.play();
-          setIsPlaying(true);
-        });
-      }
+      // if (autoplay) {
+      //   video.addEventListener('loadedmetadata', () => {
+      //     video.play();
+      //     setIsPlaying(true);
+      //   });
+      // }
     }
   };
 
@@ -57,13 +57,11 @@ const VideoPlayer = ({ videoName }) => {
   };
 
   const handleOrientationChange = debounce(() => {
-    if (isPlaying) {
-      initializeVid(true)
-    }
+    initializeVid()
   }, 300);
 
   useEffect(() => {
-    initializeVid(false);
+    initializeVid();
     window.addEventListener('orientationchange', handleOrientationChange);
 
     return () => {
