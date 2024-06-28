@@ -1,37 +1,37 @@
-
-.writing-container {
-  // padding-top: 2em;
-}
-.book-card{
+.book-card {
   @media (min-width: 1200px) {
     max-height: 250px;
+    position: relative;
   }
+
   &__img {
     width: 100%;
     max-width: 200px;
     height: auto;
     margin: auto;
-    }
+  }
+
   &__title {
     font-weight: 800 !important;
+
     &:hover,
     &:focus {
       text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
     }
   }
+
   &__body {
     min-height: 0;
     overflow-y: auto;
   }
+
   &__button-box {
     justify-content: space-between;
     width: 160px;
+
     @media (min-width: 1200px) {
       justify-content: center;
       margin-top: 3px;
     }
-  &__button {
-    border: aqua !important;
   }
-  }
-  }
+}

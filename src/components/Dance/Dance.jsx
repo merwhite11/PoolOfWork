@@ -38,6 +38,7 @@ const Dance = () => {
     "malamente",
     "closer",
     "gravity",
+    "pool",
     "comer",
     "her-majesty",
     "bike-freak",

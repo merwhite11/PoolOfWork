@@ -59,16 +59,15 @@ const Reader = ({ doc, title }) => {
     }
   }, [location.pathname]);
 
-
   useEffect(() => {
     if (menuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuOpen]);
 
@@ -173,9 +172,9 @@ const Reader = ({ doc, title }) => {
         )}
         {isSmallScreen && menuOpen && (
           <div className="dropdown-container ms-auto" ref={dropdownRef}>
-        <Dropdown />
-        </div>
-      )}
+            <Dropdown />
+          </div>
+        )}
         <div className="col-md-12 aspect-ratio aspect-ratio-3x4 overflow-hidden d-flex justify-content-center align-items-center">
           <div
             className="reader-container"

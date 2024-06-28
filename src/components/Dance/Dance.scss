@@ -4,13 +4,12 @@
   }
 }
 
-  .slick-prev:before, .slick-next:before {
-    font-size: 30px !important;
-    color: rgba(0,255,255, 0.5) !important;
-  }
+.slick-prev:before,
+.slick-next:before {
+  font-size: 30px !important;
+  color: rgba(0, 255, 255, 0.5) !important;
+}
 
-  .slick-next {
-    right: -15px !important;
-  }
-
-
+.slick-next {
+  right: -15px !important;
+}

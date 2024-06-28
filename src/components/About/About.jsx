@@ -9,13 +9,11 @@ import "react-social-icons/mailto";
 import { FaEnvelope } from "react-icons/fa";
 import "./About.scss";
 
-// import BookList from './BookList.jsx'
-
 const About = () => {
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = process.env.PUBLIC_URL + "Resume/Resume_5.24.pdf"; // Path to your PDF file
-    link.download = "MeredithWhite_Resume.pdf"; // Filename for the downloaded file
+    link.href = process.env.PUBLIC_URL + "Resume/MeredithWhite_Resume.pdf";
+    link.download = "MeredithWhite_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

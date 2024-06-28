@@ -12,10 +12,10 @@ function BookCard({ cover, summary, path, title }) {
   const [epubPath, setEpubPath] = useState("");
   const [aboutModalOpen, setAboutModalOpen] = useState(false);
 
-const toggleAboutModal = (title) => {
-  console.log('title!', title)
-  setAboutModalOpen(!aboutModalOpen);
-}
+  const toggleAboutModal = (title) => {
+    console.log("title!", title);
+    setAboutModalOpen(!aboutModalOpen);
+  };
 
   return (
     <Col xs={10} md={4} lg={4} className="d-flex h-100 justify-content-center">
@@ -39,23 +39,22 @@ const toggleAboutModal = (title) => {
           <div className="book-card__button-box d-flex">
             {!isLargeScreen && (
               <div>
-              <Button className="book-card__button btn btn-light"
-              onClick={(e) => toggleAboutModal()}
-              >About</Button>
-              <AboutModal
-              aboutModalOpen={aboutModalOpen}
-              toggleAboutModal={toggleAboutModal}
-              title={title}
-              summary={summary}
-              ></AboutModal>
+                <Button
+                  className="book-card__button btn btn-light"
+                  onClick={(e) => toggleAboutModal()}
+                >
+                  About
+                </Button>
+                <AboutModal
+                  aboutModalOpen={aboutModalOpen}
+                  toggleAboutModal={toggleAboutModal}
+                  title={title}
+                  summary={summary}
+                ></AboutModal>
               </div>
             )}
             <Link to={`/reader/${path}`}>
-              <Button
-                className="book-card__button btn btn-light"
-              >
-                Read
-              </Button>
+              <Button className="book-card__button btn btn-light">Read</Button>
             </Link>
           </div>
         </Card.Body>

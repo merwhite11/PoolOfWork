@@ -1,15 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Hls from 'hls.js';
+import React, { useEffect, useRef, useState } from "react";
+import Hls from "hls.js";
 
 const VideoPlayer = ({ videoName }) => {
-
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
-  // const [isPlaying, setIsPlaying] = useState(false)
-  const cdnUrl = process.env.CDN_URL
-  const hlsSource = `${cdnUrl}/${videoName}/hls/${videoName}.m3u8`
-  const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`
-  const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`
+  const cdnUrl = process.env.CDN_URL;
+  const hlsSource = `${cdnUrl}/${videoName}/hls/${videoName}.m3u8`;
+  const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`;
+  const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`;
 
   const initializeVid = () => {
     const video = videoRef.current;
@@ -22,28 +20,10 @@ const VideoPlayer = ({ videoName }) => {
       hlsRef.current = hls;
       hls.loadSource(hlsSource);
       hls.attachMedia(video);
-      // if(autoplay) {
-      //   hls.on(Hls.Events.MANIFEST_PARSED, () => {
-      //     video.play();
-      //     setIsPlaying(true);
-      //   });
-      // }
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = hlsSource;
-      // if (autoplay) {
-      //   video.addEventListener('loadedmetadata', () => {
-      //     video.play();
-      //     setIsPlaying(true);
-      //   });
-      // }
     } else {
       video.src = mp4Source;
-      // if (autoplay) {
-      //   video.addEventListener('loadedmetadata', () => {
-      //     video.play();
-      //     setIsPlaying(true);
-      //   });
-      // }
     }
   };
 
@@ -57,30 +37,24 @@ const VideoPlayer = ({ videoName }) => {
   };
 
   const handleOrientationChange = debounce(() => {
-    initializeVid()
+    initializeVid();
   }, 300);
 
   useEffect(() => {
     initializeVid();
-    window.addEventListener('orientationchange', handleOrientationChange);
+    window.addEventListener("orientationchange", handleOrientationChange);
 
     return () => {
       if (hlsRef.current) {
         hlsRef.current.destroy();
       }
-      window.removeEventListener('orientationchange', handleOrientationChange);
+      window.removeEventListener("orientationchange", handleOrientationChange);
     };
   }, [hlsSource, mp4Source]);
 
-
   return (
     <div>
-      <video
-        ref={videoRef}
-        controls
-        className="w-100"
-        poster={thumbnailSource}
-      >
+      <video ref={videoRef} controls className="w-100" poster={thumbnailSource}>
         Your browser does not support the video tag.
       </video>
     </div>

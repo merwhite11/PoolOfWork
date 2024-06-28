@@ -1,11 +1,10 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Dropdown.scss";
 
 const Dropdown = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
 
   const handleNavigation = (event, targetSection) => {
     event.preventDefault();
@@ -42,7 +41,7 @@ const Dropdown = () => {
         About
       </a>
     </div>
-  )
+  );
 };
 
 export default Dropdown;

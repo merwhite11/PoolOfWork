@@ -7,7 +7,6 @@ const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   const handleNavigation = (event, targetSection) => {
     event.preventDefault();
     navigate("/", { state: { targetSection } });
@@ -32,7 +31,6 @@ const NavBar = () => {
               location.pathname === "/" ? "ms-md-auto" : "ms-auto"
             }`}
           >
-
             {location.pathname !== "/" && (
               <a
                 className="navbar__link fw-bold py-1 px-0"
