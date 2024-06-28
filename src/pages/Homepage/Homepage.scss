@@ -1,51 +1,40 @@
 @import '../../scss/mixins';
 
 $background-image-url: url('../../assets/cover_bg.png');
-$accent-blue:#96e7e8;
+$accent-blue: #96e7e8;
+$background-blue: aliceblue;
+$white: whitesmoke;
+
 .outer {
-  background-color: aliceblue;
+  background-color: $background-blue;
 }
+
 .cover {
   background-image: $background-image-url;
   background-size: cover;
   background-position: 40% 3%;
   background-repeat: no-repeat;
-  color: whitesmoke;
+  color: $white;
+
   &__container {
     height: 100vh;
     max-width: 60em;
   }
-  &__navbar {
-    font-size: 1.5em;
-    text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
-  }
-  &__navbar-link {
-    color: whitesmoke;
-    margin-left: 1rem;
-    text-decoration: none;
-    &:hover,
-    &:focus {
-      border-bottom-color: black;
-      font-weight: 700;
-      color: #96e7e8;
-      text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
-      filter: drop-shadow(0 .05rem .5rem rgba(226, 233, 234, 0.61));
-    }
-  }
+
   &__header-container {
     height: 100vh;
     position: relative;
   }
+
   &__header {
     font-size: 3em;
     position: absolute;
     top: 30%;
-    // text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
-    @include text3d(
-    adjust-color($primarycolour, $lightness: -8%),
-    $depth: 8,
-    $primaryshadowcolour: adjust-color($primarycolour, $lightness: -10%, $saturation: +20%),
-    $shadowopacity: .3);
+    @include text3d(adjust-color($primarycolour, $lightness: -8%),
+      $depth: 8,
+      $primaryshadowcolour: adjust-color($primarycolour, $lightness: -10%, $saturation: +20%),
+      $shadowopacity: .3);
+
     @media (min-width: 768px) {
       font-size: 4em;
     }
@@ -53,9 +42,5 @@ $accent-blue:#96e7e8;
 }
 
 .content {
-  background-color: aliceblue;
+  background-color: $background-blue;
 }
-
-
-
-
