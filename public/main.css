@@ -20,22 +20,6 @@
   height: 100vh;
   max-width: 60em;
 }
-.cover__navbar {
-  font-size: 1.5em;
-  text-shadow: 0 0.05rem 0.1rem rgba(25, 15, 77, 0.799);
-}
-.cover__navbar-link {
-  color: whitesmoke;
-  margin-left: 1rem;
-  text-decoration: none;
-}
-.cover__navbar-link:hover, .cover__navbar-link:focus {
-  border-bottom-color: black;
-  font-weight: 700;
-  color: #96e7e8;
-  text-shadow: 0 0.05rem 0.1rem rgba(25, 15, 77, 0.799);
-  filter: drop-shadow(0 0.05rem 0.5rem rgba(226, 233, 234, 0.61));
-}
 .cover__header-container {
   height: 100vh;
   position: relative;
@@ -44,6 +28,7 @@
   font-size: 3em;
   position: absolute;
   top: 30%;
+  text-shadow: 0 1px 0 #6c6c6c, 0 2px 0 #676767, 0 3px 0 #616161, 0 4px 0 #5c5c5c, 0 5px 0 #575757, 0 6px 0 #525252, 0 7px 0 #4d4d4d, 0 8px 0 #484848, 0 0 5px rgba(123, 82, 82, 0.05), 0 -1px 3px rgba(123, 82, 82, 0.2), 0 9px 9px rgba(123, 82, 82, 0.3), 0 12px 12px rgba(123, 82, 82, 0.3), 0 15px 15px rgba(123, 82, 82, 0.3);
 }
 @media (min-width: 768px) {
   .cover__header {
@@ -60,11 +45,13 @@
 .navbar {
   font-size: 1.5em;
   text-shadow: 0 0.05rem 0.1rem rgba(25, 15, 77, 0.799);
+  border-bottom: solid 2px white;
 }
 .navbar__link {
   color: whitesmoke;
   margin-left: 1rem;
   text-decoration: none;
+  transition: ease-in-out;
 }
 .navbar__link:hover, .navbar__link:focus {
   border-bottom-color: black;
@@ -72,7 +59,6 @@
   color: #96e7e8;
   text-shadow: 0 0.05rem 0.1rem rgba(25, 15, 77, 0.799);
   filter: drop-shadow(0 0.05rem 0.5rem rgba(226, 233, 234, 0.61));
-  box-shadow: 0 -5px 0px #fff inset;
 }
 
 .dropdown__menu {
@@ -95,7 +81,7 @@
   text-decoration: none;
   color: #333;
 }
-.dropdown__menu__item:hover {
+.dropdown__menu__item:hover, .dropdown__menu__item:focus {
   background-color: #96e7e8;
 }
 /*!**************************************************************************************************************************!*\
@@ -139,12 +125,19 @@
 .dropdown-container {
   width: 50px;
 }
+/*!************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/AboutModal/AboutModal.scss ***!
+  \************************************************************************************************************************************/
+.modal {
+  top: 10% !important;
+}
 /*!******************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Writing/Writing.scss ***!
   \******************************************************************************************************************************/
 @media (min-width: 1200px) {
   .book-card {
     max-height: 250px;
+    position: relative;
   }
 }
 .book-card__img {
@@ -173,9 +166,6 @@
     margin-top: 3px;
   }
 }
-.book-card__button-box__button {
-  border: aqua !important;
-}
 /*!**************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Dance/Dance.scss ***!
   \**************************************************************************************************************************/
@@ -183,7 +173,8 @@
   padding: 1em;
 }
 
-.slick-prev:before, .slick-next:before {
+.slick-prev:before,
+.slick-next:before {
   font-size: 30px !important;
   color: rgba(0, 255, 255, 0.5) !important;
 }
@@ -206,8 +197,9 @@
   margin-top: 3em;
 }
 .about__text {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
   font-weight: 700;
-  text-shadow: 0 0.05rem 0.1rem rgb(25, 15, 77);
 }
 @media (min-width: 424px) {
   .about__text {
@@ -224,6 +216,7 @@
 }
 .about__icon:hover, .about__icon:focus {
   filter: drop-shadow(0 0.05rem 0.5rem rgba(226, 233, 234, 0.61));
+  transition: ease-in-out;
 }
 .about__resume-container {
   height: 50px;
