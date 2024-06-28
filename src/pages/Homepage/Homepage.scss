@@ -1,0 +1,46 @@
+@import '../../scss/mixins';
+
+$background-image-url: url('../../assets/cover_bg.png');
+$accent-blue: #96e7e8;
+$background-blue: aliceblue;
+$white: whitesmoke;
+
+.outer {
+  background-color: $background-blue;
+}
+
+.cover {
+  background-image: $background-image-url;
+  background-size: cover;
+  background-position: 40% 3%;
+  background-repeat: no-repeat;
+  color: $white;
+
+  &__container {
+    height: 100vh;
+    max-width: 60em;
+  }
+
+  &__header-container {
+    height: 100vh;
+    position: relative;
+  }
+
+  &__header {
+    font-size: 3em;
+    position: absolute;
+    top: 30%;
+    @include text3d(adjust-color($primarycolour, $lightness: -8%),
+      $depth: 8,
+      $primaryshadowcolour: adjust-color($primarycolour, $lightness: -10%, $saturation: +20%),
+      $shadowopacity: .3);
+
+    @media (min-width: 768px) {
+      font-size: 4em;
+    }
+  }
+}
+
+.content {
+  background-color: $background-blue;
+}

@@ -1,8 +1,7 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './App.js';
+import './scss/main.scss'
 
 const container = document.getElementById('app');
 const root = createRoot(container);

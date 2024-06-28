@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Estonia&family=Gruppo&family=Nunito:ital,wght@1,900&family=Questrial&display=swap');
+$body-bg: #EFF4F6;
+$custom-font-family: 'Gruppo', sans-serif;
+$font-family-base: $custom-font-family;
+$custom-nav-font-size: 1.5em;
+$custom-h1-font-size: 3em;
+$accent-blue: rgba(0,255,255, 0.5);
+@import "../../node_modules/bootstrap/scss/bootstrap";
+$btn-close-sm-width: 0.25em;
+$btn-close-sm-height: $btn-close-sm-width;
+
+.btn-close-sm {
+  @extend .btn-close;
+  width: $btn-close-sm-width;
+  height: $btn-close-sm-height;
+  float: inline-end;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+
+
+// body {
+//   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+//   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+//   font-size: 16px;
+//   background-color: #EFF4F6;
+// }
+
+
