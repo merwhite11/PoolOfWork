@@ -12,28 +12,27 @@ import "./About.scss";
 // import BookList from './BookList.jsx'
 
 const About = () => {
-
   const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = process.env.PUBLIC_URL + 'Resume/Resume_5.24.pdf'; // Path to your PDF file
-    link.download = 'MeredithWhite_Resume.pdf'; // Filename for the downloaded file
+    const link = document.createElement("a");
+    link.href = process.env.PUBLIC_URL + "Resume/Resume_5.24.pdf"; // Path to your PDF file
+    link.download = "MeredithWhite_Resume.pdf"; // Filename for the downloaded file
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  };
   return (
     <section id="about-section" className="about">
       <Container className="about__container">
         <h1 className="display-2 d-flex flex-column justify-content-center text-center text-md-start">
           About
         </h1>
-        <div className="text-center text-xl">
-          <p className="about__text mt-2">
+        <div className="about__text-container d-flex col-md-8 col-lg-6 justify-content-center m-auto text-center text-xl">
+          <div className="about__text mt-2 p-3">
             Hydrophilic, linguophile living in the 415 <br />
             Writes, if not code, then probably prose <br />
             Farmer at heart, dancer in spirit <br />
             Software engineer by design
-          </p>
+          </div>
         </div>
         <div className="about__social-links d-flex gap-4 mt-4 justify-content-center">
           <SocialIcon
@@ -46,13 +45,11 @@ const About = () => {
             className="about__icon"
             url="https://github.com/merwhite11"
           />
-          {/* <SocialIcon
-            bgColor="#96e7e8"
-            className="about__icon"
-            url="https://www.youtube.com/@meredithwhite11"
-          /> */}
-          <div className="about__resume-container about__icon" onClick={handleDownload}>
-          <FaRegFileAlt size="1.5rem"/>
+          <div
+            className="about__resume-container about__icon"
+            onClick={handleDownload}
+          >
+            <FaRegFileAlt size="1.5rem" />
           </div>
           <SocialIcon
             bgColor="#96e7e8"
