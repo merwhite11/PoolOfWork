@@ -16,8 +16,6 @@ const VideoPlayer = ({ videoName }) => {
     if(hlsRef.current) {
       hlsRef.current.destroy();
     }
-
-
     if (Hls.isSupported()) {
       if (hlsRef.current) {
         hlsRef.current.destroy();
@@ -25,8 +23,8 @@ const VideoPlayer = ({ videoName }) => {
       const hls = new Hls();
       hlsRef.current = hls;
       hls.loadSource(hlsSource);
-      hls.attachMedia(video);
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      hls.attachMedia(videoRef.current);
+    } else if (videoRef.current.canPlayType("application/vnd.apple.mpegurl")) {
       // video.src = hlsSource;
       videoRef.current.src = hlsSource;
     } else {
