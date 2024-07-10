@@ -9,8 +9,14 @@ const VideoPlayer = ({ videoName }) => {
   const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`;
   const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`;
 
+  // const initializeVid = () => {
+  //   const video = videoRef.current;
+
   const initializeVid = () => {
-    const video = videoRef.current;
+    if(hlsRef.current) {
+      hlsRef.current.destroy();
+    }
+
 
     if (Hls.isSupported()) {
       if (hlsRef.current) {
@@ -21,9 +27,11 @@ const VideoPlayer = ({ videoName }) => {
       hls.loadSource(hlsSource);
       hls.attachMedia(video);
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = hlsSource;
+      // video.src = hlsSource;
+      videoRef.current.src = hlsSource;
     } else {
-      video.src = mp4Source;
+      // video.src = mp4Source;
+      videoRef.current.src = mp4Source;
     }
   };
 
