@@ -11,6 +11,7 @@ const Dance = () => {
   const [slidesToShow, setSlidesToShow] = useState(3);
 
   useEffect(() => {
+    console.log('DANCE USEEFFECT')
     const handleResize = () => {
       if (window.innerWidth < 500) {
         setSlidesToShow(1);
@@ -24,15 +25,15 @@ const Dance = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [slidesToShow]);
 
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setSlidesToShow(1);
-    } else {
-      setSlidesToShow(3);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window.innerWidth < 768) {
+  //     setSlidesToShow(1);
+  //   } else {
+  //     setSlidesToShow(3);
+  //   }
+  // }, []);
 
   const vids = [
     "malamente",
@@ -52,6 +53,7 @@ const Dance = () => {
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
+    lazyLoad: "ondemand"
   };
 
   return (
