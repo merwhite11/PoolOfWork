@@ -18,49 +18,103 @@ const VideoPlayer = ({ videoName }) => {
   const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`;
 
   // const initializeVid = () => {
-    // if(hlsRef.current) {
-    //   hlsRef.current.destroy();
-    // }
+  // if(hlsRef.current) {
+  //   hlsRef.current.destroy();
+  // }
 
-  const initializeVid = useCallback(() => {
-    console.log('INITIALIZE CALLED')
-    const video = videoRef.current;
+  const initializeVid = useCallback(
+    (currentTime = 0, isPlaying = false) => {
+      console.log("INITIALIZE CALLED");
+      const video = videoRef.current;
 
-    if (Hls.isSupported()) {
-      // if (hlsRef.current) {
-      //   hlsRef.current.destroy();
-      // }
-      const hls = new Hls();
-      hlsRef.current = hls;
-      hls.loadSource(hlsSource);
-      hls.attachMedia(video);
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = hlsSource;
-      // videoRef.current.src = hlsSource;
-    } else {
-      video.src = mp4Source;
-      // videoRef.current.src = mp4Source;
-    }
-  }, [hlsSource, mp4Source]);
+      if (Hls.isSupported()) {
+        // if (hlsRef.current) {
+        //   hlsRef.current.destroy();
+        // }
+        const hls = new Hls({
+          maxBufferLength: 30,
+        });
+
+        hlsRef.current = hls;
+        hls.loadSource(hlsSource);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.currentTime = currentTime;
+          if (isPlaying) {
+            video.play();
+          }
+        });
+        hlsRef.current = hls;
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = hlsSource;
+        video.currentTime = currentTime;
+        if (isPlaying) {
+          video.play();
+        }
+        // videoRef.current.src = hlsSource;
+      } else {
+        video.src = mp4Source;
+        video.currentTime = currentTime;
+        if (isPlaying) {
+          video.play();
+          // videoRef.current.src = mp4Source;
+        }
+      }
+    },
+    [hlsSource, mp4Source]
+  );
 
   useEffect(() => {
-    console.log('USE EFFECT CALLED')
+    console.log("USE EFFECT CALLED");
+    const video = videoRef.current;
+    //initial mount
     initializeVid();
+
     const handleOrientationChange = debounce(() => {
       initializeVid();
     }, 300);
+
+    const handleFullscreenChange = () => {
+      const video = videoRef.current;
+      const currentTime = video.currentTime;
+      const isPlaying = !video.paused;
+
+      if (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+      ) {
+        // Entered fullscreen
+        initializeVid(currentTime, isPlaying);
+      } else {
+        // Exited fullscreen
+        initializeVid(currentTime, isPlaying);
+      }
+    };
+
     window.addEventListener("orientationchange", handleOrientationChange);
+    video.addEventListener("fullscreenchange", handleFullscreenChange);
+    video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    video.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    video.addEventListener("msfullscreenchange", handleFullscreenChange);
 
     return () => {
-      console.log('WILL DESTROY')
+      console.log("WILL DESTROY");
       if (hlsRef.current) {
         hlsRef.current.destroy();
       }
       window.removeEventListener("orientationchange", handleOrientationChange);
+      video.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      video.removeEventListener("msfullscreenchange", handleFullscreenChange);
     };
-  }, [initializeVid]);
+  }, [initializeVid, handleFullscreenChange]);
 
-  console.log('RENDERED')
+  console.log("RENDERED");
   return (
     <div>
       <video ref={videoRef} controls className="w-100" poster={thumbnailSource}>
