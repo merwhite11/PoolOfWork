@@ -53,19 +53,24 @@ const VideoPlayer = ({ videoName }) => {
   }, [hlsSource, mp4Source]);
 
   const handleFullscreenChange = () => {
+    const video = videoRef.current;
     if (document.fullscreenElement || document.webkitFullscreenElement) {
-      // Fullscreen mode
-      if (!videoRef.current.src) {
-        initializeVid();
-      } else {
-        videoRef.current.play();
-      }
+      video.pause();
+      video.currentTime = video.currentTime; // Attempt to preserve the current time
+      setTimeout(() => {
+        video.play().catch(error => {
+          console.error("Error playing video:", error);
+        });
+      }, 300); // Delay to ensure resources are loaded
     }
   };
 
-  const handleLoadedMetadata = () => {
+  const handleCanPlay = () => {
+    const video = videoRef.current;
     if (document.fullscreenElement || document.webkitFullscreenElement) {
-      videoRef.current.play();
+      video.play().catch(error => {
+        console.error("Error playing video:", error);
+      });
     }
   };
 
@@ -85,7 +90,7 @@ const VideoPlayer = ({ videoName }) => {
       initializeVid();
     }, 300);
 
-    videoRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
+    videoRef.current.addEventListener('canplay', handleCanPlay);
     window.addEventListener("orientationchange", handleOrientationChange);
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
@@ -94,7 +99,7 @@ const VideoPlayer = ({ videoName }) => {
       if (hlsRef.current) {
         hlsRef.current.destroy();
       }
-      videoRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      videoRef.current.removeEventListener('canplay', handleCanPlay);
       window.removeEventListener("orientationchange", handleOrientationChange);
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
       document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
