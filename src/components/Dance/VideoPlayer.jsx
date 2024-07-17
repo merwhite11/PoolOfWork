@@ -28,9 +28,9 @@ const VideoPlayer = ({ videoName }) => {
       const video = videoRef.current;
 
       if (Hls.isSupported()) {
-        // if (hlsRef.current) {
-        //   hlsRef.current.destroy();
-        // }
+        if (hlsRef.current) {
+          hlsRef.current.destroy();
+        }
         const hls = new Hls({
           maxBufferLength: 30,
         });
