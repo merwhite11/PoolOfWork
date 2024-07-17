@@ -1,6 +1,14 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Hls from "hls.js";
 
+const debounce = (func, wait) => {
+  let timeout;
+  return function (...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+};
 const VideoPlayer = ({ videoName }) => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
@@ -9,103 +17,101 @@ const VideoPlayer = ({ videoName }) => {
   const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`;
   const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`;
 
-  const initializeVid = useCallback(() => {
-    const video = videoRef.current;
+  // const initializeVid = () => {
+  // if(hlsRef.current) {
+  //   hlsRef.current.destroy();
+  // }
 
-    if (Hls.isSupported()) {
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-      }
-      const hls = new Hls({
-        debug: false,
-        xhrSetup: (xhr, url) => {
-          xhr.withCredentials = false;
-        },
-        maxBufferLength: 30,
-      });
+  const initializeVid = useCallback(
+    (currentTime = 0, isPlaying = false) => {
+      console.log("INITIALIZE CALLED");
+      const video = videoRef.current;
 
-      hls.on(Hls.Events.ERROR, (event, data) => {
-        if (data.fatal) {
-          switch (data.type) {
-            case Hls.ErrorTypes.NETWORK_ERROR:
-              console.error('Fatal network error encountered, trying to recover');
-              hls.startLoad();
-              break;
-            case Hls.ErrorTypes.MEDIA_ERROR:
-              console.error('Fatal media error encountered, trying to recover');
-              hls.recoverMediaError();
-              break;
-            default:
-              hls.destroy();
-              break;
-          }
-        }
-      });
-
-      hls.loadSource(hlsSource);
-      hls.attachMedia(video);
-      hlsRef.current = hls;
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = hlsSource;
-    } else {
-      video.src = mp4Source;
-    }
-  }, [hlsSource, mp4Source]);
-
-  const handleFullscreenChange = () => {
-    const video = videoRef.current;
-    if (document.fullscreenElement || document.webkitFullscreenElement) {
-      video.pause();
-      video.currentTime = video.currentTime; // Attempt to preserve the current time
-      setTimeout(() => {
-        video.play().catch(error => {
-          console.error("Error playing video:", error);
+      if (Hls.isSupported()) {
+        // if (hlsRef.current) {
+        //   hlsRef.current.destroy();
+        // }
+        const hls = new Hls({
+          maxBufferLength: 30,
         });
-      }, 300); // Delay to ensure resources are loaded
-    }
-  };
 
-  const handleCanPlay = () => {
-    const video = videoRef.current;
-    if (document.fullscreenElement || document.webkitFullscreenElement) {
-      video.play().catch(error => {
-        console.error("Error playing video:", error);
-      });
-    }
-  };
-
-  const debounce = (func, wait) => {
-    let timeout;
-    return function (...args) {
-      const context = this;
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(context, args), wait);
-    };
-  };
+        hlsRef.current = hls;
+        hls.loadSource(hlsSource);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.currentTime = currentTime;
+          if (isPlaying) {
+            video.play();
+          }
+        });
+        hlsRef.current = hls;
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = hlsSource;
+        video.currentTime = currentTime;
+        if (isPlaying) {
+          video.play();
+        }
+        // videoRef.current.src = hlsSource;
+      } else {
+        video.src = mp4Source;
+        video.currentTime = currentTime;
+        if (isPlaying) {
+          video.play();
+          // videoRef.current.src = mp4Source;
+        }
+      }
+    },
+    [hlsSource, mp4Source]
+  );
 
   useEffect(() => {
+    console.log("USE EFFECT CALLED");
+    const video = videoRef.current;
+    //initial mount
     initializeVid();
 
     const handleOrientationChange = debounce(() => {
-      initializeVid();
+      initializeVid(currentTime, isPlaying);
     }, 300);
 
-    videoRef.current.addEventListener('canplay', handleCanPlay);
+    const handleFullscreenChange = () => {
+      const video = videoRef.current;
+      const currentTime = video.currentTime;
+      const isPlaying = !video.paused;
+
+      if (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+      ) {
+        // Entered fullscreen
+        initializeVid(currentTime, isPlaying);
+      } else {
+        // Exited fullscreen
+        initializeVid(currentTime, isPlaying);
+      }
+    };
+
     window.addEventListener("orientationchange", handleOrientationChange);
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    video.addEventListener("fullscreenchange", handleFullscreenChange);
+    video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    video.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    video.addEventListener("msfullscreenchange", handleFullscreenChange);
 
     return () => {
+      console.log("WILL DESTROY");
       if (hlsRef.current) {
         hlsRef.current.destroy();
       }
-      videoRef.current.removeEventListener('canplay', handleCanPlay);
       window.removeEventListener("orientationchange", handleOrientationChange);
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      video.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      video.removeEventListener("msfullscreenchange", handleFullscreenChange);
     };
   }, [initializeVid]);
 
+  console.log("RENDERED");
   return (
     <div>
       <video ref={videoRef} controls className="w-100" poster={thumbnailSource}>
