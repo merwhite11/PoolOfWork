@@ -71,7 +71,7 @@ const VideoPlayer = ({ videoName }) => {
     initializeVid();
 
     const handleOrientationChange = debounce(() => {
-      initializeVid();
+      initializeVid(currentTime, isPlaying);
     }, 300);
 
     const handleFullscreenChange = () => {
