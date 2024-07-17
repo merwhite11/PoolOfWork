@@ -58,7 +58,7 @@ const VideoPlayer = ({ videoName }) => {
       }
       window.removeEventListener("orientationchange", handleOrientationChange);
     };
-  }, []);
+  }, [initializeVid]);
 
   console.log('RENDERED')
   return (
