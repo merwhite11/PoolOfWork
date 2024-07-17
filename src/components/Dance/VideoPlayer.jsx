@@ -105,14 +105,11 @@ const VideoPlayer = ({ videoName }) => {
         hlsRef.current.destroy();
       }
       window.removeEventListener("orientationchange", handleOrientationChange);
-      video.removeEventListener(
-        "webkitfullscreenchange",
-        handleFullscreenChange
-      );
+      video.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
       video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
       video.removeEventListener("msfullscreenchange", handleFullscreenChange);
     };
-  }, [initializeVid, handleFullscreenChange]);
+  }, [initializeVid]);
 
   console.log("RENDERED");
   return (
