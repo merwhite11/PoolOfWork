@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Hls from "hls.js";
 
+const debounce = (func, wait) => {
+  let timeout;
+  return function (...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+};
 const VideoPlayer = ({ videoName }) => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
@@ -19,37 +27,11 @@ const VideoPlayer = ({ videoName }) => {
     const video = videoRef.current;
 
     if (Hls.isSupported()) {
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-      }
-      const hls = new Hls({
-        debug: false, // Enable debugging
-        xhrSetup: (xhr, url) => {
-          xhr.withCredentials = false; // Adjust if needed
-        },
-        maxBufferLength: 30, // Adjust buffer settings if needed
-      });
-
-      hls.on(Hls.Events.ERROR, (event, data) => {
-        if (data.fatal) {
-          switch (data.type) {
-            case Hls.ErrorTypes.NETWORK_ERROR:
-              console.error('Fatal network error encountered, trying to recover');
-              hls.startLoad();
-              break;
-            case Hls.ErrorTypes.MEDIA_ERROR:
-              console.error('Fatal media error encountered, trying to recover');
-              hls.recoverMediaError();
-              break;
-            default:
-              hls.destroy();
-              break;
-          }
-        }
-      });
-
-      // const hls = new Hls();
-      // hlsRef.current = hls;
+      // if (hlsRef.current) {
+      //   hlsRef.current.destroy();
+      // }
+      const hls = new Hls();
+      hlsRef.current = hls;
       hls.loadSource(hlsSource);
       hls.attachMedia(video);
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
@@ -59,17 +41,7 @@ const VideoPlayer = ({ videoName }) => {
       video.src = mp4Source;
       // videoRef.current.src = mp4Source;
     }
-  });
-
-  const debounce = (func, wait) => {
-    let timeout;
-    return function (...args) {
-      const context = this;
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(context, args), wait);
-    };
-  };
-
+  }, [hlsSource, mp4Source]);
 
   useEffect(() => {
     console.log('USE EFFECT CALLED')
@@ -86,7 +58,7 @@ const VideoPlayer = ({ videoName }) => {
       }
       window.removeEventListener("orientationchange", handleOrientationChange);
     };
-  }, [initializeVid]);
+  }, []);
 
   console.log('RENDERED')
   return (

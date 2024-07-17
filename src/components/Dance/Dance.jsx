@@ -8,32 +8,30 @@ import "./Dance.scss";
 import VideoPlayer from "./VideoPlayer.jsx";
 
 const Dance = () => {
-  const [slidesToShow, setSlidesToShow] = useState(3);
+  const [slidesToShow, setSlidesToShow] = useState(null);
+
+  const calculateSlidesToShow = () => {
+    if (window.innerWidth < 500) {
+      return 1;
+    } else if (window.innerWidth < 780) {
+      return 2;
+    } else {
+      return 3;
+    }
+  };
 
   useEffect(() => {
     console.log('DANCE USEEFFECT')
+    setSlidesToShow(calculateSlidesToShow())
+
     const handleResize = () => {
-      if (window.innerWidth < 500) {
-        setSlidesToShow(1);
-      } else if (window.innerWidth < 780) {
-        setSlidesToShow(2);
-      } else {
-        setSlidesToShow(3);
-      }
-    };
+      setSlidesToShow(calculateSlidesToShow());
+    }
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [slidesToShow]);
-
-  // useEffect(() => {
-  //   if (window.innerWidth < 768) {
-  //     setSlidesToShow(1);
-  //   } else {
-  //     setSlidesToShow(3);
-  //   }
-  // }, []);
+  }, []);
 
   const vids = [
     "malamente",
