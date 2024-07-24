@@ -114,7 +114,7 @@ const VideoPlayer = ({ videoName }) => {
   console.log("RENDERED");
   return (
     <div>
-      <video ref={videoRef} controls className="w-100" poster={thumbnailSource}>
+      <video ref={videoRef} playsinline controls className="w-100" poster={thumbnailSource}>
         Your browser does not support the video tag.
       </video>
     </div>
