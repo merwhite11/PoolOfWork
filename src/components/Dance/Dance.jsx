@@ -9,7 +9,7 @@ import VideoPlayer from "./VideoPlayer.jsx";
 
 const Dance = () => {
   const [slidesToShow, setSlidesToShow] = useState(null);
-  const [currentPlaying, setCurrentPlaying] = useState(null);
+  const [currentPlayingVideo, setCurrentPlayingVideo] = useState(null);
 
   const calculateSlidesToShow = () => {
     if (window.innerWidth < 500) {
@@ -19,6 +19,13 @@ const Dance = () => {
     } else {
       return 3;
     }
+  };
+
+  const handlePlay = (videoRef) => {
+    if (currentPlayingVideo && currentPlayingVideo !== videoRef) {
+      currentPlayingVideo.pause();
+    }
+    setCurrentPlayingVideo(videoRef)
   };
 
   useEffect(() => {
@@ -34,13 +41,7 @@ const Dance = () => {
     };
   }, []);
 
-  const handlePlay = (videoRef) => {
-    console.log('HANDLEPLAY CALLED', videoRef)
-    if (currentPlaying && currentPlaying !== videoRef) {
-      currentPlaying.pause();
-    }
-    setCurrentPlaying(videoRef)
-  }
+
 
   const vids = [
     "malamente",

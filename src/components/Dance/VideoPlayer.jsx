@@ -86,9 +86,25 @@ const VideoPlayer = ({ videoName, onPlay }) => {
     };
 
     const handlePlay = () => {
+      console.log('CURRENTVID', video)
       onPlay(video);
     }
 
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting && !video.paused) {
+          video.pause();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.25, // Adjust the threshold as needed
+    });
+
+    observer.observe(video);
+
+    video.addEventListener("play", handlePlay);
     window.addEventListener("orientationchange", handleOrientationChange);
     video.addEventListener("fullscreenchange", handleFullscreenChange);
     video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
@@ -100,6 +116,7 @@ const VideoPlayer = ({ videoName, onPlay }) => {
       if (hlsRef.current) {
         hlsRef.current.destroy();
       }
+      video.removeEventListener("play", handlePlay);
       window.removeEventListener("orientationchange", handleOrientationChange);
       video.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
       video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
@@ -107,7 +124,7 @@ const VideoPlayer = ({ videoName, onPlay }) => {
     };
   }, [initializeVid]);
 
-  console.log("RENDERED");
+  console.log("video player rendered", videoName);
   return (
     <div>
       <video ref={videoRef} playsInline controls className="w-100" poster={thumbnailSource}>
