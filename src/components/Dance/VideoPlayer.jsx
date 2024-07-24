@@ -9,7 +9,7 @@ const debounce = (func, wait) => {
     timeout = setTimeout(() => func.apply(context, args), wait);
   };
 };
-const VideoPlayer = ({ videoName }) => {
+const VideoPlayer = ({ videoName, onPlay }) => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
   const cdnUrl = process.env.CDN_URL;
@@ -17,20 +17,12 @@ const VideoPlayer = ({ videoName }) => {
   const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`;
   const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`;
 
-  // const initializeVid = () => {
-  // if(hlsRef.current) {
-  //   hlsRef.current.destroy();
-  // }
-
   const initializeVid = useCallback(
     (currentTime = 0, isPlaying = false) => {
       console.log("INITIALIZE CALLED");
       const video = videoRef.current;
 
       if (Hls.isSupported()) {
-        // if (hlsRef.current) {
-        //   hlsRef.current.destroy();
-        // }
         const hls = new Hls({
           maxBufferLength: 30,
         });
@@ -93,6 +85,10 @@ const VideoPlayer = ({ videoName }) => {
       }
     };
 
+    const handlePlay = () => {
+      onPlay(video);
+    }
+
     window.addEventListener("orientationchange", handleOrientationChange);
     video.addEventListener("fullscreenchange", handleFullscreenChange);
     video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
@@ -114,7 +110,7 @@ const VideoPlayer = ({ videoName }) => {
   console.log("RENDERED");
   return (
     <div>
-      <video ref={videoRef} playsinline controls className="w-100" poster={thumbnailSource}>
+      <video ref={videoRef} playsInline controls className="w-100" poster={thumbnailSource}>
         Your browser does not support the video tag.
       </video>
     </div>

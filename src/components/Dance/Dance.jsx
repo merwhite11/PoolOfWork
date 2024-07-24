@@ -9,6 +9,7 @@ import VideoPlayer from "./VideoPlayer.jsx";
 
 const Dance = () => {
   const [slidesToShow, setSlidesToShow] = useState(null);
+  const [currentPlaying, setCurrentPlaying] = useState(null);
 
   const calculateSlidesToShow = () => {
     if (window.innerWidth < 500) {
@@ -32,6 +33,14 @@ const Dance = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handlePlay = (videoRef) => {
+    console.log('HANDLEPLAY CALLED', videoRef)
+    if (currentPlaying && currentPlaying !== videoRef) {
+      currentPlaying.pause();
+    }
+    setCurrentPlaying(videoRef)
+  }
 
   const vids = [
     "malamente",
@@ -68,7 +77,7 @@ const Dance = () => {
             <div key={vid}>
               <div className="video-container">
                 <LazyLoad height={200} offset={100} once>
-                  <VideoPlayer videoName={vid} />
+                  <VideoPlayer videoName={vid} onPlay={handlePlay}/>
                 </LazyLoad>
               </div>
             </div>
