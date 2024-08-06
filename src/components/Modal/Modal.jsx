@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Selections from "../Selections/Selections.jsx";
 import "./Modal.scss";
 
@@ -12,9 +12,12 @@ const Modal = ({
   setSelections,
   title,
 }) => {
+
+
   const handleFont = () => {
     setLargeText(!largeText);
   };
+
 
   return (
     <div>

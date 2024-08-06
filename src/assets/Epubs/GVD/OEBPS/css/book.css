@@ -80,7 +80,12 @@ sup{
 	font-size: 133.333%;
 	font-family: "Garamond";
 	text-align: center;
-}
+	}
+	@media (max-width: 600px) {
+		.p5 {
+			font-size: 80%;
+		}
+	}
 .p6{
 	font-weight: 700;
 	font-size: 133.333%;
