@@ -19,7 +19,6 @@ const VideoPlayer = ({ videoName, onPlay }) => {
 
   const initializeVid = useCallback(
     (currentTime = 0, isPlaying = false) => {
-      console.log("INITIALIZE CALLED");
       const video = videoRef.current;
 
       if (Hls.isSupported()) {
@@ -43,13 +42,11 @@ const VideoPlayer = ({ videoName, onPlay }) => {
         if (isPlaying) {
           video.play();
         }
-        // videoRef.current.src = hlsSource;
       } else {
         video.src = mp4Source;
         video.currentTime = currentTime;
         if (isPlaying) {
           video.play();
-          // videoRef.current.src = mp4Source;
         }
       }
     },
@@ -57,7 +54,6 @@ const VideoPlayer = ({ videoName, onPlay }) => {
   );
 
   useEffect(() => {
-    console.log("USE EFFECT CALLED");
     const video = videoRef.current;
     //initial mount
     initializeVid();
@@ -85,11 +81,6 @@ const VideoPlayer = ({ videoName, onPlay }) => {
       }
     };
 
-    const handlePlay = () => {
-      console.log('CURRENTVID', video)
-      onPlay(video);
-    }
-
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting && !video.paused) {
@@ -99,12 +90,11 @@ const VideoPlayer = ({ videoName, onPlay }) => {
     };
 
     const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.25, // Adjust the threshold as needed
+      threshold: 0.25,
     });
 
     observer.observe(video);
 
-    video.addEventListener("play", handlePlay);
     window.addEventListener("orientationchange", handleOrientationChange);
     video.addEventListener("fullscreenchange", handleFullscreenChange);
     video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
@@ -116,7 +106,7 @@ const VideoPlayer = ({ videoName, onPlay }) => {
       if (hlsRef.current) {
         hlsRef.current.destroy();
       }
-      video.removeEventListener("play", handlePlay);
+      observer.unobserve(video);
       window.removeEventListener("orientationchange", handleOrientationChange);
       video.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
       video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
@@ -124,10 +114,13 @@ const VideoPlayer = ({ videoName, onPlay }) => {
     };
   }, [initializeVid]);
 
-  console.log("video player rendered", videoName);
+  const handlePlay = () => {
+    onPlay(videoRef.current);
+  };
+
   return (
     <div>
-      <video ref={videoRef} playsInline controls className="w-100" poster={thumbnailSource}>
+      <video ref={videoRef} playsInline controls className="w-100" poster={thumbnailSource} onPlay={handlePlay}>
         Your browser does not support the video tag.
       </video>
     </div>

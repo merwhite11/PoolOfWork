@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container } from "react-bootstrap";
 import Slider from "react-slick";
 import LazyLoad from "react-lazyload";
@@ -29,7 +29,6 @@ const Dance = () => {
   };
 
   useEffect(() => {
-    console.log('DANCE USEEFFECT')
     setSlidesToShow(calculateSlidesToShow())
 
     const handleResize = () => {
