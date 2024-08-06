@@ -13,10 +13,22 @@ const Modal = ({
   title,
 }) => {
 
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 991);
 
   const handleFont = () => {
     setLargeText(!largeText);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 991);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
 
   return (
@@ -47,12 +59,14 @@ const Modal = ({
                 >
                   {largeText ? "Smaller font" : "Bigger font"}
                 </button>
-                <Selections
-                  rend={rend}
-                  selections={selections}
-                  setSelections={setSelections}
-                  title={title}
-                />
+                {isLargeScreen && (
+                  <Selections
+                    rend={rend}
+                    selections={selections}
+                    setSelections={setSelections}
+                    title={title}
+                  />
+                )}
               </div>
             </div>
           </div>
