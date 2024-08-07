@@ -49,18 +49,6 @@ module.exports = (env, argv) => {
           test: /\.(png|jp(e*)g|svg|gif|pdf)$/,
           type: "asset/resource",
         },
-        // {
-        //   test: /\.epub$/,
-        //   use: [
-        //     {
-        //       loader: 'file-loader',
-        //       options: {
-        //         name: '[name].[ext]',
-        //         outputPath: 'epubs'
-        //       },
-        //     }
-        //   ],
-        // },
       ]
     },
     plugins: [
