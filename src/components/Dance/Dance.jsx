@@ -40,8 +40,6 @@ const Dance = () => {
     };
   }, []);
 
-
-
   const vids = [
     "malamente",
     "closer",

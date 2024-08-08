@@ -9,8 +9,7 @@ require('dotenv').config();
 module.exports = (env, argv) => {
 
   const isProduction = argv.mode === 'production';
-  //need to have an entry point for scss main
-  // entry: path.join(__dirname, "src", "index.js"),
+
   return {
 
     entry: __dirname + "/src/index.js",
@@ -73,7 +72,6 @@ module.exports = (env, argv) => {
     ],
     devServer: {
       historyApiFallback: true,
-      // contentBase: path.resolve(__dirname, 'build'),
       hot: true
     }
   };

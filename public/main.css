@@ -84,10 +84,6 @@
 .dropdown__menu__item:hover, .dropdown__menu__item:focus {
   background-color: #96e7e8;
 }
-/*!**************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Modal/Modal.scss ***!
-  \**************************************************************************************************************************/
-
 /*!********************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Dropdown/Dropdown.scss ***!
   \********************************************************************************************************************************/
@@ -146,15 +142,23 @@
   height: auto;
   margin: auto;
 }
+.book-card__body {
+  min-height: 0;
+  position: relative;
+}
+.book-card__title-sum {
+  height: 200px;
+  overflow-y: auto;
+}
+.book-card a {
+  text-decoration: none;
+  color: black;
+}
 .book-card__title {
   font-weight: 800 !important;
 }
 .book-card__title:hover, .book-card__title:focus {
   text-shadow: 0 0.05rem 0.1rem rgba(25, 15, 77, 0.799);
-}
-.book-card__body {
-  min-height: 0;
-  overflow-y: auto;
 }
 .book-card__button-box {
   justify-content: space-between;

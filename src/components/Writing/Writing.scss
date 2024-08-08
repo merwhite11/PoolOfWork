@@ -11,6 +11,21 @@
     margin: auto;
   }
 
+  &__body {
+    min-height: 0;
+    position: relative;
+  }
+
+  &__title-sum {
+    height: 200px;
+    overflow-y: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
   &__title {
     font-weight: 800 !important;
 
@@ -18,11 +33,6 @@
     &:focus {
       text-shadow: 0 .05rem .1rem rgba(25, 15, 77, 0.799);
     }
-  }
-
-  &__body {
-    min-height: 0;
-    overflow-y: auto;
   }
 
   &__button-box {

@@ -13,7 +13,6 @@ function BookCard({ cover, summary, path, title }) {
   const [aboutModalOpen, setAboutModalOpen] = useState(false);
 
   const toggleAboutModal = (title) => {
-    console.log("title!", title);
     setAboutModalOpen(!aboutModalOpen);
   };
 
@@ -27,10 +26,12 @@ function BookCard({ cover, summary, path, title }) {
         ></Card.Img>
         <Card.Body className="book-card__body d-flex flex-column align-items-center text-center">
           {isLargeScreen && (
-            <div>
-              <Card.Title className="book-card__title text-start">
-                {title}
-              </Card.Title>
+            <div className="book-card__title-sum">
+              <Link to={`/reader/${path}`}>
+                <Card.Title className="book-card__title text-start">
+                  {title}
+                </Card.Title>
+              </Link>
               <Card.Text className="book-card__text text-start">
                 {summary}
               </Card.Text>
