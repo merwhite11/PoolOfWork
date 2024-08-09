@@ -54,6 +54,7 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src', 'index.html'), // Path to your HTML template file
         filename: 'index.html', // Output filename for the generated HTML file
+        favicon: "./src/assets/Images/favicon.png"
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -66,7 +67,9 @@ module.exports = (env, argv) => {
       new CopyWebpackPlugin({
         patterns: [
           { from: path.resolve(__dirname, 'src/assets/Epubs'), to: 'Epubs' },
-          { from: path.resolve(__dirname, 'src/assets/Resume'), to: 'Resume' }
+          { from: path.resolve(__dirname, 'src/assets/Resume'), to: 'Resume' },
+          { from: path.resolve(__dirname, 'src/assets/Images'), to: 'Images' },
+          { from: path.resolve(__dirname, 'src/assets/BookCovers'), to: 'BookCovers' },
         ]
       })
     ],
