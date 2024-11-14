@@ -71,11 +71,11 @@ const Dance = () => {
       </h1>
       <div className="slider-container carousel__inner">
         <Slider {...settings}>
-          {vids.map((vid) => (
+          {vids.map((vid, index) => (
             <div key={vid}>
               <div className="video-container">
                 <LazyLoad height={200} offset={100} once>
-                  <VideoPlayer videoName={vid} onPlay={handlePlay}/>
+                  <VideoPlayer videoName={vid} onPlay={handlePlay} dataTestId={`carousel-video-${index}`}/>
                 </LazyLoad>
               </div>
             </div>

@@ -9,7 +9,7 @@ const debounce = (func, wait) => {
     timeout = setTimeout(() => func.apply(context, args), wait);
   };
 };
-const VideoPlayer = ({ videoName, onPlay }) => {
+const VideoPlayer = ({ videoName, onPlay, dataTestId }) => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
   const cdnUrl = process.env.CDN_URL;
@@ -120,7 +120,15 @@ const VideoPlayer = ({ videoName, onPlay }) => {
 
   return (
     <div>
-      <video ref={videoRef} playsInline controls className="w-100" poster={thumbnailSource} onPlay={handlePlay}>
+      <video
+        ref={videoRef}
+        playsInline
+        controls
+        className="w-100"
+        poster={thumbnailSource}
+        onPlay={handlePlay}
+        data-testid={dataTestId}
+      >
         Your browser does not support the video tag.
       </video>
     </div>

@@ -1,3 +1,13 @@
 node_modules
 package-lock.json
 .env
+
+#macOS system files
+.DS_Store
+**/.DS_Store
+
+#cypress env config
+/cypress/cypress.env.json
+
+#build outputs
+public
