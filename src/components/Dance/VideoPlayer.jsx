@@ -58,6 +58,7 @@ const VideoPlayer = ({ videoName, onPlay, dataTestId }) => {
     //initial mount
     initializeVid();
 
+    //Event listeners
     const handleOrientationChange = debounce(() => {
       initializeVid(currentTime, isPlaying);
     }, 300);
@@ -66,21 +67,16 @@ const VideoPlayer = ({ videoName, onPlay, dataTestId }) => {
       const video = videoRef.current;
       const currentTime = video.currentTime;
       const isPlaying = !video.paused;
-
-      if (
-        document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement ||
-        document.msFullscreenElement
-      ) {
-        // Entered fullscreen
-        initializeVid(currentTime, isPlaying);
-      } else {
-        // Exited fullscreen
-        initializeVid(currentTime, isPlaying);
-      }
+      initializeVid(currentTime, isPlaying);
     };
 
+    window.addEventListener("orientationchange", handleOrientationChange);
+    video.addEventListener("fullscreenchange", handleFullscreenChange);
+    video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    video.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    video.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+    //Intersection Observer
     const handleIntersection = (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting && !video.paused) {
@@ -95,25 +91,22 @@ const VideoPlayer = ({ videoName, onPlay, dataTestId }) => {
 
     observer.observe(video);
 
-    window.addEventListener("orientationchange", handleOrientationChange);
-    video.addEventListener("fullscreenchange", handleFullscreenChange);
-    video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    video.addEventListener("mozfullscreenchange", handleFullscreenChange);
-    video.addEventListener("msfullscreenchange", handleFullscreenChange);
-
     return () => {
-      console.log("WILL DESTROY");
       if (hlsRef.current) {
         hlsRef.current.destroy();
       }
       observer.unobserve(video);
       window.removeEventListener("orientationchange", handleOrientationChange);
-      video.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      video.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
       video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
       video.removeEventListener("msfullscreenchange", handleFullscreenChange);
     };
   }, [initializeVid]);
 
+  //One video at a time
   const handlePlay = () => {
     onPlay(videoRef.current);
   };
