@@ -60,7 +60,7 @@ module.exports = (env, argv) => {
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         'process.env.PUBLIC_URL': JSON.stringify('/'),
         'process.env.CDN_URL': JSON.stringify(process.env.CDN_URL),
-        'process.env.data-token': JSON.stringify(process.env.data-token)
+        'process.env.DATA_TOKEN': JSON.stringify(process.env.data-token)
       }),
       new MiniCssExtractPlugin({
         filename: "[name].css",
