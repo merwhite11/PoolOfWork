@@ -10,16 +10,33 @@
     />
     <meta name="description" content="My creative portfolio" />
     <!-- Including the bootstrap css via CDN -->  
-  <link rel="icon" href="/favicon.png"><script defer src="/bundle.js"></script><link href="/main.css" rel="stylesheet">
-  <!-- Linking Tinybird -->
-  <!-- <script defer
-  src="https://unpkg.com/@tinybirdco/flock.js"
-  data-host="https://api.us-west-2.aws.tinybird.co"
-  data-token="p.eyJ1IjogIjVkMGIyZjQ2LTVmZDktNGY2YS04Y2RlLTE3MTIxOGZlODdkNSIsICJpZCI6ICI4ZmUzNjgyNS1hZmM4LTQ3YTgtYjBmMi05ZDY0ZTc4ZjQwMTIiLCAiaG9zdCI6ICJhd3MtdXMtd2VzdC0yIn0.6jyJrFWxPjcg-dc4Uoq5XKzlOLFLo1LeWr4NYaXSeRU"
-  >
-</script> -->
-<script>console.log('tinybird script loaded')</script>
-</head>
+    <link rel="icon" href="/favicon.png">
+    <link href="/main.css" rel="stylesheet">
+    
+    <!-- Linking Tinybird -->
+    <script defer
+      src="https://unpkg.com/@tinybirdco/flock.js"
+      data-host="https://api.us-west-2.aws.tinybird.co"
+      data-token="p.eyJ1IjogIjVkMGIyZjQ2LTVmZDktNGY2YS04Y2RlLTE3MTIxOGZlODdkNSIsICJpZCI6ICI4ZmUzNjgyNS1hZmM4LTQ3YTgtYjBmMi05ZDY0ZTc4ZjQwMTIiLCAiaG9zdCI6ICJhd3MtdXMtd2VzdC0yIn0.6jyJrFWxPjcg-dc4Uoq5XKzlOLFLo1LeWr4NYaXSeRU">
+    </script>
+  
+    <!-- Test script to verify Tinybird is loaded -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('Tinybird script loaded');
+        // Test Tinybird event
+        if (window.tb) {
+          window.tb('track', 'pageview', { url: window.location.href });
+          console.log('Tinybird event sent');
+        } else {
+          console.error('Tinybird script not loaded');
+        }
+      });
+    </script>
+  
+    <!-- Bundle script -->
+    <script defer src="/bundle.js"></script>
+  </head>
   <body>
     <div id="app"></div>
     <script
