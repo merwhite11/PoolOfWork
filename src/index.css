@@ -103,6 +103,55 @@
   50% {
     transform: translate3d(-12px, 6px, 0);
   }
+/* Tactile ceramic pool-tile & caustic water textures for mockups & theme */
+.pool-tiles-sunlit {
+  background-color: #cde8f4;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.72) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.72) 2px, transparent 2px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(28, 122, 168, 0.18) 100%);
+  background-size: 42px 42px, 42px 42px, 42px 42px;
+}
+
+.pool-tiles-roman {
+  background-color: #12366b;
+  background-image:
+    linear-gradient(to right, rgba(10, 22, 46, 0.65) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(10, 22, 46, 0.65) 1.5px, transparent 1.5px),
+    linear-gradient(135deg, rgba(84, 152, 232, 0.32) 0%, rgba(16, 46, 98, 0.25) 60%, rgba(232, 186, 109, 0.14) 100%);
+  background-size: 28px 28px, 28px 28px, 28px 28px;
+}
+
+.pool-tiles-aqua {
+  background-color: #8fd3e6;
+  background-image:
+    linear-gradient(to right, rgba(240, 251, 255, 0.58) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(240, 251, 255, 0.58) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.32), transparent 65%);
+  background-size: 34px 34px, 34px 34px, 34px 34px;
+}
+
+@keyframes causticShimmer {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.58;
+  }
+  50% {
+    transform: translate3d(-18px, 10px, 0) scale(1.04);
+    opacity: 0.82;
+  }
+}
+
+.animate-caustics {
+  animation: causticShimmer 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-caustics {
+    animation: none;
+  }
+}
+
 }
 
 .animate-cloud-slow {
