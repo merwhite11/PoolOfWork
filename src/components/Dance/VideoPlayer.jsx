@@ -1,131 +1,65 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import Hls from "hls.js";
 
-const debounce = (func, wait) => {
-  let timeout;
-  return function (...args) {
-    const context = this;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), wait);
-  };
-};
-const VideoPlayer = ({ videoName, onPlay, dataTestId }) => {
+const VideoPlayer = ({ videoName, autoPlay = false, onPlay, dataTestId }) => {
   const videoRef = useRef(null);
-  const hlsRef = useRef(null);
   const cdnUrl = import.meta.env.VITE_CDN_URL || "";
   const hlsSource = `${cdnUrl}/${videoName}/hls/${videoName}.m3u8`;
   const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`;
   const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`;
 
-  const initializeVid = useCallback(
-    (currentTime = 0, isPlaying = false) => {
-      const video = videoRef.current;
-
-      if (Hls.isSupported()) {
-        const hls = new Hls({
-          maxBufferLength: 30,
-        });
-
-        hlsRef.current = hls;
-        hls.loadSource(hlsSource);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          video.currentTime = currentTime;
-          if (isPlaying) {
-            video.play();
-          }
-        });
-        hlsRef.current = hls;
-      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = hlsSource;
-        video.currentTime = currentTime;
-        if (isPlaying) {
-          video.play();
-        }
-      } else {
-        video.src = mp4Source;
-        video.currentTime = currentTime;
-        if (isPlaying) {
-          video.play();
-        }
-      }
-    },
-    [hlsSource, mp4Source]
-  );
-
   useEffect(() => {
     const video = videoRef.current;
-    //initial mount
-    initializeVid();
+    if (!video || !cdnUrl) return;
 
-    //Event listeners
-    const handleOrientationChange = debounce(() => {
-      initializeVid(currentTime, isPlaying);
-    }, 300);
+    let hls = null;
 
-    const handleFullscreenChange = () => {
-      const video = videoRef.current;
-      const currentTime = video.currentTime;
-      const isPlaying = !video.paused;
-      initializeVid(currentTime, isPlaying);
+    const tryAutoPlay = () => {
+      if (autoPlay) {
+        video.play().catch(() => {});
+      }
     };
 
-    window.addEventListener("orientationchange", handleOrientationChange);
-    video.addEventListener("fullscreenchange", handleFullscreenChange);
-    video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    video.addEventListener("mozfullscreenchange", handleFullscreenChange);
-    video.addEventListener("msfullscreenchange", handleFullscreenChange);
-
-    //Intersection Observer
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting && !video.paused) {
-          video.pause();
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.25,
-    });
-
-    observer.observe(video);
+    if (Hls.isSupported()) {
+      hls = new Hls({ maxBufferLength: 30 });
+      hls.loadSource(hlsSource);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, tryAutoPlay);
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = hlsSource;
+      tryAutoPlay();
+    } else {
+      video.src = mp4Source;
+      tryAutoPlay();
+    }
 
     return () => {
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
+      if (hls) {
+        hls.destroy();
       }
-      observer.unobserve(video);
-      window.removeEventListener("orientationchange", handleOrientationChange);
-      video.removeEventListener(
-        "webkitfullscreenchange",
-        handleFullscreenChange
-      );
-      video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
-      video.removeEventListener("msfullscreenchange", handleFullscreenChange);
     };
-  }, [initializeVid]);
+  }, [cdnUrl, hlsSource, mp4Source, autoPlay]);
 
-  //One video at a time
   const handlePlay = () => {
-    onPlay(videoRef.current);
+    if (onPlay && videoRef.current) {
+      onPlay(videoRef.current);
+    }
   };
 
   return (
-    <div>
-      <video
-        ref={videoRef}
-        playsInline
-        controls
-        className="w-100"
-        poster={thumbnailSource}
-        onPlay={handlePlay}
-        data-testid={dataTestId}
-      >
-        Your browser does not support the video tag.
-      </video>
-    </div>
+    <video
+      ref={videoRef}
+      playsInline
+      controls
+      className="max-h-[75vh] w-full bg-black object-contain"
+      poster={thumbnailSource}
+      onPlay={handlePlay}
+      data-testid={dataTestId}
+    >
+      Your browser does not support the video tag.
+    </video>
   );
 };
 
 export default VideoPlayer;
+

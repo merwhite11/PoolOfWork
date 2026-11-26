@@ -1,18 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ReactReader } from "react-reader";
 import { PiDotsThreeOutline, PiDotsThreeOutlineFill } from "react-icons/pi";
-import { RxHamburgerMenu } from "react-icons/rx";
 import useLocalStorageState from "use-local-storage-state";
 import urljoin from "url-join";
 import Modal from "../../components/Modal/Modal.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";
-import Dropdown from "../../components/Dropdown/Dropdown.jsx";
-import "./Reader.scss";
 
 const Reader = ({ doc, title }) => {
-  const location = useLocation();
-  //epub
   const publicUrl = import.meta.env.BASE_URL;
   const epubUrl = urljoin(publicUrl, "Epubs", doc);
   const renditionRef = useRef(null);
@@ -21,57 +16,10 @@ const Reader = ({ doc, title }) => {
     "book-progress",
     {}
   );
-  const [largeText, setLargeText] = useState(null);
+  const [largeText, setLargeText] = useState(false);
   const [selections, setSelections] = useLocalStorageState("selections", {});
-  //modal
   const [modalOpen, setModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  //hamburger menu
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  //hamburger
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setMenuOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 1024);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (location.pathname === "/") {
-      setMenuOpen(false);
-    }
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (menuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [menuOpen]);
 
   //epub
   useEffect(() => {
@@ -99,9 +47,10 @@ const Reader = ({ doc, title }) => {
         ],
       };
       localStorage.setItem("selections", JSON.stringify(updatedSelections));
+      setSelections(updatedSelections);
       rend.annotations.add("highlight", cfiRange, {}, undefined, "hl", {
-        fill: "grey",
-        "fill-opacity": "0.5",
+        fill: "#E8BA6D",
+        "fill-opacity": "0.4",
         "mix-blend-mode": "multiply",
       });
       const selection = contents.window.getSelection();
@@ -124,86 +73,70 @@ const Reader = ({ doc, title }) => {
     }
   }, [rend, largeText]);
 
-  //modal
-  const toggleModal = () => {
-    setModalOpen(!modalOpen);
-  };
-  const dots = isHovered ? (
-    <PiDotsThreeOutlineFill
-      size={30}
-      className="mt-2"
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={toggleModal}
-      onTouchEnd={toggleModal}
-    />
-  ) : (
-    <PiDotsThreeOutline
-      size={30}
-      className="mt-2"
-      onMouseEnter={() => setIsHovered(true)}
-      onClick={toggleModal}
-      onTouchEnd={toggleModal}
-    />
-  );
+  const toggleModal = () => setModalOpen((prev) => !prev);
 
   return (
-    <div className="container background">
-      <div className="row">
-        <div className="col-4 col-md-6 d-flex justify-content-start align-items-center">
-          {dots}
-          <Modal
-            modalOpen={modalOpen}
-            toggleModal={toggleModal}
-            largeText={largeText}
-            setLargeText={setLargeText}
-            rend={rend}
-            selections={selections}
-            setSelections={setSelections}
-            title={title}
-          />
+    <div className="flex min-h-screen flex-col bg-paper text-lapis">
+      <div className="border-b border-lapis/10 bg-paper-card/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 md:px-10">
+          <div className="flex items-center gap-3">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 rounded-full border border-lapis/15 bg-paper px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-lapis no-underline transition-colors hover:border-amber/60 hover:text-amber"
+            >
+              ← Shelf
+            </Link>
+            <button
+              type="button"
+              onClick={toggleModal}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              aria-label="Reader preferences"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-lapis/15 bg-paper text-lapis transition-colors hover:border-amber/60 hover:text-amber"
+            >
+              {isHovered ? (
+                <PiDotsThreeOutlineFill size={20} />
+              ) : (
+                <PiDotsThreeOutline size={20} />
+              )}
+            </button>
+          </div>
+
+          <div className="hidden flex-1 justify-end md:flex">
+            <NavBar variant="compact" />
+          </div>
         </div>
-        {!isSmallScreen && (
-          <div className="col-md-6 d-flex justify-content-end align-items-center">
-            <NavBar />
-          </div>
-        )}
-        {isSmallScreen && !menuOpen && (
-          <div className="hamburger-container ms-auto" onClick={toggleMenu}>
-            <RxHamburgerMenu />
-          </div>
-        )}
-        {isSmallScreen && menuOpen && (
-          <div className="dropdown-container ms-auto" ref={dropdownRef}>
-            <Dropdown />
-          </div>
-        )}
-        <div className="col-md-12 aspect-ratio aspect-ratio-3x4 overflow-hidden d-flex justify-content-center align-items-center">
-          <div
-            className="reader-container"
-            style={{
-              height: "90vh",
-              width: "100vw",
+      </div>
+
+      <Modal
+        modalOpen={modalOpen}
+        toggleModal={toggleModal}
+        largeText={largeText}
+        setLargeText={setLargeText}
+        rend={rend}
+        selections={selections}
+        setSelections={setSelections}
+        title={title}
+      />
+
+      <div className="mx-auto flex w-full max-w-6xl flex-1 px-2 py-4 sm:px-6">
+        <div className="relative h-[calc(100vh-5.5rem)] w-full overflow-hidden rounded-2xl border border-lapis/10 bg-paper-card shadow-[0_8px_30px_rgba(27,50,86,0.06)]">
+          <ReactReader
+            title={title}
+            url={epubUrl}
+            location={bookProgress ? bookProgress[title] : undefined}
+            locationChanged={handleLocationChanged}
+            getRendition={(rendition) => {
+              renditionRef.current = rendition;
+              setRend(rendition);
+              rendition.hooks.content.register((contents) => {
+                const body = contents.window.document.querySelector("body");
+                if (body) {
+                  body.oncontextmenu = () => false;
+                }
+              });
             }}
-          >
-            <ReactReader
-              title={title}
-              url={epubUrl}
-              location={bookProgress ? bookProgress[title] : bookProgress}
-              locationChanged={handleLocationChanged}
-              getRendition={(rendition) => {
-                renditionRef.current = rendition;
-                setRend(rendition);
-                rendition.hooks.content.register((contents) => {
-                  const body = contents.window.document.querySelector("body");
-                  if (body) {
-                    body.oncontextmenu = () => {
-                      return false;
-                    };
-                  }
-                });
-              }}
-            />
-          </div>
+          />
         </div>
       </div>
     </div>

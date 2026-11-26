@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette distilled from sun-warmed risograph clouds & Roman pool lapis/gold */
+  --color-paper: #FAF6EE;
+  --color-paper-warm: #F4EDE0;
+  --color-paper-card: #FFFCF7;
+  --color-sky: #EBF4FC;
+  --color-periwinkle: #C8D7EC;
+  --color-periwinkle-deep: #7B8FB8;
+  --color-peach: #F4DDD1;
+  --color-peach-glow: #F9EAE0;
+  --color-lapis: #1B3256;
+  --color-lapis-deep: #12233E;
+  --color-lapis-muted: #536582;
+  --color-amber: #C98E42;
+  --color-amber-glow: #E8BA6D;
+  --color-amber-soft: #F7E8CC;
+
+  /* Editorial typography */
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-editorial: "Newsreader", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    color: var(--color-lapis);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Tactile fine-grain risograph/paper texture (subtle, non-distracting) */
+.paper-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+}
+
+/* Painterly cloud-sky + still-pool reflection backdrop for the hero */
+.hero-atmosphere {
+  background:
+    radial-gradient(ellipse 68% 52% at 22% 38%, rgba(244, 221, 209, 0.72) 0%, rgba(244, 221, 209, 0) 68%),
+    radial-gradient(ellipse 56% 46% at 76% 30%, rgba(232, 186, 109, 0.24) 0%, rgba(232, 186, 109, 0) 65%),
+    radial-gradient(ellipse 62% 50% at 62% 58%, rgba(162, 182, 222, 0.36) 0%, rgba(162, 182, 222, 0) 70%),
+    linear-gradient(180deg, #E2F0FC 0%, #EEF4FA 42%, #F6EFE5 74%, #FAF6EE 100%);
+}
+
+/* Deep Roman-pool atmospheric backdrop for the About colophon */
+.pool-sanctuary {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(232, 186, 109, 0.16) 0%, rgba(232, 186, 109, 0) 42%),
+    radial-gradient(circle at 82% 76%, rgba(123, 143, 184, 0.22) 0%, rgba(123, 143, 184, 0) 48%),
+    linear-gradient(160deg, #162B4D 0%, #1C3762 48%, #132543 100%);
+}
+
+/* Subtle mosaic-tile hairline divider inspired by the Roman Pool tilework */
+.mosaic-rule {
+  height: 6px;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(201, 142, 66, 0.45) 0 4px,
+      transparent 4px 8px,
+      rgba(27, 50, 86, 0.28) 8px 12px,
+      transparent 12px 16px
+    );
+  opacity: 0.7;
+}
+
+/* Washi-tape scrapbook strip */
+.washi-tape {
+  background: linear-gradient(
+    90deg,
+    rgba(244, 221, 209, 0.78) 0%,
+    rgba(247, 232, 204, 0.82) 50%,
+    rgba(200, 215, 236, 0.72) 100%
+  );
+  box-shadow: 0 1px 2px rgba(27, 50, 86, 0.08);
+  backdrop-filter: blur(2px);
+}
+
+/* Gentle floating drift for painterly hero cloud washes */
+@keyframes cloudDrift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(14px, -8px, 0);
+  }
+}
+
+@keyframes cloudDriftReverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-12px, 6px, 0);
+  }
+}
+
+.animate-cloud-slow {
+  animation: cloudDrift 18s ease-in-out infinite;
+}
+
+.animate-cloud-slower {
+  animation: cloudDriftReverse 24s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-cloud-slow,
+  .animate-cloud-slower {
+    animation: none;
+  }
+}
