@@ -1,89 +1,75 @@
 import React from "react";
 
-const MockupSunlitTiles = () => (
-  <div className="overflow-hidden rounded-3xl border border-lapis/15 bg-[#FCF9F2] shadow-xl">
-    <div className="pool-tiles-sunlit relative overflow-hidden px-6 pt-6 pb-16 sm:px-10 sm:pb-24">
-      <svg
+const MockupSubmergedRoman = () => (
+  <div className="overflow-hidden rounded-3xl border border-lapis/15 bg-[#F8F5EE] shadow-xl">
+    <div className="relative h-[540px] w-full overflow-hidden bg-[#102646] sm:h-[620px]">
+      <img
+        src="/moodboard/underwater-hero.jpg"
+        alt="Underwater pool floor"
+        className="absolute inset-0 h-full w-full object-cover object-[50%_28%] brightness-[0.95] contrast-[1.12] saturate-[0.2]"
+      />
+      <img
+        src="/moodboard/roman-pool.jpg"
+        alt=""
         aria-hidden="true"
-        viewBox="0 0 800 420"
-        preserveAspectRatio="none"
-        className="animate-caustics pointer-events-none absolute inset-0 h-full w-full mix-blend-screen"
-      >
-        <defs>
-          <filter id="caustic-a" x="-10%" y="-10%" width="120%" height="120%">
-            <feTurbulence
-              type="turbulence"
-              baseFrequency="0.015 0.028"
-              numOctaves="2"
-              seed="7"
-            />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0.98 0 0 0 0 0.99 0 0 0 0 1 0 0 0 0.65 -0.18"
-            />
-          </filter>
-          <radialGradient id="sun-a" cx="25%" cy="18%" r="65%">
-            <stop offset="0%" stopColor="#FFF7E4" stopOpacity="0.85" />
-            <stop offset="45%" stopColor="#9EDDF2" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#1E6B9B" stopOpacity="0.16" />
-          </radialGradient>
-        </defs>
-        <rect width="800" height="420" fill="url(#sun-a)" />
-        <rect width="800" height="420" filter="url(#caustic-a)" opacity="0.55" />
-      </svg>
-
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-55 mix-blend-hard-light saturate-[1.15]"
+      />
+      <img
+        src="/moodboard/clouds.jpg"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-top opacity-40 mix-blend-screen"
+      />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-2.5 bg-[repeating-linear-gradient(90deg,#1B4D89_0_14px,#E8B55B_14px_18px,#FCF9F2_18px_22px,#2B73B6_22px_36px)] opacity-90"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#0E2447]/45 via-[#18447A]/20 to-[#0B1C38]/75"
+      />
+      <div
+        aria-hidden="true"
+        className="paper-grain pointer-events-none absolute inset-0 opacity-80"
       />
 
-      <div className="relative z-10 flex items-center justify-between pt-2">
+      <div className="relative z-10 flex items-center justify-between px-6 pt-6 sm:px-10">
         <span
-          className="text-lg font-bold tracking-tight text-[#11345C]"
+          className="text-lg font-bold tracking-tight text-[#FFF9F0] drop-shadow"
           style={{ fontFamily: '"Bricolage Grotesque", sans-serif' }}
         >
           Meredith White
         </span>
-        <div className="flex gap-6 text-xs font-semibold uppercase tracking-[0.16em] text-[#11345C]/80">
+        <nav className="flex gap-7 text-xs font-semibold uppercase tracking-[0.2em] text-[#FFF9F0]/90">
           <span>Writing</span>
           <span>Dance</span>
           <span>About</span>
-        </div>
+        </nav>
       </div>
 
-      <div className="relative z-10 mx-auto mt-14 mb-6 flex max-w-2xl flex-col items-center text-center sm:mt-20">
-        <div className="relative inline-block">
+      <div className="relative z-10 flex h-[calc(100%-64px)] flex-col items-center justify-between px-6 pt-10 pb-10 text-center">
+        <h2
+          className="text-6xl font-extrabold leading-[0.9] tracking-[-0.03em] text-[#FFF8EE] drop-shadow-[0_10px_28px_rgba(8,22,48,0.65)] sm:text-8xl"
+          style={{ fontFamily: '"Bricolage Grotesque", sans-serif' }}
+        >
+          Pool{" "}
           <span
-            aria-hidden="true"
-            className="pointer-events-none absolute top-2 left-2 select-none text-6xl font-extrabold tracking-tight text-[#145C8E]/25 blur-[1.5px] sm:text-8xl"
-            style={{ fontFamily: '"Bricolage Grotesque", sans-serif' }}
+            className="font-normal italic text-[#F4C27A]"
+            style={{ fontFamily: '"Fraunces", serif' }}
           >
-            pool of work
-          </span>
-          <h2
-            className="relative text-6xl font-extrabold leading-[0.92] tracking-tight text-[#102F54] sm:text-8xl"
-            style={{ fontFamily: '"Bricolage Grotesque", sans-serif' }}
-          >
-            pool{" "}
-            <span
-              className="font-normal italic text-[#D9823B]"
-              style={{ fontFamily: '"Fraunces", serif' }}
-            >
-              of
-            </span>{" "}
-            work
-          </h2>
-        </div>
+            of
+          </span>{" "}
+          Work
+        </h2>
 
-        <div className="mt-7 inline-flex items-center gap-2 rounded-md border-2 border-[#11345C]/15 bg-[#FCF9F2]/90 px-3 py-1 font-mono text-[11px] font-medium tracking-[0.2em] text-[#11345C] shadow-sm">
-          <span className="inline-block h-2 w-2 rounded-full bg-[#38A7C8]" />
-          <span>4 FT · SF</span>
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-[#F4C27A]/70" />
+          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#FFF8EE]/80">
+            ↓
+          </span>
+          <span className="h-px w-8 bg-[#F4C27A]/70" />
         </div>
       </div>
     </div>
 
-    <div className="grid grid-cols-1 gap-6 bg-[#FCF9F2] p-6 sm:grid-cols-2 sm:p-8">
-      <div className="flex items-center gap-4 rounded-2xl border border-[#11345C]/12 bg-white p-4 shadow-[4px_4px_0_#D8EEF7]">
+    <div className="grid grid-cols-1 gap-6 bg-[#F8F5EE] p-6 sm:grid-cols-2 sm:p-8">
+      <div className="flex items-center gap-4 rounded-2xl border border-[#122E57]/12 bg-white p-4 shadow-sm">
         <img
           src="/BookCovers/GVDCoverResized.jpg"
           alt="The Grapevine Diaries"
@@ -91,42 +77,37 @@ const MockupSunlitTiles = () => (
         />
         <div>
           <h3
-            className="text-xl font-bold text-[#102F54]"
+            className="text-xl font-bold text-[#10284A]"
             style={{ fontFamily: '"Bricolage Grotesque", sans-serif' }}
           >
             The Grapevine Diaries
           </h3>
-          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-[#47607E]">
-            The untold story of wine — anecdotes, poems and mini-essays from the
-            vineyards.
+          <p className="mt-1 line-clamp-2 text-xs text-[#4B6180]">
+            The untold story of wine — anecdotes, journal entries, poems and
+            mini-essays.
           </p>
-          <span className="mt-2 inline-block rounded-full bg-[#102F54] px-3.5 py-1 text-[11px] font-semibold text-[#FCF9F2]">
-            Read →
-          </span>
         </div>
       </div>
 
-      <div className="flex items-center justify-between rounded-2xl border border-[#11345C]/12 bg-[#EAF5FA] p-4">
-        <div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#1D6B99]">
-            Dance
+      <div className="relative overflow-hidden rounded-2xl bg-[#102646] p-5 text-[#FFF8EE]">
+        <img
+          src="/moodboard/underwater-about.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover opacity-55 mix-blend-luminosity"
+        />
+        <div className="relative z-10">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#F4C27A]">
+            About
           </span>
-          <h3
-            className="mt-1 text-2xl font-bold text-[#102F54]"
-            style={{ fontFamily: '"Bricolage Grotesque", sans-serif' }}
-          >
-            Malamente
-          </h3>
-          <p className="mt-1 text-xs text-[#47607E]">
-            Warm paper cards, cerulean tile accents, sunlit shadows.
+          <p className="mt-2 font-editorial text-sm leading-relaxed text-[#FFF8EE]/95">
+            Hydrophilic, linguophile living in the 415 · Writes, if not code,
+            then probably prose.
           </p>
-        </div>
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#E8A349] text-sm font-bold text-[#102F54] shadow-md">
-          ▶
         </div>
       </div>
     </div>
   </div>
 );
 
-export default MockupSunlitTiles;
+export default MockupSubmergedRoman;

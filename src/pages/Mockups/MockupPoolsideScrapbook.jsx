@@ -1,91 +1,65 @@
 import React from "react";
 
-const MockupPoolsideScrapbook = () => (
-  <div className="overflow-hidden rounded-3xl border border-lapis/15 bg-[#FDF8F0] shadow-xl">
-    <div className="relative overflow-hidden bg-gradient-to-b from-[#DCEEFF] via-[#EAF4FD] to-[#FDF8F0] px-6 pt-6 pb-10 sm:px-10 sm:pb-14">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-16 top-6 h-52 w-80 rounded-full bg-gradient-to-tr from-[#B6C5EA]/65 via-[#F7DDD0]/85 to-white/90 blur-2xl"
+const MockupDuotoneZine = () => (
+  <div className="overflow-hidden rounded-3xl border border-lapis/15 bg-[#F7F4EC] shadow-xl">
+    <div className="relative h-[540px] w-full overflow-hidden bg-[#173A5E] sm:h-[620px]">
+      <img
+        src="/moodboard/underwater-hero.jpg"
+        alt="Underwater pool floor"
+        className="absolute inset-0 h-full w-full object-cover object-[50%_26%] contrast-[1.08] brightness-[1.02]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-12 top-10 h-44 w-72 rounded-full bg-gradient-to-bl from-[#F8D9C6]/80 via-[#FBE9D7]/70 to-[#C8DAF3]/60 blur-2xl"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#237BA3]/65 via-[#4E89AE]/40 to-[#243B6B]/75 mix-blend-color"
+      />
+      <img
+        src="/moodboard/roman-pool.jpg"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 w-full object-cover object-bottom opacity-30 mix-blend-soft-light"
+      />
+      <img
+        src="/moodboard/clouds.jpg"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-1/2 w-full object-cover object-top opacity-35 mix-blend-screen"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-4 rounded-2xl border border-[#FFF9EE]/35 sm:inset-6"
+      />
+      <div
+        aria-hidden="true"
+        className="paper-grain pointer-events-none absolute inset-0 opacity-75"
       />
 
-      <div className="relative z-10 flex items-center justify-between">
+      <div className="relative z-10 flex items-center justify-between px-8 pt-8 sm:px-12 sm:pt-10">
         <span
-          className="text-xl font-semibold text-[#183863]"
+          className="text-xl font-medium italic text-[#FFF9EE] drop-shadow"
           style={{ fontFamily: '"Fraunces", serif' }}
         >
           Meredith White
         </span>
-        <div className="flex gap-6 text-xs font-semibold uppercase tracking-[0.15em] text-[#183863]/75">
+        <nav className="flex gap-6 text-xs font-medium uppercase tracking-[0.2em] text-[#FFF9EE]/90">
           <span>Writing</span>
           <span>Dance</span>
           <span>About</span>
-        </div>
+        </nav>
       </div>
 
-      <div className="relative z-10 mx-auto mt-10 max-w-2xl">
-        <span
-          aria-hidden="true"
-          className="washi-tape pointer-events-none absolute -top-3 left-8 z-20 h-6 w-20 -rotate-6 rounded-[2px]"
-        />
-        <span
-          aria-hidden="true"
-          className="washi-tape pointer-events-none absolute -right-4 -bottom-3 z-20 h-6 w-20 -rotate-3 rounded-[2px]"
-        />
-
-        <div className="rounded-[2rem] border-4 border-[#FFFDF8] bg-[#FFFDF8] p-2.5 shadow-[0_18px_45px_rgba(24,56,99,0.14)]">
-          <div className="pool-tiles-aqua relative overflow-hidden rounded-[1.4rem] px-6 py-14 text-center sm:py-20">
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 600 260"
-              preserveAspectRatio="none"
-              className="animate-caustics pointer-events-none absolute inset-0 h-full w-full mix-blend-overlay"
-            >
-              <defs>
-                <filter id="water-c">
-                  <feTurbulence
-                    type="turbulence"
-                    baseFrequency="0.018 0.035"
-                    numOctaves="2"
-                    seed="3"
-                  />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.7 -0.18"
-                  />
-                </filter>
-              </defs>
-              <rect width="600" height="260" filter="url(#water-c)" />
-            </svg>
-
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-1/2 w-3 -translate-x-1/2 bg-[#164A84]/20"
-            />
-
-            <h2
-              className="relative z-10 text-5xl font-bold leading-[0.95] tracking-tight text-[#12325C] drop-shadow-[0_2px_0_rgba(255,255,255,0.65)] sm:text-7xl"
-              style={{ fontFamily: '"Fraunces", serif' }}
-            >
-              Pool of{" "}
-              <span className="italic text-[#FFFDF8] drop-shadow-[0_3px_10px_rgba(18,50,92,0.35)]">
-                Work
-              </span>
-            </h2>
-          </div>
-        </div>
+      <div className="relative z-10 flex flex-col items-center px-6 pt-8 text-center sm:pt-10">
+        <h2
+          className="text-6xl font-bold leading-[0.9] tracking-[-0.025em] text-[#FFF9EE] drop-shadow-[0_8px_30px_rgba(12,35,66,0.45)] sm:text-8xl"
+          style={{ fontFamily: '"Fraunces", serif' }}
+        >
+          Pool{" "}
+          <span className="font-normal italic text-[#F8D8C2]">of</span> Work
+        </h2>
       </div>
     </div>
 
-    <div className="grid grid-cols-1 gap-6 bg-[#FDF8F0] p-6 sm:grid-cols-2 sm:p-8">
-      <div className="relative flex items-center gap-4 rounded-2xl border border-[#183863]/12 bg-white p-4 shadow-sm">
-        <span
-          aria-hidden="true"
-          className="washi-tape pointer-events-none absolute -top-2 left-6 h-4 w-12 -rotate-3 rounded-[1px]"
-        />
+    <div className="grid grid-cols-1 gap-6 bg-[#F7F4EC] p-6 sm:grid-cols-2 sm:p-8">
+      <div className="flex items-center gap-4 rounded-2xl border border-[#243B6B]/12 bg-[#FFFDF8] p-4">
         <img
           src="/BookCovers/BobbyCoverResized.jpg"
           alt="Bobby and Shiloh"
@@ -93,41 +67,40 @@ const MockupPoolsideScrapbook = () => (
         />
         <div>
           <h3
-            className="text-xl font-semibold text-[#183863]"
+            className="text-xl font-semibold text-[#1B355C]"
             style={{ fontFamily: '"Fraunces", serif' }}
           >
-            Bobby &amp; Shiloh
+            Bobby &amp; Shiloh Save The Night
           </h3>
-          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-[#526785]">
-            A short story inspired by bikes and the streets of San Francisco.
+          <p className="mt-1 text-xs text-[#4E6482]">
+            Closest to your original landing page — richly graded, framed, and
+            paired with warmer retro-modern type.
           </p>
-          <span className="mt-2 inline-block rounded-full bg-[#53B5CE] px-3.5 py-1 text-[11px] font-semibold text-white">
-            Read →
-          </span>
         </div>
       </div>
 
-      <div className="flex items-center justify-between rounded-2xl border border-[#183863]/12 bg-[#EEF7FC] p-4">
-        <div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#2A7B9C]">
-            Dance
-          </span>
-          <h3
-            className="mt-1 text-2xl font-semibold italic text-[#183863]"
+      <div className="relative overflow-hidden rounded-2xl border border-[#243B6B]/12 bg-[#1A3F66] p-5 text-[#FFF9EE]">
+        <img
+          src="/moodboard/underwater-about.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover opacity-50 mix-blend-overlay"
+        />
+        <div className="relative z-10">
+          <span
+            className="text-xl italic text-[#F8D8C2]"
             style={{ fontFamily: '"Fraunces", serif' }}
           >
-            See Through
-          </h3>
-          <p className="mt-1 text-xs text-[#526785]">
-            Cloud-pastel sky + taped-in tiled pool + buoyant squishy serif.
+            About
+          </span>
+          <p className="mt-2 text-xs leading-relaxed text-[#FFF9EE]/90">
+            Matches your original underwater About photo with the same aqua +
+            peach split-tone grade.
           </p>
-        </div>
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#F2B866] text-sm font-bold text-[#183863] shadow-md">
-          ▶
         </div>
       </div>
     </div>
   </div>
 );
 
-export default MockupPoolsideScrapbook;
+export default MockupDuotoneZine;

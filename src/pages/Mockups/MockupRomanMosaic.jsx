@@ -1,94 +1,92 @@
 import React from "react";
 
-/**
- * Concept B — "Roman Mosaic & Peach Clouds"
- * Deep cobalt/lapis ceramic Roman pool tiles with glowing amber reflections +
- * chunky modern geometric type (Syne) + crisp warm cream paper below.
- */
-const MockupRomanMosaic = () => (
-  <div className="overflow-hidden rounded-3xl border border-lapis/15 bg-[#FAF4EA] shadow-xl">
-    {/* Hero */}
-    <div className="pool-tiles-roman relative overflow-hidden px-6 pt-6 pb-16 text-[#FAF4EA] sm:px-10 sm:pb-24">
-      {/* Water surface caustics + warm amber lantern reflections on cobalt tiles */}
-      <svg
+const MockupRisoCollage = () => (
+  <div className="overflow-hidden rounded-3xl border border-lapis/15 bg-[#F4F2EC] shadow-xl">
+    <div className="relative min-h-[560px] w-full overflow-hidden bg-[#E9EEF3] px-6 pt-6 pb-12 sm:min-h-[640px] sm:px-10">
+      <img
+        src="/moodboard/clouds.jpg"
+        alt=""
         aria-hidden="true"
-        viewBox="0 0 800 420"
-        preserveAspectRatio="none"
-        className="animate-caustics pointer-events-none absolute inset-0 h-full w-full"
-      >
-        <defs>
-          <radialGradient id="lamp-1" cx="18%" cy="76%" r="34%">
-            <stop offset="0%" stopColor="#F5BA5C" stopOpacity="0.65" />
-            <stop offset="50%" stopColor="#E69A3A" stopOpacity="0.16" />
-            <stop offset="100%" stopColor="#12366B" stopOpacity="0" />
-          </radialGradient>
-          <radialGradient id="lamp-2" cx="84%" cy="24%" r="42%">
-            <stop offset="0%" stopColor="#F8D8C8" stopOpacity="0.45" />
-            <stop offset="48%" stopColor="#77A7E6" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="#12366B" stopOpacity="0" />
-          </radialGradient>
-          <filter id="ripple-b">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.012 0.032"
-              numOctaves="2"
-              seed="14"
-            />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0.65
-                      0 0 0 0 0.85
-                      0 0 0 0 1
-                      0 0 0 0.45 -0.14"
-            />
-          </filter>
-        </defs>
-        <rect width="800" height="420" fill="url(#lamp-1)" />
-        <rect width="800" height="420" fill="url(#lamp-2)" />
-        <rect width="800" height="420" filter="url(#ripple-b)" opacity="0.55" />
-      </svg>
-
-      {/* Gold Roman mosaic border along bottom edge of pool */}
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-80"
+      />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-3 bg-[repeating-linear-gradient(90deg,#E5AE54_0_10px,#12366B_10px_14px,#E5AE54_14px_18px,#1C4D91_18px_28px)]"
+        className="paper-grain pointer-events-none absolute inset-0 opacity-90"
       />
 
-      {/* Minimal Nav */}
-      <div className="relative z-10 flex items-center justify-between">
+      <div className="relative z-20 flex items-center justify-between">
         <span
-          className="text-base font-bold tracking-wide text-[#FAF4EA]"
+          className="text-base font-bold uppercase tracking-[0.06em] text-[#172B4D]"
           style={{ fontFamily: '"Syne", sans-serif' }}
         >
           Meredith White
         </span>
-        <div className="flex gap-6 text-xs font-medium uppercase tracking-[0.18em] text-[#F6DEC9]/90">
+        <nav className="flex gap-6 text-xs font-semibold uppercase tracking-[0.18em] text-[#172B4D]/80">
           <span>Writing</span>
           <span>Dance</span>
           <span>About</span>
-        </div>
+        </nav>
       </div>
 
-      {/* Playful modern geometric title floating on deep tiled water */}
-      <div className="relative z-10 mx-auto mt-14 mb-6 flex max-w-2xl flex-col items-center text-center sm:mt-20">
-        <h2
-          className="text-5xl font-extrabold uppercase leading-[0.94] tracking-[-0.03em] text-[#FFF8EE] drop-shadow-[0_6px_22px_rgba(6,19,44,0.65)] sm:text-7xl"
-          style={{ fontFamily: '"Syne", sans-serif' }}
-        >
-          Pool of Work
-        </h2>
-        {/* Shimmering amber water-line reflection */}
-        <div className="mt-4 flex items-center gap-2">
-          <span className="h-1 w-14 rounded-full bg-gradient-to-r from-transparent via-[#F3BC63] to-transparent opacity-90" />
-          <span className="h-1.5 w-1.5 rounded-full bg-[#F7CFA2]" />
-          <span className="h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-[#7DB7F2] to-transparent opacity-80" />
+      <div className="relative z-10 mx-auto mt-8 grid max-w-4xl grid-cols-1 items-center gap-6 md:mt-10 md:grid-cols-12">
+        <div className="relative hidden md:col-span-3 md:block">
+          <div className="overflow-hidden rounded-2xl border-4 border-[#FAF7F0] bg-[#133262] shadow-lg -rotate-2">
+            <img
+              src="/moodboard/roman-pool.jpg"
+              alt="Roman pool tiles"
+              className="h-64 w-full object-cover object-left"
+            />
+          </div>
+          <div className="mt-3 overflow-hidden rounded-xl border-2 border-[#FAF7F0] shadow-md rotate-2">
+            <img
+              src="/moodboard/mood-4.jpg"
+              alt="Mood texture"
+              className="h-24 w-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="relative md:col-span-6">
+          <div className="relative overflow-hidden rounded-[2rem] border-[6px] border-[#FAF7F0] bg-[#12305C] shadow-[0_24px_60px_rgba(18,48,92,0.28)]">
+            <img
+              src="/moodboard/underwater-hero.jpg"
+              alt="Pool of Work underwater"
+              className="aspect-[4/5] w-full object-cover object-[48%_25%] contrast-[1.08] sm:aspect-[4/4]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#13386E]/75 via-[#2C7CA8]/30 to-[#F3C8AE]/35 mix-blend-color"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0D2140]/65 via-transparent to-[#0D2140]/20"
+            />
+
+            <div className="absolute inset-x-0 top-6 px-4 text-center sm:top-8">
+              <h2
+                className="text-4xl font-extrabold uppercase leading-[0.94] tracking-[-0.03em] text-[#FFFBF4] drop-shadow-[0_4px_18px_rgba(11,28,58,0.55)] sm:text-5xl"
+                style={{ fontFamily: '"Syne", sans-serif' }}
+              >
+                Pool of Work
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative hidden md:col-span-3 md:block">
+          <div className="overflow-hidden rounded-2xl border-4 border-[#FAF7F0] shadow-lg rotate-2">
+            <img
+              src="/moodboard/mood-3.jpg"
+              alt="Mood accent"
+              className="h-72 w-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </div>
 
-    {/* Mini Writing + Dance peek — warm risograph peach/cream relief */}
-    <div className="grid grid-cols-1 gap-6 bg-[#FAF4EA] p-6 sm:grid-cols-2 sm:p-8">
-      <div className="flex items-center gap-4 rounded-2xl border-2 border-[#12366B]/15 bg-[#FFFDF9] p-4 shadow-sm">
+    <div className="grid grid-cols-1 gap-6 bg-[#FAF7F0] p-6 sm:grid-cols-2 sm:p-8">
+      <div className="flex items-center gap-4 rounded-2xl border border-[#172B4D]/12 bg-white p-4">
         <img
           src="/BookCovers/CuentoCover.jpg"
           alt="Cuento"
@@ -96,36 +94,31 @@ const MockupRomanMosaic = () => (
         />
         <div>
           <h3
-            className="text-lg font-bold text-[#12366B]"
+            className="text-lg font-bold text-[#172B4D]"
             style={{ fontFamily: '"Syne", sans-serif' }}
           >
             Story Twice Told
           </h3>
-          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-[#4C5C78]">
-            A memory-inspired short story written in English and Spanish.
+          <p className="mt-1 text-xs text-[#4C5E7A]">
+            Scrapbook photo collage hero → calm uncluttered book &amp; video
+            grid below.
           </p>
-          <span className="mt-2 inline-block rounded-full bg-[#E5AE54] px-3.5 py-1 text-[11px] font-bold text-[#12264A]">
-            Read →
-          </span>
         </div>
       </div>
 
-      <div className="flex items-center justify-between rounded-2xl border-2 border-[#12366B]/15 bg-[#F4E1D5] p-4">
+      <div className="flex items-center justify-between rounded-2xl border border-[#172B4D]/12 bg-[#EAF1F8] p-4">
         <div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#12366B]">
-            Dance
-          </span>
           <h3
-            className="mt-1 text-xl font-bold text-[#12366B]"
+            className="text-lg font-bold text-[#172B4D]"
             style={{ fontFamily: '"Syne", sans-serif' }}
           >
-            Her Majesty
+            Dance
           </h3>
-          <p className="mt-1 text-xs text-[#4C5C78]">
-            Deep cobalt pool hero, warm peach & buttercream below.
+          <p className="mt-1 text-xs text-[#4C5E7A]">
+            Periwinkle, cobalt, warm cream, subtle riso grain.
           </p>
         </div>
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#12366B] text-sm font-bold text-[#F5BA5C] shadow-md">
+        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#172B4D] text-xs text-[#F5C170]">
           ▶
         </div>
       </div>
@@ -133,4 +126,4 @@ const MockupRomanMosaic = () => (
   </div>
 );
 
-export default MockupRomanMosaic;
+export default MockupRisoCollage;

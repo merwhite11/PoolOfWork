@@ -1,44 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import MockupSunlitTiles from "./MockupSunlitTiles.jsx";
-import MockupRomanMosaic from "./MockupRomanMosaic.jsx";
-import MockupPoolsideScrapbook from "./MockupPoolsideScrapbook.jsx";
+import MockupSubmergedRoman from "./MockupSunlitTiles.jsx";
+import MockupRisoCollage from "./MockupRomanMosaic.jsx";
+import MockupDuotoneZine from "./MockupPoolsideScrapbook.jsx";
 
 const concepts = [
   {
-    id: "A",
-    name: "Option A — Sunlit Pool Floor",
+    id: "1",
+    name: "Option 1 — Submerged Roman Pool",
     summary:
-      "Full-bleed sunlit ceramic pool-bottom tiles with animated water caustics, retro gold/cobalt edge trim, and bold playful modern display type (Bricolage Grotesque) paired with clean warm cream cards below.",
-    Component: MockupSunlitTiles,
+      "Full-bleed photo composite blending your underwater pool photo with the Roman Pool mosaic & amber reflections + soft peach cloud light overhead. Bold modern type (Bricolage Grotesque + italic Fraunces 'of'), zero fluff copy.",
+    Component: MockupSubmergedRoman,
   },
   {
-    id: "B",
-    name: "Option B — Roman Mosaic & Warm Lanterns",
+    id: "2",
+    name: "Option 2 — Mixed-Media Collage",
     summary:
-      "Deep cobalt Roman pool tiles with glowing amber-lamp & peach-cloud reflections, gold mosaic border, and crisp modern geometric type (Syne) contrasting against warm cream & blush paper below.",
-    Component: MockupRomanMosaic,
+      "Scrapbook-meets-editorial collage pairing your tinted underwater photo at center with slices of the Roman Pool, clouds, and your moodboard images, topped with modern geometric type (Syne).",
+    Component: MockupRisoCollage,
   },
   {
-    id: "C",
-    name: "Option C — Poolside Scrapbook",
+    id: "3",
+    name: "Option 3 — Cyan & Peach Underwater Zine (Closest to Original)",
     summary:
-      "Dreamy peach-and-periwinkle riso cloud sky framing a taped-in turquoise ceramic pool basin (like a Polaroid of a pool) with bouncy, whimsical retro-modern type (Fraunces Soft).",
-    Component: MockupPoolsideScrapbook,
+      "Keeps the clean, arresting single-photo simplicity of your original landing page, elevated with a luminous swimming-pool cyan/cobalt & peach cloud split-tone grade, delicate editorial frame, and buoyant retro-modern type (Fraunces).",
+    Component: MockupDuotoneZine,
   },
 ];
 
 const Mockups = () => {
   return (
-    <div className="min-h-screen bg-[#F5F1E9] px-4 py-10 text-lapis sm:px-8 md:py-16">
+    <div className="min-h-screen bg-[#F3EFE7] px-4 py-10 text-lapis sm:px-8 md:py-16">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-lapis/12 pb-6">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.22em] text-amber">
-              Phase 2 Visual Directions
+              Photo + Graphic Mockups (Round 2)
             </p>
             <h1 className="mt-1 font-display text-4xl text-lapis sm:text-5xl">
-              Pick a Vibe (or Mix &amp; Match)
+              Pick a Direction (or Mix &amp; Match)
             </h1>
           </div>
           <Link
@@ -49,7 +49,7 @@ const Mockups = () => {
           </Link>
         </div>
 
-        <div className="flex flex-col gap-14">
+        <div className="flex flex-col gap-16">
           {concepts.map(({ id, name, summary, Component }) => (
             <section key={id} className="flex flex-col gap-4">
               <div>
@@ -68,3 +68,4 @@ const Mockups = () => {
 };
 
 export default Mockups;
+
