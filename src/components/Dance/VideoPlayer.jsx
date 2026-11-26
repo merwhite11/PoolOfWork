@@ -12,7 +12,7 @@ const debounce = (func, wait) => {
 const VideoPlayer = ({ videoName, onPlay, dataTestId }) => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
-  const cdnUrl = process.env.CDN_URL;
+  const cdnUrl = import.meta.env.VITE_CDN_URL || "";
   const hlsSource = `${cdnUrl}/${videoName}/hls/${videoName}.m3u8`;
   const mp4Source = `${cdnUrl}/${videoName}/mp4/${videoName}.mp4`;
   const thumbnailSource = `${cdnUrl}/${videoName}/thumbnails/${videoName}.jpg`;

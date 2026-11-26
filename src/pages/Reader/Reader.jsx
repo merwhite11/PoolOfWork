@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { ReactReader } from "react-reader";
 import { PiDotsThreeOutline, PiDotsThreeOutlineFill } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -10,8 +11,9 @@ import Dropdown from "../../components/Dropdown/Dropdown.jsx";
 import "./Reader.scss";
 
 const Reader = ({ doc, title }) => {
+  const location = useLocation();
   //epub
-  const publicUrl = process.env.PUBLIC_URL;
+  const publicUrl = import.meta.env.BASE_URL;
   const epubUrl = urljoin(publicUrl, "Epubs", doc);
   const renditionRef = useRef(null);
   const [rend, setRend] = useState(null);

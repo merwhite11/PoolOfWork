@@ -12,7 +12,7 @@ import "./About.scss";
 const About = () => {
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = process.env.PUBLIC_URL + "Resume/MeredithWhite_Resume.pdf";
+    link.href = `${import.meta.env.BASE_URL}Resume/MeredithWhite_Resume.pdf`;
     link.download = "MeredithWhite_Resume.pdf";
     document.body.appendChild(link);
     link.click();

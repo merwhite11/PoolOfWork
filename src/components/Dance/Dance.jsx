@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Slider from "react-slick";
 import LazyLoad from "react-lazyload";
@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Dance.scss";
 import VideoPlayer from "./VideoPlayer.jsx";
+import videos from "../../data/videos.json";
 
 const Dance = () => {
   const [slidesToShow, setSlidesToShow] = useState(null);
@@ -25,40 +26,28 @@ const Dance = () => {
     if (currentPlayingVideo && currentPlayingVideo !== videoRef) {
       currentPlayingVideo.pause();
     }
-    setCurrentPlayingVideo(videoRef)
+    setCurrentPlayingVideo(videoRef);
   };
 
   useEffect(() => {
-    setSlidesToShow(calculateSlidesToShow())
+    setSlidesToShow(calculateSlidesToShow());
 
     const handleResize = () => {
       setSlidesToShow(calculateSlidesToShow());
-    }
+    };
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  const vids = [
-    "malamente",
-    "closer",
-    "gravity",
-    "comer",
-    "her-majesty",
-    "bike-freak",
-    "east",
-    "see-through",
-    "17",
-    "suckering",
-  ];
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
-    lazyLoad: "ondemand"
+    lazyLoad: "ondemand",
   };
 
   return (
@@ -71,11 +60,15 @@ const Dance = () => {
       </h1>
       <div className="slider-container carousel__inner">
         <Slider {...settings}>
-          {vids.map((vid, index) => (
-            <div key={vid}>
+          {videos.map((video, index) => (
+            <div key={video.id}>
               <div className="video-container">
                 <LazyLoad height={200} offset={100} once>
-                  <VideoPlayer videoName={vid} onPlay={handlePlay} dataTestId={`carousel-video-${index}`}/>
+                  <VideoPlayer
+                    videoName={video.id}
+                    onPlay={handlePlay}
+                    dataTestId={`carousel-video-${index}`}
+                  />
                 </LazyLoad>
               </div>
             </div>
@@ -87,3 +80,4 @@ const Dance = () => {
 };
 
 export default Dance;
+

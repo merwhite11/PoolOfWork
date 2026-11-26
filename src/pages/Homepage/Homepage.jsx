@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
-import { Col, Row, Container, Header } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "./Homepage.scss";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import Writing from "../../components/Writing/Writing.jsx";
@@ -15,7 +8,6 @@ import About from "../../components/About/About.jsx";
 
 const Homepage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (location.state && location.state.targetSection) {
