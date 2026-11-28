@@ -3,8 +3,16 @@ import { Link } from "react-router-dom";
 import MockupSubmergedRoman from "./MockupSunlitTiles.jsx";
 import MockupRisoCollage from "./MockupRomanMosaic.jsx";
 import MockupDuotoneZine from "./MockupPoolsideScrapbook.jsx";
+import MockupTiledLetters from "./MockupTiledLetters.jsx";
 
 const concepts = [
+  {
+    id: "4",
+    name: "Option 4 — Tiled Letters, Lit Pool (MVP)",
+    summary:
+      "Scoped-down sketch: 'Pool of Work' filled with blue mosaic tile, half-submerged and rippling, lit from behind by arched windows of painted sky and two golden lamps. Built entirely with CSS blend modes and an SVG ripple filter — no photo editing.",
+    Component: MockupTiledLetters,
+  },
   {
     id: "1",
     name: "Option 1 — Submerged Roman Pool",

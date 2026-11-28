@@ -13,3 +13,7 @@ package-lock.json
 #build outputs
 dist
 
+
+# Local design reference images (only assets used in code are force-added)
+src/assets/moodboard/
+src/assets/world-building/
