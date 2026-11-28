@@ -8,9 +8,9 @@ import MockupTiledLetters from "./MockupTiledLetters.jsx";
 const concepts = [
   {
     id: "4",
-    name: "Option 4 — Tiled Letters, Lit Pool (MVP)",
+    name: "Option 4 — Tiled Letters, Over-Under",
     summary:
-      "Scoped-down sketch: 'Pool of Work' filled with blue mosaic tile, half-submerged and rippling, lit from behind by arched windows of painted sky and two golden lamps. Built entirely with CSS blend modes and an SVG ripple filter — no photo editing.",
+      "Split shot at the waterline: mosaic-tile 'Pool of Work' in a dark tiled room lit by two lamps and backlit arched windows, with a real underwater photograph below where the letters ripple and catch caustic light.",
     Component: MockupTiledLetters,
   },
   {

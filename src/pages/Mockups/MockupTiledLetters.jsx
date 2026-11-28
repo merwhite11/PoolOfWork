@@ -1,87 +1,147 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import blueTile from "../../assets/world-building/windows/blue-tile.png";
 import greekKeyTile from "../../assets/world-building/windows/tile-detail-1.png";
 import lamp from "../../assets/world-building/windows/lamp-1.png";
 import archWindow from "../../assets/world-building/windows/arched-windows-2.png";
-import paintedSky from "../../assets/world-building/windows/painted-sky-2.png";
+import underwater from "../../assets/moodboard/underwater-yum.png";
 
 /*
- * Option 4 — Tiled Letters, Lit Pool (MVP)
+ * Option 4 — Tiled Letters, Over-Under
  *
- * The whole scene is built from stacked layers, back to front.
- * Nothing here needed photo editing; every "cut-out" comes from a CSS trick:
+ * Camera sits exactly at the waterline (an "over-under" or split shot):
+ *   ABOVE  a dark tiled room, lit only by two lamps and glowing windows
+ *   BELOW  a real underwater photograph, graded to match the room's light
+ * The title straddles the line, so you see its two halves behave differently:
+ * crisp in the air, magnified + rippled + caustic-lit under water.
  *
- *   - mix-blend-mode: screen   -> black disappears   (used on the lamp photo)
- *   - mix-blend-mode: multiply -> white disappears   (used on the window photo)
- *   - background-clip: text    -> an image fills the letters (the blue tile)
- *   - an SVG filter            -> ripples the part of the title that is underwater
+ * Techniques worth learning, in order of impact:
+ *  - Use ONE real photo for the hardest thing (water) and build the rest.
+ *  - Color-match: darken/desaturate/tint every layer toward one light source.
+ *  - Integrate: lay the photo's own light pattern over the letters (overlay),
+ *    so they look like they're *in* that water, not pasted on top of it.
+ *  - Light only where light falls: the wall is near-black except where the
+ *    lamps and windows reveal it.
  *
- * IMPORTANT blend-mode gotcha: blending only "sees" layers in the same stacking
- * context. So the lamp and window images (and the wrappers around them) must not
- * have transform / opacity / filter / z-index on a *parent*, or the blend gets
- * trapped and the black/white backgrounds show up again.
+ * Blend-mode gotcha: `mix-blend-mode` only blends with layers in the same
+ * stacking context. The lamp uses `screen`, so it sits directly in the room
+ * layer, and its transform is on the <img> itself, never on a wrapper.
  */
 
-// Where the water surface sits, measured from the top of the scene.
-// Change this one number to raise or lower the pool.
-const WATER = 58; // percent
-
+const WATER = 56; // % from the top of the scene where the waterline sits
+const SINK = 0.84; // how far down each letter (in em) the waterline falls
 const TITLE = "Pool of Work";
 
-// The title is drawn twice: once above water, once (rippled + tinted) below.
-// Each copy is clipped so only its half shows. The waterline falls 0.66em
-// down the 1em-tall line box (raise it to sink the letters deeper).
-const SINK = 0.72; // em
-const titleBox = {
-  position: "absolute",
-  left: 0,
-  right: 0,
-  top: `calc(${WATER}% - ${SINK}em)`,
-  fontSize: "clamp(1.8rem, 8.6vw, 8rem)",
-  lineHeight: 1,
-  height: "1em",
-};
+// Parallax: --mx / --my run from -1..1 with the pointer. Bigger depth = closer.
+const parallax = (depth, extra = "") => ({
+  transform: `${extra} translate3d(calc(var(--mx, 0) * ${depth}px), calc(var(--my, 0) * ${depth * 0.3}px), 0)`,
+  transition: "transform 900ms cubic-bezier(.2,.7,.2,1)",
+});
 
-const tileLetters = {
-  fontFamily: '"Bricolage Grotesque", sans-serif',
-  fontWeight: 800,
+// Wide, hairline geometric sans (free on Google Fonts). On its own it has even
+// strokes; <TileWord> below gives it the reverse contrast from font-inspo.
+const titleFont = {
+  fontFamily: '"Anybody", sans-serif',
+  fontVariationSettings: '"wdth" 140, "wght" 230',
   textTransform: "uppercase",
-  letterSpacing: "-0.01em",
+  letterSpacing: "0.005em",
   textAlign: "center",
   whiteSpace: "nowrap",
-  // Fill the letter shapes with the tile photo instead of a flat color.
-  backgroundImage: `url(${blueTile})`,
-  backgroundSize: "320px",
+  lineHeight: 1,
+  fontSize: "clamp(1.3rem, 6.6vw, 4.6rem)",
+};
+
+// Reverse contrast, faked: stack copies of the word nudged straight down.
+// A vertical shift thickens only HORIZONTAL strokes (the tops of P, the foot of
+// L, the bars of F); vertical stems stay hairline. Each copy's background is
+// shifted back up by the same amount so the tile pattern stays continuous.
+const THICK = 0.12; // em added to horizontal strokes
+const STEPS = 10;
+const offsets = Array.from({ length: STEPS + 1 }, (_, i) => +((THICK * i) / STEPS).toFixed(4));
+
+const TileWord = ({ style }) =>
+  offsets.map((o) => (
+    <div
+      key={o}
+      aria-hidden="true"
+      className="absolute inset-0"
+      style={{
+        ...tileFace,
+        ...style,
+        transform: `translateY(${o}em)`,
+        backgroundPosition: `0 -${o}em, 0 -${o}em`,
+      }}
+    >
+      {TITLE}
+    </div>
+  ));
+
+// Tile face, lit from above by the room: warm highlight on top, shadow below.
+const tileFace = {
+  backgroundImage: `linear-gradient(180deg, rgba(255,200,140,0.42) 0%, rgba(255,200,140,0) 40%, rgba(2,8,24,0.5) 100%), url(${blueTile})`,
+  backgroundSize: "100% 100%, 150px",
   WebkitBackgroundClip: "text",
   backgroundClip: "text",
   color: "transparent",
-  // A thin gold edge, like grout around a mosaic inlay.
-  WebkitTextStroke: "0.012em #E2B85C",
 };
 
-// Builds a gentle wave path for the water surface line.
-const wavePath = (() => {
-  let d = "M0 6";
-  for (let x = 0; x < 1200; x += 60) d += ` Q ${x + 15} 1 ${x + 30} 6 T ${x + 60} 6`;
-  return d;
-})();
+// Thickness: stacked 1px shadows read as an extruded edge; one soft shadow grounds it.
+// The back layer first gets the same reverse-contrast thickening, then
+// continues further down in darker shades as the extruded side.
+const extrusion = offsets
+  .map((o) => `0 ${o}em 0 hsl(222 40% 14%)`)
+  .concat(Array.from({ length: 6 }, (_, i) => `0 calc(${THICK}em + ${i + 1}px) 0 hsl(222 40% ${13 - i * 1.5}%)`))
+  .concat("0 16px 26px rgba(0,0,0,0.6)")
+  .join(", ");
+
+const ArchWindow = ({ className = "" }) => (
+  <div className={`relative aspect-square h-full ${className}`}>
+    {/* Bloom: bright light always spills past the frame in a photo */}
+    <div
+      className="absolute"
+      style={{
+        inset: "0% 8% 4% 8%",
+        borderRadius: "999px 999px 40% 40%",
+        background: "radial-gradient(ellipse 50% 55% at 50% 55%, rgba(255,214,160,0.6), rgba(255,170,100,0.18) 55%, transparent 78%)",
+        filter: "blur(22px)",
+      }}
+    />
+    {/* The window, clipped to its arch so the white backdrop is gone */}
+    <div className="absolute inset-0" style={{ clipPath: "inset(8.2% 19.4% 8.2% 19.4% round 999px 999px 0 0)" }}>
+      {/* Overexposed light behind the glass, hottest low in the middle */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "radial-gradient(ellipse 70% 60% at 50% 72%, #FFF8EC 0%, #FFE6BC 30%, #F0B878 62%, #9A5A34 100%)" }}
+      />
+      {/* brightness+contrast push the cream frame dark while the white panes stay
+          white, so `multiply` gives a backlit silhouette: dark bars, glowing glass */}
+      <img
+        src={archWindow}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full"
+        style={{ mixBlendMode: "multiply", filter: "grayscale(1) brightness(0.54) contrast(7)" }}
+      />
+      {/* soften the hard thresholded edges a touch, like lens halation */}
+      <div className="absolute inset-0" style={{ boxShadow: "inset 0 0 40px rgba(40,18,6,0.55)" }} />
+    </div>
+  </div>
+);
 
 const Lamp = ({ x }) => (
   <>
-    {/* Warm glow around the globe. Screen blending only ever brightens. */}
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute h-72 w-72 rounded-full"
+      className="pointer-events-none absolute rounded-full"
       style={{
         left: x,
-        top: "13%",
-        transform: "translate(-50%, -50%)",
-        background:
-          "radial-gradient(circle, rgba(255,176,96,0.55) 0%, rgba(255,150,80,0.18) 40%, transparent 70%)",
+        top: "21%",
+        width: "46%",
+        aspectRatio: "1",
+        background: "radial-gradient(circle, rgba(255,168,92,0.5) 0%, rgba(255,140,70,0.16) 30%, transparent 65%)",
         mixBlendMode: "screen",
+        ...parallax(12, "translate(-50%, -50%)"),
       }}
     />
-    {/* The lamp photo sits on near-black, so `screen` makes the backdrop vanish. */}
     <img
       src={lamp}
       alt=""
@@ -89,235 +149,183 @@ const Lamp = ({ x }) => (
       className="pointer-events-none absolute max-w-none"
       style={{
         left: x,
-        bottom: `${100 - WATER - 2}%`, // base dips just under the water
-        height: "52%",
-        transform: "translateX(-50%)",
+        bottom: "-3%",
+        height: "90%",
         mixBlendMode: "screen",
-        // contrast() pushes the photo's dark grey background down to pure
-        // black, which `screen` then makes fully invisible.
-        filter: "contrast(1.3)",
-        // The photo's background is *near* black, not pure black, so screen
-        // still leaves a faint box. A mask fades everything but the lamp.
-        maskImage:
-          "linear-gradient(to right, transparent 36%, #000 43%, #000 57%, transparent 64%)",
-        WebkitMaskImage:
-          "linear-gradient(to right, transparent 36%, #000 43%, #000 57%, transparent 64%)",
+        filter: "contrast(1.3) brightness(0.95)",
+        maskImage: "linear-gradient(to right, transparent 38%, #000 44%, #000 56%, transparent 62%)",
+        WebkitMaskImage: "linear-gradient(to right, transparent 38%, #000 44%, #000 56%, transparent 62%)",
+        ...parallax(12, "translateX(-50%)"),
       }}
     />
   </>
 );
 
-// Lamp light reflected on the water: a blurred amber streak, rippled.
-const Reflection = ({ x }) => (
-  <div
-    aria-hidden="true"
-    className="pointer-events-none absolute w-16"
-    style={{
-      left: x,
-      top: `${WATER}%`,
-      height: "30%",
-      transform: "translateX(-50%)",
-      background: "linear-gradient(to bottom, rgba(255,170,90,0.7), transparent)",
-      filter: "url(#pow-ripple) blur(5px)",
-      mixBlendMode: "screen",
-    }}
-  />
-);
-
-const ArchWindow = ({ className = "", children }) => (
-  // `relative` with no z-index does NOT create a stacking context,
-  // so the multiply below can still blend with the wall behind it.
-  <div className={`relative aspect-square h-full ${className}`}>
-    {/* Painted sky, cut to the arch opening of the photo (measured off the image). */}
-    <div
-      className="absolute"
-      style={{
-        left: "20%",
-        right: "20%",
-        top: "8.5%",
-        bottom: "8%",
-        borderRadius: "999px 999px 0 0",
-        backgroundImage: `url(${paintedSky})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    />
-    {/* Window photo on white: `multiply` makes white transparent, so the
-        sky shows through the panes and the white surround disappears. */}
-    <img
-      src={archWindow}
-      alt=""
-      aria-hidden="true"
-      className="absolute inset-0 h-full w-full"
-      style={{ mixBlendMode: "multiply" }}
-    />
-    {children}
-  </div>
-);
-
-const NavCutout = ({ label, shape, rotate }) => (
-  <span
-    className={`paper-grain flex items-center justify-center bg-[#F5EEDF] px-5 py-3 text-base italic text-[#14305C] shadow-[4px_6px_0_rgba(4,14,36,0.55)] sm:px-8 sm:py-4 sm:text-xl ${shape}`}
-    style={{ fontFamily: '"Fraunces", serif', transform: `rotate(${rotate}deg)` }}
-  >
-    {label}
-  </span>
-);
-
 const MockupTiledLetters = () => {
-  // Respect "reduce motion": keep the ripple, but stop it animating.
-  const [animate, setAnimate] = useState(true);
+  const sceneRef = useRef(null);
+  const [motion, setMotion] = useState(true);
+
   useEffect(() => {
     const mq = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     if (!mq) return;
-    setAnimate(!mq.matches);
-    const onChange = (e) => setAnimate(!e.matches);
+    setMotion(!mq.matches);
+    const onChange = (e) => setMotion(!e.matches);
     mq.addEventListener?.("change", onChange);
     return () => mq.removeEventListener?.("change", onChange);
   }, []);
 
+  // Write CSS variables directly so moving the mouse never re-renders React.
+  const onPointerMove = (e) => {
+    if (!motion || e.pointerType !== "mouse") return;
+    const r = sceneRef.current.getBoundingClientRect();
+    sceneRef.current.style.setProperty("--mx", (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+    sceneRef.current.style.setProperty("--my", (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+  };
+  const onPointerLeave = () => {
+    sceneRef.current.style.setProperty("--mx", "0");
+    sceneRef.current.style.setProperty("--my", "0");
+  };
+
   return (
     <div className="overflow-hidden rounded-3xl border border-lapis/15 shadow-xl">
-      {/* This div is the one stacking context every blend mode below shares. */}
       <div
-        className="relative h-[620px] w-full overflow-hidden sm:h-[720px]"
-        style={{ background: "linear-gradient(180deg, #0A1430 0%, #12244A 60%)" }}
+        ref={sceneRef}
+        onPointerMove={onPointerMove}
+        onPointerLeave={onPointerLeave}
+        className="relative h-[620px] w-full overflow-hidden bg-[#05070B] sm:h-[720px]"
       >
-        {/* SVG filter definition: noise -> displacement = water ripple. */}
         <svg width="0" height="0" className="absolute" aria-hidden="true">
-          <filter id="pow-ripple" x="-5%" y="-20%" width="110%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.07" numOctaves="2" seed="3">
-              {animate && (
-                <animate
-                  attributeName="baseFrequency"
-                  dur="10s"
-                  values="0.012 0.07;0.015 0.085;0.012 0.07"
-                  repeatCount="indefinite"
-                />
+          <filter id="pow4-ripple" x="-5%" y="-10%" width="110%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.008 0.05" numOctaves="2" seed="4">
+              {motion && (
+                <animate attributeName="baseFrequency" dur="12s" values="0.008 0.05;0.01 0.065;0.008 0.05" repeatCount="indefinite" />
               )}
             </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" scale="16" />
+            <feDisplacementMap in="SourceGraphic" scale="14" />
+          </filter>
+          <filter id="pow4-waterline" x="0" y="-200%" width="100%" height="500%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02 0.4" numOctaves="1" seed="9">
+              {motion && <animate attributeName="seed" dur="0.9s" values="9;10;11;12" repeatCount="indefinite" />}
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="6" />
           </filter>
         </svg>
 
-        {/* LAYER 1 — light the windows throw onto the back wall */}
+        {/* ───────────── ABOVE WATER ───────────── */}
+        <div className="absolute inset-x-0 top-0 overflow-hidden" style={{ height: `${WATER}%` }}>
+          {/* Wall: the same tile, but in deep shadow. Light layers reveal it. */}
+          <div
+            className="absolute -inset-6"
+            style={{ backgroundImage: `url(${blueTile})`, backgroundSize: "170px", filter: "brightness(0.26) saturate(0.4)", ...parallax(4) }}
+          />
+          {/* warm wash from the windows onto the wall behind them */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse 48% 60% at 50% 55%, rgba(255,190,130,0.22), transparent 70%)", mixBlendMode: "screen" }}
+          />
+
+          <div className="absolute inset-x-0 top-[8%] flex h-[84%] items-end justify-center" style={parallax(6)}>
+            <ArchWindow className="-mr-[4%] hidden !h-[74%] sm:block" />
+            <ArchWindow />
+            <ArchWindow className="-ml-[4%] hidden !h-[74%] sm:block" />
+          </div>
+
+          <Lamp x="10%" />
+          <Lamp x="90%" />
+
+          {/* pool coping: Greek-key band, darkened to sit in the room's light */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-[18px]"
+            style={{
+              backgroundImage: `linear-gradient(180deg, rgba(255,210,150,0.12), rgba(0,0,0,0.55)), url(${greekKeyTile})`,
+              backgroundSize: "100% 100%, 100px 100px",
+              backgroundPosition: "0 0, 0 -41px",
+              backgroundRepeat: "no-repeat, repeat-x",
+            }}
+          />
+          {/* steam hanging over the warm water */}
+          <div className="absolute inset-x-0 bottom-0 h-[28%]" style={{ background: "linear-gradient(to top, rgba(160,170,180,0.16), transparent)" }} />
+
+          {/* Title, above-water half */}
+          <div className="absolute inset-x-0" style={{ ...titleFont, top: `calc(100% - ${SINK}em)`, ...parallax(20) }}>
+            <h2 style={{ color: "#0B1636", textShadow: extrusion, font: "inherit", margin: 0 }}>{TITLE}</h2>
+            <TileWord />
+          </div>
+        </div>
+
+        {/* ───────────── BELOW WATER ───────────── */}
+        <div className="absolute inset-x-0 bottom-0 overflow-hidden" style={{ top: `${WATER}%` }}>
+          {/* The real photograph does the heavy lifting: perspective, caustics, depth.
+              Graded darker, less saturated and slightly green-teal to match the
+              lamp-lit room above instead of bright daylight. */}
+          <img
+            src={underwater}
+            alt=""
+            aria-hidden="true"
+            className="absolute -inset-x-6 h-full w-[calc(100%+3rem)] max-w-none object-cover"
+            style={{ objectPosition: "50% 82%", filter: "brightness(0.64) saturate(0.72) hue-rotate(-8deg) contrast(1.08)", ...parallax(8) }}
+          />
+
+          {/* Submerged half of the letters. Water magnifies (≈ scale 1.06) and
+              ripples them, and they take on the water's color. */}
+          <div style={{ filter: "url(#pow4-ripple) blur(0.4px)" }}>
+            <div
+              className="absolute inset-x-0"
+              style={{ ...titleFont, top: `-${SINK}em`, ...parallax(20, "scale(1.06)"), transformOrigin: `50% ${SINK}em` }}
+            >
+              <div aria-hidden="true" className="invisible">{TITLE}</div>
+              <TileWord style={{ filter: "brightness(1.15) saturate(0.85)" }} />
+            </div>
+          </div>
+
+          {/* Integration: the photo's own caustic light laid over everything,
+              so the letters catch the same shimmer as the pool floor. */}
+          <img
+            src={underwater}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-x-6 h-full w-[calc(100%+3rem)] max-w-none object-cover"
+            style={{ objectPosition: "50% 82%", mixBlendMode: "overlay", opacity: 0.45, filter: "grayscale(1) contrast(1.6)", ...parallax(8) }}
+          />
+
+          {/* depth: water absorbs light, so it gets darker and bluer further down */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{ background: "linear-gradient(180deg, rgba(20,60,80,0.15) 0%, rgba(4,20,40,0.35) 45%, rgba(2,8,20,0.8) 100%)" }}
+          />
+          {/* warm lamp light reaching just under the surface */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-[40%]"
+            style={{ background: "radial-gradient(ellipse 30% 100% at 10% 0%, rgba(255,170,90,0.22), transparent 70%), radial-gradient(ellipse 30% 100% at 90% 0%, rgba(255,170,90,0.22), transparent 70%)", mixBlendMode: "screen" }}
+          />
+        </div>
+
+        {/* ───────────── THE WATERLINE ─────────────
+            In split shots the surface reads as a bright, wobbling meniscus band. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 h-[10px]"
+          style={{
+            top: `calc(${WATER}% - 5px)`,
+            background: "linear-gradient(180deg, transparent 0%, rgba(180,220,230,0.35) 35%, rgba(235,250,255,0.8) 50%, rgba(120,170,190,0.4) 65%, transparent 100%)",
+            filter: "url(#pow4-waterline) blur(0.6px)",
+          }}
+        />
+
+        {/* ───────────── FINISHING ───────────── */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 45% 40% at 50% 28%, rgba(255,214,176,0.28), transparent 70%)",
-          }}
+          style={{ background: "radial-gradient(ellipse 80% 75% at 50% 50%, transparent 50%, rgba(0,0,0,0.65) 100%)" }}
         />
-
-        {/* LAYER 2 — arched windows with painted sky */}
-        <div className="absolute inset-x-0 top-[4%] flex h-[50%] items-end justify-center">
-          <ArchWindow className="-mr-[4%] hidden !h-[78%] sm:block" />
-          <ArchWindow>
-            {/* Arc lettering over the center arch, like the sketch */}
-            <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full overflow-visible">
-              <path id="pow-arc" d="M 13 40 A 37 37 0 0 1 87 40" fill="none" />
-              <text
-                fill="#F5E6CF"
-                fontSize="3.5"
-                letterSpacing="0.6"
-                style={{ fontFamily: '"IBM Plex Mono", monospace', textTransform: "uppercase" }}
-              >
-                <textPath href="#pow-arc" startOffset="50%" textAnchor="middle">
-                  Creative Portfolio · by Meredith White
-                </textPath>
-              </text>
-            </svg>
-          </ArchWindow>
-          <ArchWindow className="-ml-[4%] hidden !h-[78%] sm:block" />
-        </div>
-
-        {/* LAYER 3 — golden lamps either side */}
-        <Lamp x="10%" />
-        <Lamp x="90%" />
-
-        {/* LAYER 4 — pool edge: the gold Greek-key band, cropped out of the
-            tile photo with background-size/position (no editing). */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 h-[22px] opacity-80"
+          className="pointer-events-none absolute inset-0 opacity-[0.2] mix-blend-overlay"
           style={{
-            top: `calc(${WATER}% - 22px)`,
-            backgroundImage: `url(${greekKeyTile})`,
-            backgroundSize: "122px 122px", // band is ~18% of the image height
-            backgroundPosition: "0 -50px", // shift so only the band shows
-            backgroundRepeat: "repeat-x",
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E\")",
           }}
         />
-
-        {/* LAYER 5 — pool wall below the surface (navy tile) */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-0"
-          style={{
-            top: `${WATER}%`,
-            backgroundImage: `url(${greekKeyTile})`,
-            backgroundSize: "800px auto",
-            backgroundPosition: "center top",
-          }}
-        />
-
-        {/* LAYER 6 — the submerged half of the title (rippled + darker) */}
-        <h2
-          aria-hidden="true"
-          style={{
-            ...titleBox,
-            ...tileLetters,
-            clipPath: `inset(${SINK * 100}% 0 0 0)`,
-            filter: "url(#pow-ripple) brightness(0.8) saturate(1.3)",
-          }}
-        >
-          {TITLE}
-        </h2>
-
-        {/* LAYER 7 — the water itself: translucent, deeper = darker */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0"
-          style={{
-            top: `${WATER}%`,
-            background:
-              "linear-gradient(180deg, rgba(70,150,230,0.4) 0%, rgba(20,70,150,0.62) 40%, rgba(6,22,60,0.88) 100%)",
-          }}
-        />
-        <Reflection x="10%" />
-        <Reflection x="90%" />
-
-        {/* LAYER 8 — the water surface line */}
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 1200 12"
-          preserveAspectRatio="none"
-          className="pointer-events-none absolute inset-x-0 h-3 w-full"
-          style={{ top: `calc(${WATER}% - 6px)` }}
-        >
-          <path d={wavePath} fill="none" stroke="rgba(220,240,255,0.75)" strokeWidth="1.5" />
-        </svg>
-
-        {/* LAYER 9 — the above-water half of the title. A hard, offset
-            drop-shadow (no blur) is what makes it read as a paper cut-out. */}
-        <h2
-          style={{
-            ...titleBox,
-            ...tileLetters,
-            clipPath: `inset(0 0 ${100 - SINK * 100}% 0)`,
-            filter: "drop-shadow(0.04em 0.05em 0 rgba(4,10,28,0.65))",
-          }}
-        >
-          {TITLE}
-        </h2>
-
-        {/* LAYER 10 — section links floating in the water, as paper cut-outs */}
-        <nav className="absolute inset-x-0 bottom-[7%] flex items-center justify-center gap-4 px-4 sm:gap-10">
-          <NavCutout label="Writing" shape="rounded-md" rotate={-3} />
-          <NavCutout label="About" shape="rounded-[50%] !px-7 sm:!px-10" rotate={2} />
-          <NavCutout label="Dance" shape="rounded-sm" rotate={-1.5} />
-        </nav>
       </div>
     </div>
   );
